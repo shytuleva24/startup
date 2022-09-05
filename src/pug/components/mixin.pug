@@ -1,125 +1,41 @@
 -
     let menu = [
-        {name: "Гoловна ", url: "#"},
-        {name: "Послуги", url: "#about-company"},
-        {name: "Про компанію", url: "#about-company"},
-        {name: "Акції", url: "#proposals"},
-        {name: "Партнери", url: "#surfingBg"},
-        {name: "Відгуки", url: "#surfingBg"},
-        {name: "Контакти", url: "#additional-info"}
+        {name: "Home", url: "#home"},
+        {name: "Services", url: "#services"},
+        {name: "About", url: "#about"},
+        {name: "Works", url: "#works"},
+        {name: "Blog", url: "#blog"},
+        {name: "Clients", url: "#clients"},
+        {name: "Contact", url: "#contact"}
     ]
 -
-    let travelPlans = {
-        bikeTour: {
-            href: "#",
-            src:"img/travelPlan1",
-            alt:"Велотур, подорож на велосипеді, яскраві эмоції, подарунок",
-            titleCard:"Тур на велосипедах",
-            price: "335 грн*",
-            description: "Подорожуючи  на велосипеді, ви поринете в атмосферу мальовничих гір, чарівнмх краєвидів та шалених пригод."
+    let cards = {
+        clean: {
+            class: "clean-typography",
+            title:"Clean Typography",
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
         },
-        islands: {
-            href: "#",
-            src:"img/travelPlan2",
-            alt:"Велотур, подорож на велосипеді, яскраві эмоції, подарунок",
-            titleCard:"Екскурсія на острів",
-            price: "500 грн*",
-            description: "Подорож на острів занурить Вас у незабутнні пригоди. Неймовірна краса  у будь-яку пору року."
+        rock: {
+            class: "rock-solid",
+            title:"Rock Solid Code",
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
         },
-        romantic: {
-            href: "#",
-            src:"img/travelPlan3",
-            alt:"Велотур, подорож на велосипеді, яскраві эмоції, подарунок",
-            titleCard:"Особливе замовлення",
-            price: "250 грн*",
-            description: "Обираючи цю подорож, Ви самостійно робите її незабутнбою та не схожою на будь-які інші."
-        }
-    }
--
-    let specialProposals = {
-        romantic: {
-            src:"img/special1",
-            alt:"Романтична подорож на 2, найромантичніший подарунок, відпочинок на природі для двох",
-            titleCard:"Романтична подорож на 2",
-            description: "Подорож у найромантичніші куточки світу, занурить вас у дивовижні пейзажі природи.",
-            price: "2599 грн.",
-            href: "#"
-        },
-        bikeTour: {
-            src:"img/special2",
-            alt:"Велотур, подорож на велосипеді, яскраві эмоції, подарунок",
-            titleCard:"Велотур",
-            description: "Бажаєте прокататись з вітерцем, та ще й з критим краєвидом довкола? Тоді швидше замовляй велотур!",
-            price: "555 грн.",
-            href: "#"
-        },
-        islands: {
-            src:"img/special3",
-            alt:"Подорож на остів, відпочинок на безлюдному острові",
-            titleCard:"На острови!",
-            description: "Хочеш зануритись у тишу, місце де не має натовпу, та панує дика природа? Тоді вперед за пригодами!",
-            price: "1559 грн.",
-            href: "#"
-        },
-        surfing: {
-            src:"img/special4",
-            alt:"Сьорфінг, екстрим, мега враження, екстремальний подарунок, враження на все життя",
-            titleCard:"Катання на сьорфінгу",
-            description: "Хочеш отримати екстрим та мега вражень одночасно? Тоді вперед ловити хвилі!",
-            price: "999 грн.",
-            href: "#"
-        }
-    }
--
-    let additionalInformation = {
-        workSchedule: {
-            titleCard:"Графік роботи готелів.xls",
-            sizeFile: "Розмір файла: 10Mb",
-            description: "Розклад роботи усіх наших готелів, можете знайти за цим посиланням. Та додатково завантажити їх фото.",
-            href: "#"
-        },
-        nutritionInformation: {
-            titleCard:"Інформація про харчування.xls",
-            sizeFile: "Розмір файла: 10Mb",
-            description: "У будь-якому нашому турі включені сніданки у вартість. Якщо ж бажаєте замовити додотково, то ознайомтесь з умовами.",
-            href: "#"
+        expert: {
+            class: "expert-support",
+            title:"Expert Support",
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
         }
     }
 
-mixin menu (items, myclass)
+
+mixin menu (items)
     for item in items 
-        a.nav-link.link.p-3.text-uppercase(href=item.url) #{item.name}
+        li 
+            a(href=item.url) #{item.name}
 
-mixin travelPlan (item)
-    figure.travel-plan
+mixin card (item)
+    figure.price-cup
         figcaption
-            a.mx-auto.d-flex.flex-column.align-items-center.popular.position-relative(href=item.href)
-                picture.mx-auto
-                    source(srcset=item.src + ".webp", tipe="image/webp")
-                    img.mx-auto.position-relative(src=item.src + ".png", alt=item.alt)
-                p.title-card.text-center #{item.titleCard}
-                p.price #{item.price}
-                p.card-descr.lh-base.text-center.text-md-start #{item.description}
-
-mixin specialProposals (item)
-    figure.card-proposals.position-relative.popular
-        figcaption
-            .img.position-relative
-                picture 
-                    source(srcset=item.src + ".webp", tipe="image/webp")
-                    img.position-relative(src=item.src + ".jpg", alt=item.alt)
-            .content-card
-                p.title-card #{item.titleCard}
-                p.card-descr.lh-base #{item.description}
-                p.price.d-flex.justify-content-between #{item.price}
-                    a.text-uppercase.card-btn.arrow-right.position-relative(href=item.href) замовити
-
-mixin additionalInformation (item)
-    figure
-        figcaption 
-            .add-info.mx-auto
-                p.title-card.text-white.position-relative #{item.titleCard}
-                p.sizeFile #{item.sizeFile}
-                p.card-descr.lh-base.text-white #{item.description}
-                .button 
-                    a.text-uppercase.position-relative.d-inline-block.align-middle(href=item.href) скачати
+            img(src="img/sprite.png", alt=item.alt)
+            h3.title-card #{item.title}
+            p #{item.description}

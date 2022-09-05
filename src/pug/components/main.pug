@@ -1,93 +1,33 @@
-header.container-fluid.bacground
-    .container
-        section.row.about-company#about-company
-            .col-xl-3.d-flex.flex-column.align-items-center.align-items-xl-start
-                h3.text-uppercase.text-center.text-xl-start про нашу компанію
-                i.d-inline-block.text-center.text-xl-start Наша компанія пропонує ряд цікавих-розважальних послуг, які принесуть вам ряд вражень!
-                .button 
-                    a.orange.text-uppercase(href="#") детальніше 
-                p.attention.lh-base.text-center.text-xl-start * - зверніть увагу, зміна ціни може залежати від курсу долара.
-            .col-xl-9
-                .row.g-2
-                    .col-12.col-md-4.travel
-                        +travelPlan (travelPlans.bikeTour)
-                        //- <svg xmlns="http://www.w3.org/2000/svg" height="62" viewBox="0 0 24 24" width="68" fill="#ffb700"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm5.8-10l2.4-2.4.8.8c1.3 1.3 3 2.1 5.1 2.1V9c-1.5 0-2.7-.6-3.6-1.5l-1.9-1.9c-.5-.4-1-.6-1.6-.6s-1.1.2-1.4.6L7.8 8.4c-.4.4-.6.9-.6 1.4 0 .6.2 1.1.6 1.4L11 14v5h2v-6.2l-2.2-2.3zM19 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg>            
-                    .col-12.col-md-4.travel
-                        +travelPlan (travelPlans.islands)
-                    .col-12.col-md-4.travel
-                        +travelPlan (travelPlans.romantic)
-            .row 
-                .col-xl-5.col
-                .col-xl-2.col-12.text-center
-                    a.text-uppercase.all-plans.position-relative.d-inline-block.arrow-right(href="#") дивитись усі плани 
-                .col-xl-5.col
-        section.row.g-3 
-            .col-12.col-lg-4
-                picture
-                    source(srcset="img/island.webp" tipe="image/webp")
-                    img(src="img/island.jpg" alt="Подорож до острова, незабутне враження")
-            .col-12.col-lg-8
-                h3.text-uppercase.text-center.text-lg-start Дивовижний безлюдний острів, який зводить людей з розуму
-                .row.g-5
-                    .col-12.col-lg-8.island
-                        i.d-block.island-descr.text-center.text-lg-start Пхукет - курортно-туристична Мекка Таїланду. Білосніжний пісок, і бірюзове море, і мальовничі скелі, а на них же, трохи вище - буйна тропічна рослинність. Все це можна побачити на власні очі.
-                        .flex.flex-column.flex-sm-row.justify-content-center.justify-content-lg-start.buttons   
-                            .button 
-                                a.orange.text-uppercase.text-center(href="#") замовити тур
-                            .button 
-                                a.orange.text-uppercase.text-center(href="#") детальніше
-                    .col-12.col-lg-4.mx-auto
-                        a.price-island.d-block(href="#")
-                            p.price.text-center.lh-base 575 грн./день 
-                            p.text-center.discr.lh-base В дану вартість входить обслуговування персоналу, вечеря і захоплюючі історії.
-section.container-fluid.surfingBg#surfingBg
-    .container
-        .row.g-5
-            .col-12.col-xl-6.text-center.text-xl-start.surfing
-                h2.text-uppercase.lh-base.text-uppercase СПІЙМАЙ ХВИЛЮ 
-                    span ЖИВИ ЯСКРАВО!
-                p Полюбляєш екстрим та пригоди? Тоді тобі точно до нас! Мрієш стати на сапборд, але ніяк не міг наважитсь? Наші досвдчені інструктори навчать тебе вміло «піймати хвилі» та відчути себе справжнім сьорфером!
-                .button 
-                    a.orange.text-uppercase(href="#") детальніше
-            .col-12.col-xl-6.text-center.text-xl-start.d-flex.justify-content-center
-                a.review.position-relative.d-flex.justify-content-center.flex-column.align-items-center(href="#")
-                    span
-                    i.d-block.text-white Чудова туристична фірма, що повністю виправдала мої очікування від подорожі. Я був приємно вражений екскурсіями, що для мене підібрали, працюють спражні професіонали своєї справи. 
-                    b.text-white.d-block Олег Набережний
-                    p клієнт
-                    .photo-review
-                        img.rounded-circle(src="img/photoReview.jpg", alt="")
-section.container-fluid.bacground#proposals
-    .container
-            .row.g-5
-                h3.text-center.text-uppercase Спеціальні пропозиції тижня
-                i.text-center.mt-0 Гарячі праозиції, по-швидше обирай і поїхали!
-                .col-12.col-md-6.col-xl-3
-                    +specialProposals (specialProposals.romantic)
-                .col-12.col-md-6.col-xl-3.bike-tour
-                    +specialProposals (specialProposals.bikeTour)
-                .col-12.col-md-6.col-xl-3
-                    +specialProposals (specialProposals.islands)
-                .col-12.col-md-6.col-xl-3
-                    +specialProposals (specialProposals.surfing)
-            section.row.g-5.additional-info.d-flex.flex-column.flex-sm-row.flex-xl-nowrap#additional-info
-                .col-12.col-md-6.col-lg-12.col-xl-3.d-flex.justify-content-center.align-items-center.align-self-xl-start
-                    h3.text-uppercase.text-center.text-lg-start.w-sm-50.w-xxl-100 додаткова інформація
-                .col-12.col-sm-6.col-lg-4.col-xl-3.workSchedule.order-md-2.order-xl-0
-                    +additionalInformation (additionalInformation.workSchedule)
-                .col-12.col-sm-6.col-lg-4.col-xl-3.nutritionInformation
-                    +additionalInformation (additionalInformation.nutritionInformation)
-                .col-12.col-md-6.col-lg-4.col-xl-3.consultation.position-relative.d-flex.justify-content-center.flex-column.align-items-center.mx-auto
-                    h4.question.m-0 задати питання
-                    p.text-cener.m-0 Скажіть доброго дня нашому консультанту, і ми з радістю відповімо на Ваші запитання
-                    a.tel.position-relative(href="tel:+380505698511") +38 (050) 56 98 511
-                    h4.name-consult.m-0 Анна Миколаївна
-                    p консультант
-                    .photo-consult
-                        img.rounded-circle(src="img/admin.jpg", alt="")
-//- <svg width="60" height="60" viewbox="0 0 100 100">
-//-     <defs id="star">
-//-         <polygon points="0 0, 60 0, 0 60" fill="#26cb15"/>
-//-         <svg x="5" y="5" height="24" viewBox="0 0 24 24" width="24" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path fill="#fff" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-//-     </defs>
-//- </svg>
+main 
+    section.services#services
+        .wrapper 
+            h2 Services
+            p.roboto We offer ipsum dolor sit amet, consetetur sadipscing elitr amet
+            .services-list.flex
+                figure.clean-typography
+                    figcaption
+                        svg(version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 40" width="43" height="40")
+                            path(fill-rule="evenodd" class="a" d="m18.7 11.2c1.9 3.8 3.4 7.8 4.8 11.8q-0.7 0-1.5 0c-2.5 0-5.1 0-7.7-0.1zm-18.7 28.8c1.6 0 3.2-0.1 4.9-0.3 0.3-0.1 0.8-0.3 1.2-0.3 3 0 6 0.6 9 0.6q0.1-0.4 0.1-0.7 0-0.8 0-1.5c-1.5-0.3-5.3-0.3-5.3-2.3 0-1 2.6-7.9 3.3-9.4l11.6 0.1c0.4 1.1 3.7 8.8 3.7 9.7 0 1-1.3 1.2-2 1.3l-3.4 0.8q-0.1 1-0.1 2c3.4-0.1 6.8-0.4 10.1-0.4 3.3 0 6.6 0.4 9.9 0.4 0-0.2 0-0.4 0-0.7 0-0.5-0.1-0.9-0.1-1.4-1.3-0.5-3.6-0.7-4.5-1.3-0.4-0.3-0.7-1.1-0.9-1.5-1.3-2.7-2.2-5.5-3.4-8.2-1.9-4.6-3.7-9.2-5.6-13.8l-5.3-12.5q-0.2-0.3-0.3-0.6h-1.4-1.9l-7.3 18.9-6.1 16c-1.1 2.8-3.7 2.3-6.1 3.1z")
+                        h3 Clean Typography
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
+                figure.rock-solid
+                    figcaption
+                        svg(version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53 40" width="53" height="40")
+                            path(fill-rule="evenodd" class="a" d="m15.2 34.2c-0.4 0.4-1 0.4-1.4 0l-13.4-13.5c-0.4-0.4-0.4-1 0-1.4l13.4-13.5c0.4-0.4 1-0.4 1.4 0l1.4 1.5c0.4 0.4 0.4 0.9 0 1.3l-11.3 11.4 11.3 11.4c0.4 0.4 0.4 0.9 0 1.3zm18.5-32.4c0.1-0.4-0.1-1-0.6-1.1l-1.8-0.5c-0.5-0.1-1 0.1-1.1 0.6l-10.8 37.5c-0.2 0.4 0.1 1 0.6 1.1l1.8 0.5c0.5 0.2 1-0.1 1.1-0.6zm19 18.8c0.4-0.3 0.4-0.9 0-1.3l-13.5-13.5c-0.3-0.4-0.9-0.4-1.3 0l-1.4 1.4c-0.4 0.4-0.4 1 0 1.4l11.3 11.4-11.3 11.4c-0.4 0.3-0.4 0.9 0 1.3l1.4 1.4c0.4 0.4 1 0.4 1.3 0z")
+                        h3 Rock Solid Code
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
+                figure.expert-support
+                    figcaption
+                        svg(version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 49" width="48" height="49")
+                            path(fill-rule="evenodd" class="a" d="m48 24.9c0 13.2-10.8 24-24 24-13.3 0-24-10.8-24-24 0-13.3 10.7-24 24-24 13.2 0 24 10.7 24 24zm-24-20.6c3.5 0 6.8 0.9 9.7 2.4l-5.2 5.2c-1.5-0.5-2.9-0.8-4.5-0.8q-2.3 0.1-4.5 0.8l-5.2-5.2c2.9-1.5 6.2-2.4 9.7-2.4zm-18.2 30.2c-1.5-2.9-2.4-6.2-2.4-9.6 0-3.5 0.9-6.8 2.4-9.7l5.2 5.2c-0.4 1.4-0.7 2.9-0.7 4.5q0 2.3 0.7 4.4zm18.2 10.9c-3.5 0-6.8-0.9-9.7-2.4l5.2-5.2q2.2 0.8 4.5 0.8c1.6 0 3-0.3 4.5-0.8l5.2 5.2c-2.9 1.5-6.2 2.4-9.7 2.4zm0-10.3c-5.7 0-10.3-4.6-10.3-10.2 0-5.7 4.6-10.3 10.3-10.3 5.7 0 10.3 4.6 10.3 10.3 0 5.6-4.6 10.2-10.3 10.2zm13-5.8q0.7-2.1 0.7-4.4 0-2.4-0.7-4.5l5.1-5.2c1.6 2.9 2.5 6.2 2.5 9.7 0 3.4-0.9 6.7-2.5 9.6z")
+                        h3 Clean Typography
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
+    section.about#about
+        .wrapper 
+            h2 About us
+            p.roboto  Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+            .about-description.flex
+                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+    section.works#works
+

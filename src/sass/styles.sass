@@ -1,10 +1,25 @@
+@import components/mixin
+@import components/header
+@import components/main
+@import components/footer
+
 *, *:before, *:after 
     margin: 0
     padding: 0
     box-sizing: border-box
+html
+    font-size: 1px
 
 body
-    font-size: 1px
+    font-family: 'Montserrat', sans-serif
+    color: $mainColorText
+    text-align: center
+
+
+.roboto
+    padding: 28rem 0 70rem
+    font-family: 'Roboto Slab', serif
+    font-size: 16rem
 
 a
     text-decoration: none
@@ -12,6 +27,30 @@ a
 ul
     list-style: none
 
+h2
+    position: relative
+    padding-bottom: 28rem
+    font-size: 20rem
+    text-transform: uppercase
+    &::before
+        content: ""
+        position: absolute
+        width: 50rem
+        height: 2rem
+        background-color: $mainColorText
+        bottom: 0
+        left: 50%
+        transform: translate(-50%, -50%)
+
 .wrapper
     margin: 0 auto
-    max-width: 1140px
+    max-width: 90%
+    +media(1170)
+        max-width: 1140rem
+
+.flex
+    display: flex
+    justify-content: space-between
+main
+    section
+        padding: 100rem 0rem

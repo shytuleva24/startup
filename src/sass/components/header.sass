@@ -1,0 +1,126 @@
+.header
+    padding-top: 20rem
+    color: #fff
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), #000 url(../img/mainBgc.jpg) no-repeat center
+    background-color: $mainColorSite
+    background-size: cover
+    +media(745)
+        padding-top: 40rem
+    .wrapper
+        align-items: center
+    a
+        color: #fff
+    
+
+.logo
+    a
+        padding-left: 0
+        font-size: 24rem
+        font-weight: 700
+        transition: all .5s ease
+        &:hover
+            color: $mainColorSite
+
+.menu
+    display: none
+    +media(745)
+        display: flex
+    a
+        +media(745)
+        position: relative
+        display: inline-block
+        padding: 5rem 15rem
+        font-size: 14rem
+        &::before
+            content: ""
+            position: absolute
+            display: none
+            left: 0
+            bottom: 0
+            width: 100%
+            height: 1px
+            background-color: #fff
+            animation: menuLine 0.5s linear
+        &:hover::before
+            display: block
+.hamburger
+    height: 49rem
+    display: flex
+    flex-direction: column
+    cursor: pointer
+    justify-content: center
+    +media(745)
+        display: none
+    span
+        margin: 4rem 0
+        width: 35rem
+        height: 3rem
+        background-color: #fff
+        border-radius: 5rem
+        transform: rotate(180deg)
+        transition: all .2s ease
+
+.hamburger-open span:nth-child(1) 
+    transform: rotate(45deg)
+.hamburger-open span:nth-child(2) 
+    opacity: 0
+.hamburger-open span:nth-child(3) 
+    transform: rotate(-45deg)
+    margin-top: -18px  
+
+.active-burger
+    display: flex
+    position: absolute
+    flex-direction: column
+    height: calc(100vh - 50rem)
+    top: 80rem
+    left: 0
+    background-size: cover
+    width: 100%
+    z-index: 2
+    overflow-y: scroll
+    background: #000
+    +media(700)
+        top: 115rem
+    ul
+        flex-direction: column
+        align-items: flex-end
+    li
+        a
+            display: inline-block
+            padding: 20px 30px
+      
+
+
+.home
+    padding: 260rem 0
+    h1
+        padding: 30rem 0 50rem
+        font-size: 20rem
+        font-weight: 400
+
+.title-home
+    font-size: 44rem
+    font-weight: 400
+    text-transform: uppercase
+    +media(400)
+        font-size: 48rem
+
+.btn-home
+    padding: 14rem 34rem
+    font-size: 16rem
+    text-transform: uppercase
+    border: 1rem solid #fff
+    border-radius: 2rem
+    transition: all .5s ease
+
+    &:hover
+        background-color: #fff
+        color: $mainColorSite      
+
+@keyframes menuLine 
+    0%
+        width: 0
+    100%
+        width: 100%
+  
