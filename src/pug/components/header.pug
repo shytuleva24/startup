@@ -1,0 +1,28 @@
+header.header.position-relative
+    .container-fluid
+        .container 
+            .row 
+                .col
+                    nav.menu.navbar.navbar-expand-xl.navbar-dark
+                        .container-fluid
+                            a.navbar-brand(href="#")
+                                img(src="img/logo.png", alt="")
+                            button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+                                span.navbar-toggler-icon
+                            div.collapse.navbar-collapse.justify-content-end#navbarNav
+                                ul.navbar-nav
+                                    +menu(menu)
+        .container.title-page.text-white.position-relative
+            .row
+                h1.text-uppercase.text-center Морські пригоди
+                i.text-center.mx-auto.d-inline-block Не важливо, чи Ваша мандрівка належить до елітного рівня чи до економваріанту, туроператор S trips потурбується, щоб Ви залишились задоволеними!
+                .button.mx-auto.text-center
+                    a.orange.main-btn.text-center.text-uppercase(href="#") детальніше 
+        .choise-plan.mx-auto.position-absolute
+            p.title-choise.text-center.text-uppercase обери свій план подорожі
+            i.d-block.description-choise.text-center Наша фірма - лідер на ринку у своїй сфері
+            p.text-center
+                a.p-3(href="#about-company")
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="30" fill="#000" class="bi bi-chevron-double-down" viewBox="5 0 6 16"><path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+    .container-fluid.gradient.w-100
+

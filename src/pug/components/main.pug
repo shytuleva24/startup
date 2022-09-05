@@ -1,0 +1,93 @@
+header.container-fluid.bacground
+    .container
+        section.row.about-company#about-company
+            .col-xl-3.d-flex.flex-column.align-items-center.align-items-xl-start
+                h3.text-uppercase.text-center.text-xl-start про нашу компанію
+                i.d-inline-block.text-center.text-xl-start Наша компанія пропонує ряд цікавих-розважальних послуг, які принесуть вам ряд вражень!
+                .button 
+                    a.orange.text-uppercase(href="#") детальніше 
+                p.attention.lh-base.text-center.text-xl-start * - зверніть увагу, зміна ціни може залежати від курсу долара.
+            .col-xl-9
+                .row.g-2
+                    .col-12.col-md-4.travel
+                        +travelPlan (travelPlans.bikeTour)
+                        //- <svg xmlns="http://www.w3.org/2000/svg" height="62" viewBox="0 0 24 24" width="68" fill="#ffb700"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm5.8-10l2.4-2.4.8.8c1.3 1.3 3 2.1 5.1 2.1V9c-1.5 0-2.7-.6-3.6-1.5l-1.9-1.9c-.5-.4-1-.6-1.6-.6s-1.1.2-1.4.6L7.8 8.4c-.4.4-.6.9-.6 1.4 0 .6.2 1.1.6 1.4L11 14v5h2v-6.2l-2.2-2.3zM19 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg>            
+                    .col-12.col-md-4.travel
+                        +travelPlan (travelPlans.islands)
+                    .col-12.col-md-4.travel
+                        +travelPlan (travelPlans.romantic)
+            .row 
+                .col-xl-5.col
+                .col-xl-2.col-12.text-center
+                    a.text-uppercase.all-plans.position-relative.d-inline-block.arrow-right(href="#") дивитись усі плани 
+                .col-xl-5.col
+        section.row.g-3 
+            .col-12.col-lg-4
+                picture
+                    source(srcset="img/island.webp" tipe="image/webp")
+                    img(src="img/island.jpg" alt="Подорож до острова, незабутне враження")
+            .col-12.col-lg-8
+                h3.text-uppercase.text-center.text-lg-start Дивовижний безлюдний острів, який зводить людей з розуму
+                .row.g-5
+                    .col-12.col-lg-8.island
+                        i.d-block.island-descr.text-center.text-lg-start Пхукет - курортно-туристична Мекка Таїланду. Білосніжний пісок, і бірюзове море, і мальовничі скелі, а на них же, трохи вище - буйна тропічна рослинність. Все це можна побачити на власні очі.
+                        .flex.flex-column.flex-sm-row.justify-content-center.justify-content-lg-start.buttons   
+                            .button 
+                                a.orange.text-uppercase.text-center(href="#") замовити тур
+                            .button 
+                                a.orange.text-uppercase.text-center(href="#") детальніше
+                    .col-12.col-lg-4.mx-auto
+                        a.price-island.d-block(href="#")
+                            p.price.text-center.lh-base 575 грн./день 
+                            p.text-center.discr.lh-base В дану вартість входить обслуговування персоналу, вечеря і захоплюючі історії.
+section.container-fluid.surfingBg#surfingBg
+    .container
+        .row.g-5
+            .col-12.col-xl-6.text-center.text-xl-start.surfing
+                h2.text-uppercase.lh-base.text-uppercase СПІЙМАЙ ХВИЛЮ 
+                    span ЖИВИ ЯСКРАВО!
+                p Полюбляєш екстрим та пригоди? Тоді тобі точно до нас! Мрієш стати на сапборд, але ніяк не міг наважитсь? Наші досвдчені інструктори навчать тебе вміло «піймати хвилі» та відчути себе справжнім сьорфером!
+                .button 
+                    a.orange.text-uppercase(href="#") детальніше
+            .col-12.col-xl-6.text-center.text-xl-start.d-flex.justify-content-center
+                a.review.position-relative.d-flex.justify-content-center.flex-column.align-items-center(href="#")
+                    span
+                    i.d-block.text-white Чудова туристична фірма, що повністю виправдала мої очікування від подорожі. Я був приємно вражений екскурсіями, що для мене підібрали, працюють спражні професіонали своєї справи. 
+                    b.text-white.d-block Олег Набережний
+                    p клієнт
+                    .photo-review
+                        img.rounded-circle(src="img/photoReview.jpg", alt="")
+section.container-fluid.bacground#proposals
+    .container
+            .row.g-5
+                h3.text-center.text-uppercase Спеціальні пропозиції тижня
+                i.text-center.mt-0 Гарячі праозиції, по-швидше обирай і поїхали!
+                .col-12.col-md-6.col-xl-3
+                    +specialProposals (specialProposals.romantic)
+                .col-12.col-md-6.col-xl-3.bike-tour
+                    +specialProposals (specialProposals.bikeTour)
+                .col-12.col-md-6.col-xl-3
+                    +specialProposals (specialProposals.islands)
+                .col-12.col-md-6.col-xl-3
+                    +specialProposals (specialProposals.surfing)
+            section.row.g-5.additional-info.d-flex.flex-column.flex-sm-row.flex-xl-nowrap#additional-info
+                .col-12.col-md-6.col-lg-12.col-xl-3.d-flex.justify-content-center.align-items-center.align-self-xl-start
+                    h3.text-uppercase.text-center.text-lg-start.w-sm-50.w-xxl-100 додаткова інформація
+                .col-12.col-sm-6.col-lg-4.col-xl-3.workSchedule.order-md-2.order-xl-0
+                    +additionalInformation (additionalInformation.workSchedule)
+                .col-12.col-sm-6.col-lg-4.col-xl-3.nutritionInformation
+                    +additionalInformation (additionalInformation.nutritionInformation)
+                .col-12.col-md-6.col-lg-4.col-xl-3.consultation.position-relative.d-flex.justify-content-center.flex-column.align-items-center.mx-auto
+                    h4.question.m-0 задати питання
+                    p.text-cener.m-0 Скажіть доброго дня нашому консультанту, і ми з радістю відповімо на Ваші запитання
+                    a.tel.position-relative(href="tel:+380505698511") +38 (050) 56 98 511
+                    h4.name-consult.m-0 Анна Миколаївна
+                    p консультант
+                    .photo-consult
+                        img.rounded-circle(src="img/admin.jpg", alt="")
+//- <svg width="60" height="60" viewbox="0 0 100 100">
+//-     <defs id="star">
+//-         <polygon points="0 0, 60 0, 0 60" fill="#26cb15"/>
+//-         <svg x="5" y="5" height="24" viewBox="0 0 24 24" width="24" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path fill="#fff" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+//-     </defs>
+//- </svg>
