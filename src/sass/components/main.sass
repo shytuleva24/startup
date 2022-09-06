@@ -1,2 +1,131 @@
+.services-card
+    margin-bottom: 40rem
+    padding: 5rem
+    max-width: 365rem
+    cursor: pointer
+    +media(1170)
+        margin-bottom: 0
+    &:hover svg
+        fill: #fff
+    &:hover .card-svg
+        background-color: $mainColorSite
+
+    h3
+        padding: 25rem 0 
+        text-transform: uppercase
+.card-svg
+    margin: 0 auto
+    width: 90rem
+    height: 90rem 
+    border-radius: 50%
+    border: 2px solid #dddddd
+    transition: all .5s ease
+    svg
+        margin: auto
+        fill: $mainColorSite
+
+.services-list
+    flex-wrap: wrap
+    justify-content: center
+        
 .about
     background-color: #f8f8f8
+
+.about-description
+    p
+        padding: 5rem 5rem 70rem 5rem
+        max-width: 555rem
+        text-align: left
+        +media(1170)
+            padding: 0 0 70rem 0
+
+.about-img
+    position: relative
+
+.employee-social
+    display: none
+    position: absolute
+    width: 100%
+    bottom: 10%
+    left: 50%
+    transform: translateX(-50%)
+    a
+        margin: 2rem
+        width: 30px
+        height: 30px
+        transition: all .3s ease
+        background: url(../img/sprite.png) no-repeat
+    .fb
+        background-position: 0 0
+        &:hover
+            background-position: 0 -30px
+    .tw
+        background-position: -32px 0
+        &:hover
+            background-position: -32px -30px
+    .gg
+        background-position: -64px 0
+        &:hover
+            background-position: -64px -30px
+    .in
+        background-position: -96px 0
+        &:hover
+            background-position: -96px -30px
+.employee-name
+    padding: 10rem 0
+    text-transform: uppercase
+
+.about-card
+    cursor: pointer
+    &:hover .employee-social
+        display: block
+.relative
+    position: relative
+.cards-arrow
+    position: absolute
+    width: 35rem
+    height: 38rem
+    top: 40%
+    transform: translateY(-50%)
+    background-color: rgba(#555, 0.2)
+    transition: all .3s ease
+    z-index: 2
+    cursor: pointer
+    &:hover
+        background-color: $mainColorSite
+    &::before
+        content: ""
+        position: absolute
+        width: 10px
+        height: 10px
+        border-right: 2px solid #ddd
+        border-bottom: 2px solid #ddd
+        border-radius: 1px
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(135deg)
+        z-index: 3
+
+.right
+    right: 0
+    &::before
+        transform: translate(-50%, -50%) rotate(-45deg)
+
+.works-nav
+    .flex
+        justify-content: center
+    a
+        padding: 0 15rem
+        color: $mainColorText
+        &:hover
+            color: $mainColorSite
+
+.works-photo
+    display: grid
+    gap: 30rem
+    grid-template-columns: repeat(3, 1fr)
+    a
+        background-color: $mainColorSite
+        width: 360rem
+        height: 320rem
+

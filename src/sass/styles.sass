@@ -1,7 +1,4 @@
 @import components/mixin
-@import components/header
-@import components/main
-@import components/footer
 
 *, *:before, *:after 
     margin: 0
@@ -11,17 +8,22 @@ html
     font-size: 1px
 
 body
-    font-family: 'Montserrat', sans-serif
     color: $mainColorText
+    font-family: 'Montserrat', sans-serif
+    font-size: 14rem
+    line-height: 24rem
     text-align: center
 
 
-.roboto
-    padding: 28rem 0 70rem
-    font-family: 'Roboto Slab', serif
-    font-size: 16rem
 
+
+.roboto
+    font-family: 'Roboto Slab', serif
+.sub-title
+    padding: 28rem 0 70rem
+    font-size: 16rem
 a
+    display: inline-block
     text-decoration: none
 
 ul
@@ -51,6 +53,11 @@ h2
 .flex
     display: flex
     justify-content: space-between
+
 main
     section
         padding: 100rem 0rem
+
+@import components/header
+@import components/main
+@import components/footer

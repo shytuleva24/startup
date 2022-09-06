@@ -9,21 +9,30 @@
         {name: "Contact", url: "#contact"}
     ]
 -
-    let cards = {
-        clean: {
-            class: "clean-typography",
-            title:"Clean Typography",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+    let aboutCards = {
+        KhalilUddin: {
+            src:"img/KhalilUddin",
+            alt:"Khalil Uddin",
+            employeeName: "Md. Khalil Uddin",
+            description: "Head of Ideas"
         },
-        rock: {
-            class: "rock-solid",
-            title:"Rock Solid Code",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+        RubelMiah: {
+            src:"img/RubelMiah",
+            alt:"Rubel Miah",
+            employeeName: "Rubel Miah",
+            description: "Lead WordPress Developer"
         },
-        expert: {
-            class: "expert-support",
-            title:"Expert Support",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+        ShamimMia: {
+            src:"img/ShamimMia",
+            alt:"Shamim Mia",
+            employeeName: "Shamim Mia",
+            description: "Sr. Web Developer"
+        },
+        JohnDoe: {
+            src:"img/JohnDoe",
+            alt:"John Doe",
+            employeeName: "John Doe",
+            description: "Front-end Developer"
         }
     }
 
@@ -33,9 +42,17 @@ mixin menu (items)
         li 
             a(href=item.url) #{item.name}
 
-mixin card (item)
-    figure.price-cup
-        figcaption
-            img(src="img/sprite.png", alt=item.alt)
-            h3.title-card #{item.title}
-            p #{item.description}
+mixin aboutCard (item)
+    figure
+        figcaption.about-card
+            .about-img
+                picture 
+                    source(srcset=item.src + ".webp", tipe="image/webp")
+                    img(src=item.src + ".png", alt=item.alt)
+                .employee-social.flex
+                    a.fb(href="#") 
+                    a.tw(href="#") 
+                    a.gg(href="#")
+                    a.in(href="#") 
+            p.employee-name #{item.employeeName}
+            p.description.roboto #{item.description}
