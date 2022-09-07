@@ -125,7 +125,25 @@
     gap: 30rem
     grid-template-columns: repeat(3, 1fr)
     a
-        background-color: $mainColorSite
+        background-color: rgba($mainColorSite, 0.6)
         width: 360rem
         height: 320rem
+        transition: all .3s ease
+        &:hover
+            background-color: rgba($mainColorSite, 1)
+
+.blog
+    background: linear-gradient(rgba($mainColorSite,0.45),rgba($mainColorSite,0.45)), url(../img/blogBgi.jpg) no-repeat center
+    background-color: $mainColorSite
+    background-size: cover
+    p
+        margin: 0 auto 50rem
+        max-width: 465rem
+        font-size: 30rem
+        line-height: 44rem
+        color: #ffffff
+    a
+        color: #fff
+
+
 
