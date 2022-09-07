@@ -35,7 +35,12 @@
             description: "Front-end Developer"
         }
     }
+//- -
+//-     let blogPosts: {
+//-         src:"img/JohnDoe",
+//-         alt:"John Doe",
 
+//-     }
 
 mixin menu (items)
     for item in items 
@@ -56,3 +61,18 @@ mixin aboutCard (item)
                     a.in(href="#") 
             p.employee-name #{item.employeeName}
             p.description.roboto #{item.description}
+
+//- mixin blogPost (item)
+//-     .post-img
+//-         picture 
+//-             source(srcset=item.src + ".webp", tipe="image/webp")
+//-             img(src=item.src + ".png", alt=item.alt)
+//-     .post-info
+//-         .data-name-post 
+//-             .data-post
+//-                 p
+//-             .name-post
+//-                 p 
+//-                 p
+//-         p.info-post 
+//-         a.more-post(href="") 
