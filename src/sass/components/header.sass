@@ -1,9 +1,9 @@
 .header
+    position: relative
     padding-top: 20rem
     color: #fff
-    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/mainBgc.jpg) no-repeat center
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) center / cover
     background-color: $mainColorSite
-    background-size: cover
     +media(745)
         padding-top: 40rem
     .wrapper
@@ -92,11 +92,17 @@
 
 
 .home
-    padding: 260rem 0
+    padding-top: 260rem
+    opacity: 0
+    transform: translate(0px, 120%)
+    transition: all 1.5s ease .4s
     h1
         padding: 30rem 0 50rem
         font-size: 20rem
         font-weight: 400
+        
+
+
 
 .title-home
     font-size: 44rem

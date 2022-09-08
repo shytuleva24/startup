@@ -1,8 +1,12 @@
+//services
+    
 .services-card
     margin-bottom: 40rem
     padding: 5rem
     max-width: 365rem
     cursor: pointer
+    opacity: 0
+    
     +media(1170)
         margin-bottom: 0
     &:hover svg
@@ -27,7 +31,21 @@
 .services-list
     flex-wrap: wrap
     justify-content: center
-        
+
+.clean-typography
+    transform: translate(-120%, 0)
+    transition: all .5s ease
+
+.rock-solid
+    transform: translate(0, -120%)
+    transition: all .5s ease 0.5s
+
+.expert-support
+    transform: translate(120%, 0)
+    transition: all .5s ease 1s
+    
+// about
+
 .about
     background-color: #f8f8f8
 
@@ -81,6 +99,21 @@
         display: block
 .relative
     position: relative
+
+.about-cards
+    &:hover .cards-arrow
+        opacity: 1
+
+.description-card
+    transform: translate(0, 50%)
+    opacity: 0
+    transition: all .3s ease 0
+.description-card._active 
+    transform: translate(0, 0)
+    opacity: 1
+    transition: all .8s ease .4s
+
+
 .cards-arrow
     position: absolute
     width: 35rem
@@ -90,6 +123,7 @@
     background-color: rgba(#555, 0.2)
     transition: all .3s ease
     z-index: 2
+    opacity: 0
     cursor: pointer
     &:hover
         background-color: $mainColorSite
@@ -111,11 +145,14 @@
     &::before
         transform: translate(-50%, -50%) rotate(-45deg)
 
+// Works
+
 .works-nav
     .flex
         justify-content: center
     a
         padding: 0 15rem
+
         color: $mainColorText
         &:hover
             color: $mainColorSite
@@ -128,14 +165,15 @@
         background-color: rgba($mainColorSite, 0.6)
         width: 360rem
         height: 320rem
-        transition: all .3s ease
+        transition: all .8s ease
         &:hover
             background-color: rgba($mainColorSite, 1)
 
+// Blog
+
 .blog
-    background: linear-gradient(rgba($mainColorSite,0.45),rgba($mainColorSite,0.45)), url(../img/blogBgi.jpg) no-repeat center
+    background: linear-gradient(rgba($mainColorSite,0.45),rgba($mainColorSite,0.45)), url(../img/blogBgi.jpg) center / cover
     background-color: $mainColorSite
-    background-size: cover
     p
         margin: 0 auto 50rem
         max-width: 465rem
@@ -144,6 +182,12 @@
         color: #ffffff
     a
         color: #fff
+.blog-post
+    transform: translate(220%, 0px) 
+    opacity: 0
+    transition: all 1.2s ease 0s 
+.blog-post2
+    transition: all 0.8s ease .4s 
 
 
 

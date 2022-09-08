@@ -1,23 +1,85 @@
-let hamburger = document.querySelector(".hamburger");
-let menu = document.querySelector(".menu");
-const links =  document.querySelectorAll(".menu a");
-let isMobile = false;
+// параллакс еффект
+let parallaxStartPos;
+const parallaxBG = document.querySelectorAll(".parallax");
 
-hamburger.onclick = toggleMenu;
-
-window.onresize = function(event) {
-    isMobile = window.innerWidth < 1055
-};
-
-window.dispatchEvent(new Event('resize'));
-
-links.forEach((element) => {
-    element.onclick = toggleMenu;
-});
-
-function toggleMenu() {
-    if (!isMobile ) return;
-    menu.classList.toggle ("active-burger");
-    hamburger.classList.toggle ("hamburger-open");
+function MoveBackground(e) {
+    parallaxBG.forEach(element => {
+        let offsetY = 50 + (e.pageY / window.innerHeight * 40);
+        element.style.backgroundPosition = `50% ${offsetY}%`
+    });
 }
 
+parallaxBG.forEach(element => {
+    element.addEventListener("mousemove", function (e) { MoveBackground(e); });
+});
+
+
+// let parallaxBG = document.querySelector(".header"),
+//     parallaxStartPos 
+
+// parallaxBG.onmouseenter = function (e) {
+//     parallaxStartPos = e.pageY - window.pageYOffset - parallaxBG.getBoundingClientRect().top + 1
+// }
+
+// parallaxBG.onmousemove = function (e) {
+//     let Y = e.pageY - window.pageYOffset - parallaxBG.getBoundingClientRect().top + 1
+//     parallaxBG.style.backgroundPosition = "center " + (50 + ((Y - parallaxStartPos + parseInt(getComputedStyle(parallaxBG).backgroundPositionY)) / 100)) + "%"
+// }
+
+// появление елементов
+
+// function onEntry(entry) {
+//     entry.forEach(change => {
+//         if (change.isIntersecting) {
+//          change.target.classList.add('element-show');
+//         } else {
+//             change.target.classList.remove('element-show');
+//         }
+//     });
+// }
+  
+// let options = { threshold: [0.5] };
+// let observer = new IntersectionObserver(onEntry, options);
+// let elements = document.querySelectorAll('.element-animation');
+
+// for (let elm of elements) {
+//     observer.observe(elm);
+// }
+const homePage = document.querySelector(".header");
+homePage.style.height = window.innerHeight + "px";
+
+const animItems = document.querySelectorAll(`._anim-items`)
+if (animItems.length > 0) {
+    window.addEventListener(`scroll`, animOnScroll)
+
+    function animOnScroll() {
+        animItems.forEach(element => {
+            const animItem = element
+            const animItemHeight = animItem.offsetHeight
+            const animItemOffSet = offset(animItem).top
+            const animStart = 4
+            let animItemPoint = window.innerHeight - animItemHeight / animStart
+            if (animItemHeight > window.innerHeight) {
+                animItemPoint = window.innerHeight - window.innerHeight / animStart
+            }
+            if ((window.pageYOffset > animItemOffSet - animItemPoint) && pageYOffset < (animItemOffSet + animItemHeight)) {
+                animItem.classList.add(`_active`)
+            } else {
+                if (!(animItem.classList.contains(`_anim-no-hide`))) {
+                    animItem.classList.remove(`_active`)
+                }
+            }            
+        });
+    }
+
+    function offset(el) {
+        const rect = el.getBoundingClientRect()
+        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+    }
+
+    setTimeout(() => {
+        animOnScroll()
+    }, 500)
+}

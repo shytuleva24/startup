@@ -58,9 +58,10 @@ mixin aboutCard (item)
                     a.fb(href="#") 
                     a.tw(href="#") 
                     a.gg(href="#")
-                    a.in(href="#") 
-            p.employee-name #{item.employeeName}
-            p.description.roboto #{item.description}
+                    a.in(href="#")
+            .description-card._anim-items
+                p.employee-name #{item.employeeName}
+                p.description.roboto #{item.description}
 
 //- mixin blogPost (item)
 //-     .post-img
