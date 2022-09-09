@@ -3,13 +3,14 @@ let parallaxStartPos;
 const parallaxBG = document.querySelectorAll(".parallax");
 
 function MoveBackground(e) {
-    parallaxBG.forEach(element => {
-        let offsetY = 50 + (e.pageY / window.innerHeight * 40);
-        element.style.backgroundPosition = `50% ${offsetY}%`
-    });
+    let offsetX = 50 + (e.pageX / window.innerWidth * 15);
+    let offsetY = 50 + (e.pageY / window.innerHeight * 20);
+    e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
 }
 
 parallaxBG.forEach(element => {
+    element.style.backgroundPosition = `center`;
+    element.style.backgroundSize = `150% auto`;
     element.addEventListener("mousemove", function (e) { MoveBackground(e); });
 });
 
@@ -23,7 +24,7 @@ parallaxBG.forEach(element => {
 
 // parallaxBG.onmousemove = function (e) {
 //     let Y = e.pageY - window.pageYOffset - parallaxBG.getBoundingClientRect().top + 1
-//     parallaxBG.style.backgroundPosition = "center " + (50 + ((Y - parallaxStartPos + parseInt(getComputedStyle(parallaxBG).backgroundPositionY)) / 100)) + "%"
+//     parallaxBG.style.backgroundPosition = "center " + ((Y - parallaxStartPos + parseInt(getComputedStyle(parallaxBG).backgroundPositionY)) / 100)) + "%"
 // }
 
 // появление елементов
