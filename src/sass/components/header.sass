@@ -1,16 +1,16 @@
-.header
+.home-page
     position: relative
-    padding-top: 20rem
     color: #fff
     background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) center / 130% auto
     background-color: $mainColorSite
-    +media(745)
-        padding-top: 40rem
-    .wrapper
-        align-items: center
+    transition: background-position .2s ease
     a
         color: #fff
-    
+
+.header
+    padding-top: 20rem
+    +media(745)
+        padding-top: 40rem
 
 .logo
     a
@@ -88,20 +88,23 @@
         a
             display: inline-block
             padding: 20px 30px
-      
 
-
-.home
-    padding-top: 260rem
+.home-contant
+    position: absolute
+    top: 50%
+    left: 50%
     opacity: 0
-    transform: translate(0px, 120%)
+    transform: translate(-50%, 150%)
     transition: all 1.5s ease .4s
+    pointer-events: none
     h1
         padding: 30rem 0 50rem
         font-size: 20rem
         font-weight: 400
         
-
+.home-contant._active
+    transform: translate(-50%, -50%)
+    opacity: 1
 
 
 .title-home
@@ -118,7 +121,7 @@
     border: 1rem solid #fff
     border-radius: 2rem
     transition: all .5s ease
-
+    pointer-events: all
     &:hover
         background-color: #fff
         color: $mainColorSite      

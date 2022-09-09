@@ -1,19 +1,22 @@
 // параллакс еффект
-let parallaxStartPos;
+let parallaxStartPos,
+    shiftX,
+    shiftY;
 const parallaxBG = document.querySelectorAll(".parallax");
 
-function MoveBackground(e) {
-    let offsetX = 50 + (e.pageX / window.innerWidth * 15);
-    let offsetY = 50 + (e.pageY / window.innerHeight * 20);
+function moveBackground(e) {
+    let offsetX = 50 + (e.pageX / window.innerWidth * 10);
+    let offsetY = 50 + (e.pageY / window.innerHeight * 5);
     e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
 }
 
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = `center`;
     element.style.backgroundSize = `150% auto`;
-    element.addEventListener("mousemove", function (e) { MoveBackground(e); });
+    element.addEventListener("mousemove", function (e) { moveBackground(e); });
 });
 
+// let patern = /url\(["']?(.+)["']?\)/g;
 
 // let parallaxBG = document.querySelector(".header"),
 //     parallaxStartPos 
@@ -29,24 +32,7 @@ parallaxBG.forEach(element => {
 
 // появление елементов
 
-// function onEntry(entry) {
-//     entry.forEach(change => {
-//         if (change.isIntersecting) {
-//          change.target.classList.add('element-show');
-//         } else {
-//             change.target.classList.remove('element-show');
-//         }
-//     });
-// }
-  
-// let options = { threshold: [0.5] };
-// let observer = new IntersectionObserver(onEntry, options);
-// let elements = document.querySelectorAll('.element-animation');
-
-// for (let elm of elements) {
-//     observer.observe(elm);
-// }
-const homePage = document.querySelector(".header");
+const homePage = document.querySelector(".home-page");
 homePage.style.height = window.innerHeight + "px";
 
 const animItems = document.querySelectorAll(`._anim-items`)
@@ -72,7 +58,6 @@ if (animItems.length > 0) {
             }            
         });
     }
-
     function offset(el) {
         const rect = el.getBoundingClientRect()
         let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
