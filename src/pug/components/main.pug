@@ -95,5 +95,51 @@ main
                             i.text-left.roboto.sub-name-post!= `By ` + `<span>Khalil</span>` +` Uddin in `+`<span>Development!</span>`
                     p.text-info.description-post.roboto Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
                     a.more-post.roboto(href="#") Read more
-
-
+    section.clients#clients
+        .wrapper
+            .brands.flex
+                a(href="#") 
+                    img(src="img/deorham.png", alt="deorham")
+                a(href="#") 
+                    img(src="img/ratings.png", alt="ratings")
+                a(href="#") 
+                    img(src="img/makikMedia.png", alt="makikMedia")
+                a(href="#") 
+                    img(src="img/bcause.png", alt="bcause")
+                a(href="#") 
+                    img(src="img/womgiby.png", alt="womgiby")
+            .review
+                i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
+                p.name-review John Doe, Google Inc.
+    section.contact#contact
+        .wrapper
+            h2 Get in touch
+            p.roboto.sub-title Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+            .flex
+                .contact-info
+                    .address
+                        p.contact-info-title Address
+                        p.contact-descr.roboto 312, 7th Ave, New York 
+                        p.contact-descr.roboto NY 101200, United States of America
+                    .hotline
+                        p.contact-info-title Hotline (24x7)
+                        p.contact-descr.roboto +65 0052 300, +65 88251 210
+                        p.contact-descr.roboto +88 01723 511 340
+                    .mail 
+                        p.contact-info-title E-mail
+                        p.contact-descr.roboto shapedtheme@gmail.com
+                        p.contact-descr.roboto khalilkode@gmail.com
+                .contact-form 
+                    form(action="index.html", method="post") 
+                        .name-mail.flex
+                            input#userName(type="name", name="name", placeholder="Your name")
+                            input#UserMail(type="email", name="email", placeholder="Your E-mail")
+                        .phone-subj.flex
+                            input#userTel(type="tel", name="tel", placeholder="Your phone")
+                            input#userCompany(type="text", name="company", placeholder="Company name")
+                        .teaxtarea
+                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") 
+                        .send-warn
+                            input(type="submit", value="Send message")
+                            span *
+                            p.roboto We’ll contact you as as possible. We don’t reply on Monday.

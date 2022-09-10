@@ -9,8 +9,9 @@ const parallaxBG = document.querySelectorAll(".parallax");
 const homePage = document.querySelector(".home-page");
 
 function moveBackground(e) {
+    let Y = e.pageY - window.pageYOffset - e.target.getBoundingClientRect().top + 1;
     offsetX = 50 + (e.pageX / window.innerWidth * 20);
-    offsetY = 50 + (e.pageY / window.innerHeight * 10);
+    offsetY = 50 + (Y / window.innerHeight * 10);
     e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
 }
 
@@ -28,29 +29,6 @@ window.addEventListener('scroll', function() {
     previousScroll = currentScroll;
 });
 
-
-// document.addEventListener('wheel', (evt)=>{
-//     console.log(evt.deltaY);
-// });
-
-// $(function(){
-//     //WOW plugin init
-//     new WOW().init();
-
-//     //parallax effect for banner
-//     (function() {
-//         var posY;
-//         var image = document.getElementById('parallax');;
-//         function paralax() {
-//             posY = window.pageYOffset;
-//             image.style.top = posY * 0.9 + 'px';
-//         }
-//         window.addEventListener('scroll', paralax);
-//     })();
-// });
-
-// window.addEventListener('scroll', function () { scrollParalax(); });
-
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = `center`;
     element.style.backgroundSize = `130% auto`;
@@ -60,17 +38,6 @@ parallaxBG.forEach(element => {
 
 // let patern = /url\(["']?(.+)["']?\)/g;
 
-// let parallaxBG = document.querySelector(".header"),
-//     parallaxStartPos 
-
-// parallaxBG.onmouseenter = function (e) {
-//     parallaxStartPos = e.pageY - window.pageYOffset - parallaxBG.getBoundingClientRect().top + 1
-// }
-
-// parallaxBG.onmousemove = function (e) {
-//     let Y = e.pageY - window.pageYOffset - parallaxBG.getBoundingClientRect().top + 1
-//     parallaxBG.style.backgroundPosition = "center " + ((Y - parallaxStartPos + parseInt(getComputedStyle(parallaxBG).backgroundPositionY)) / 100)) + "%"
-// }
 
 // появление елементов
 
