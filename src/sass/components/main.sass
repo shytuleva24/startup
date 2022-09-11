@@ -51,12 +51,17 @@
 
 .about-description
     justify-content: space-between
+    flex-direction: column
+    flex-wrap: wrap
+    +media(1170)
+        flex-direction: row
     p
-        padding: 5rem 5rem 70rem 5rem
-        max-width: 555rem
+        padding: 5rem 5rem 35rem 5rem
         opacity: 0
+        +media(800)
         +media(1170)
             padding: 0 0 70rem 0
+            max-width: 555rem
 
 .anim_left
     transform: translate(-120%, 0)
@@ -71,6 +76,8 @@
     opacity: 1
 .about-cards
     justify-content: space-between
+
+        
 .about-img
     position: relative
 
@@ -159,9 +166,9 @@
 .works-nav
     .flex
         justify-content: center
+        flex-wrap: wrap
     a
         padding: 0 15rem
-
         color: $mainColorText
         &:hover
             color: $mainColorSite

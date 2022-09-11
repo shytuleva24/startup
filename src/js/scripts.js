@@ -16,18 +16,18 @@ function moveBackground(e) {
 }
 
 
-window.addEventListener('scroll', function() {
-    let currentScroll = window.pageYOffset;
-    if (window.pageYOffset < window.innerHeight) {
-        if (currentScroll > previousScroll){
-            offsetY += 0.7
-        } else {
-            offsetY -= 0.7
-        }
-        homePage.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
-    }
-    previousScroll = currentScroll;
-});
+// window.addEventListener('scroll', function() {
+//     let currentScroll = window.pageYOffset;
+//     if (window.pageYOffset < window.innerHeight) {
+//         if (currentScroll > previousScroll){
+//             offsetY += 0.7
+//         } else {
+//             offsetY -= 0.7
+//         }
+//         homePage.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
+//     }
+//     previousScroll = currentScroll;
+// });
 
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = `center`;

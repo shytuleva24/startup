@@ -10,6 +10,7 @@
 .header
     padding-top: 20rem
     justify-content: space-between
+    align-items: center
     +media(745)
         padding-top: 40rem
 
@@ -99,21 +100,25 @@
     transition: all 1.5s ease .4s
     pointer-events: none
     h1
-        padding: 30rem 0 50rem
-        font-size: 20rem
+        padding: 15rem 0 25rem
+        font-size: 16rem
         font-weight: 400
-        
+        +media(400)        
+            padding: 30rem 0 50rem
+            font-size: 20rem
 .home-contant._active
     transform: translate(-50%, -50%)
     opacity: 1
 
 
 .title-home
-    font-size: 44rem
+    font-size: 24rem
+    line-height: 30rem
     font-weight: 400
     text-transform: uppercase
     +media(400)
         font-size: 48rem
+        line-height: 55rem
 
 .btn-home
     padding: 14rem 34rem
