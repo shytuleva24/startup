@@ -22,10 +22,8 @@ body
     text-align: center
 .roboto
     font-family: 'Roboto Slab', serif
-.sub-title
-    padding: 28rem 0 70rem
-    text-align: center
-    font-size: 16rem
+
+
 a
     display: inline-block
     text-decoration: none
@@ -39,6 +37,8 @@ h2
     font-size: 20rem
     text-align: center
     text-transform: uppercase
+    opacity: 0
+    transition: all 1s ease .5s 
     &::before
         content: ""
         position: absolute
@@ -48,18 +48,28 @@ h2
         bottom: 0
         left: 50%
         transform: translate(-50%, -50%)
+.sub-title
+    padding: 28rem 0 70rem
+    text-align: center
+    font-size: 16rem
+    opacity: 0
+    transition: all 1s ease 1s 
+
+.sub-title._active,
+h2._active
+    opacity: 1
+    transition: all 0.8s ease 1s 
+
 
 .wrapper
     margin: 0 auto
     max-width: 90%
     +media(1170)
         max-width: 1140rem
-
 .flex
     display: flex
-    justify-content: space-between
 
-main
+main, footer
     section
         padding: 100rem 0rem
 

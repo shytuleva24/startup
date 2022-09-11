@@ -1,0 +1,39 @@
+.footer
+    background-color: $mainColorSite
+    color: #fff
+    text-align: center
+    .social
+        margin: 0 auto
+        padding-bottom: 30rem
+        position: relative
+        justify-content: center
+        &:before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #fff
+            bottom: 0
+            left: 50%
+            transform: translate(-50%, -50%)
+        a
+            padding: 5rem
+            svg
+                margin: auto
+                padding: 10rem
+                width: 40rem
+                height: 40rem
+                border-radius: 50%
+                fill: #fff
+                border: 1px solid #fff
+                transition: all .3s ease
+                text-align: center
+                &:hover
+                    background-color: #fff
+                    fill: $mainColorSite
+
+.copyright 
+    padding-top: 30rem
+    font-size: 12rem
+    text-transform: uppercase
+    color: #ffffff

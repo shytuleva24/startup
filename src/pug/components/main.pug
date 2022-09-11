@@ -1,8 +1,8 @@
 main 
-    section.services#services._anim-items
+    section.services._anim-items#services
         .wrapper 
-            h2 Services
-            p.roboto.sub-title We offer ipsum dolor sit amet, consetetur sadipscing elitr amet
+            h2._anim-show Services
+            p.roboto.sub-title._anim-show We offer ipsum dolor sit amet, consetetur sadipscing elitr amet
             .services-list.flex
                 .clean-typography.services-card._anim-show
                     .card-svg.flex
@@ -22,13 +22,13 @@ main
                             path(fill-rule="evenodd" class="a" d="m48 24.9c0 13.2-10.8 24-24 24-13.3 0-24-10.8-24-24 0-13.3 10.7-24 24-24 13.2 0 24 10.7 24 24zm-24-20.6c3.5 0 6.8 0.9 9.7 2.4l-5.2 5.2c-1.5-0.5-2.9-0.8-4.5-0.8q-2.3 0.1-4.5 0.8l-5.2-5.2c2.9-1.5 6.2-2.4 9.7-2.4zm-18.2 30.2c-1.5-2.9-2.4-6.2-2.4-9.6 0-3.5 0.9-6.8 2.4-9.7l5.2 5.2c-0.4 1.4-0.7 2.9-0.7 4.5q0 2.3 0.7 4.4zm18.2 10.9c-3.5 0-6.8-0.9-9.7-2.4l5.2-5.2q2.2 0.8 4.5 0.8c1.6 0 3-0.3 4.5-0.8l5.2 5.2c-2.9 1.5-6.2 2.4-9.7 2.4zm0-10.3c-5.7 0-10.3-4.6-10.3-10.2 0-5.7 4.6-10.3 10.3-10.3 5.7 0 10.3 4.6 10.3 10.3 0 5.6-4.6 10.2-10.3 10.2zm13-5.8q0.7-2.1 0.7-4.4 0-2.4-0.7-4.5l5.1-5.2c1.6 2.9 2.5 6.2 2.5 9.7 0 3.4-0.9 6.7-2.5 9.6z")
                     h3.text-center Clean Typography
                     p.text-center Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
-    section.about#about
+    section.about._anim-items#about
         .wrapper 
-            h2 About us
-            p.roboto.sub-title  Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+            h2._anim-show About us
+            p.roboto.sub-title._anim-show  Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
             .about-description.flex
-                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
-                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+                p.anim_left._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+                p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
             .flex.relative.about-cards.text-center
                 span.cards-arrow.left
                 +aboutCard (aboutCards.KhalilUddin)
@@ -36,21 +36,12 @@ main
                 +aboutCard (aboutCards.ShamimMia)
                 +aboutCard (aboutCards.JohnDoe)
                 span.cards-arrow.right
-    section.works#works
+    section.works._anim-items#works
         .wrapper 
-            h2 Latest Works
-            nav.roboto.sub-title.works-nav
+            h2._anim-show Latest Works
+            nav.roboto.sub-title.works-nav._anim-show
                 ul.flex
-                    li
-                        a(href="#") All                           
-                    li
-                        a(href="#") Branding 
-                    li
-                        a(href="#") Design
-                    li
-                        a(href="#") Development
-                    li
-                        a(href="#") Strategy
+                    +menu(worksMenu)
             .works-photo
                 a(href="#") 
                 a(href="#") 
@@ -67,70 +58,43 @@ main
             a.btn-home.roboto(href="#") Get in Touch
     section.blog._anim-items#blog
         .wrapper
-            h2 Recent blog posts
-            p.roboto.sub-title Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
-            .blog-post.flex._anim-show
-                .post-img
-                    img(src="img/blogPostOne.jpg", alt="")
-                .post-info
-                    .data-name-post.flex 
-                        .data-post
-                            p 18 
-                            span Oct
-                        .name-post
-                            p.text-left Startup ideas needs to be funded
-                            i.text-left.roboto.sub-name-post!= `By ` + `<span>Khalil</span>` +` Uddin in `+`<span>Development!</span>`
-                    p.text-info.description-post.roboto Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
-                    a.more-post.roboto(href="#") Read more
-            .blog-post.blog-post2.flex._anim-show
-                .post-img
-                    img(src="img/blogPostTwo.jpg", alt="")
-                .post-info
-                    .data-name-post.flex 
-                        .data-post
-                            p 18 
-                            span Oct
-                        .name-post
-                            p.text-left User Interface Designing Elements 
-                            i.text-left.roboto.sub-name-post!= `By ` + `<span>Khalil</span>` +` Uddin in `+`<span>Development!</span>`
-                    p.text-info.description-post.roboto Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
-                    a.more-post.roboto(href="#") Read more
+            h2._anim-show Recent blog posts
+            p.roboto.sub-title._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+            .blog-post.blog-post__one.flex._anim-show
+                +blogPost (blogPosts.one)
+            .blog-post.blog-post__two.flex._anim-show
+                +blogPost (blogPosts.two)
     section.clients#clients
-        .wrapper
-            .brands.flex
-                a(href="#") 
-                    img(src="img/deorham.png", alt="deorham")
-                a(href="#") 
-                    img(src="img/ratings.png", alt="ratings")
-                a(href="#") 
-                    img(src="img/makikMedia.png", alt="makikMedia")
-                a(href="#") 
-                    img(src="img/bcause.png", alt="bcause")
-                a(href="#") 
-                    img(src="img/womgiby.png", alt="womgiby")
+        .wrapper._anim-items
+            .brands.flex._anim-show
+                +brand(brands)
             .review
                 i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
                 p.name-review John Doe, Google Inc.
-    section.contact#contact
+    section.contact._anim-items#contact
         .wrapper
-            h2 Get in touch
-            p.roboto.sub-title Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+            h2._anim-show Get in touch
+            p.roboto.sub-title._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
             .flex
                 .contact-info
                     .address
                         p.contact-info-title Address
-                        p.contact-descr.roboto 312, 7th Ave, New York 
-                        p.contact-descr.roboto NY 101200, United States of America
+                        address.contact-descr.roboto 312, 7th Ave, New York 
+                        address.contact-descr.roboto NY 101200, United States of America
                     .hotline
                         p.contact-info-title Hotline (24x7)
-                        p.contact-descr.roboto +65 0052 300, +65 88251 210
-                        p.contact-descr.roboto +88 01723 511 340
+                        p.contact-descr.roboto
+                            a(href="tel:+650052300") +65 0052 300,  
+                            a(href="tel:+6588251210")  +65 88251 210
+                            a(href="tel:+88 01723511340") +88 01723 511 340
                     .mail 
                         p.contact-info-title E-mail
-                        p.contact-descr.roboto shapedtheme@gmail.com
-                        p.contact-descr.roboto khalilkode@gmail.com
+                        p.contact-descr.roboto 
+                            a(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
+                        p.contact-descr.roboto 
+                            a(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
                 .contact-form 
-                    form(action="index.html", method="post") 
+                    form.flex(action="index.html", method="post") 
                         .name-mail.flex
                             input#userName(type="name", name="name", placeholder="Your name")
                             input#UserMail(type="email", name="email", placeholder="Your E-mail")
@@ -138,8 +102,8 @@ main
                             input#userTel(type="tel", name="tel", placeholder="Your phone")
                             input#userCompany(type="text", name="company", placeholder="Company name")
                         .teaxtarea
-                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") 
-                        .send-warn
+                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") Write your message
+                        .send-warn.flex
                             input(type="submit", value="Send message")
-                            span *
+                            span * 
                             p.roboto We’ll contact you as as possible. We don’t reply on Monday.
