@@ -178,12 +178,44 @@
     gap: 30rem
     grid-template-columns: repeat(3, 1fr)
     a
-        background-color: rgba($mainColorSite, 0.6)
+        opacity: 0
         width: 360rem
         height: 320rem
-        transition: all .8s ease
+        transform: rotate(-60deg) scale(0.3)
+        transition: filter .3s ease !important
+
         &:hover
-            background-color: rgba($mainColorSite, 1)
+            filter: brightness(50%)
+    a._active
+        opacity: 1
+        transform: rotate(0) scale(1)
+    .one
+        background: url('../img/1.jpg')
+        transition: all .3s ease 1.3s
+    .two
+        background: url('../img/2.jpg')
+        transition: all .3s ease 1.5s
+    .three
+        background: url('../img/3.jpg')
+        transition: all .3s ease 1.7s
+    .four
+        background: url('../img/4.jpg')
+        transition: all .3s ease 1.9s
+    .five
+        background: url('../img/5.jpg')
+        transition: all .3s ease 2.1s
+    .six
+        background: url('../img/6.jpg')
+        transition: all .3s ease 2.3s
+    .seven
+        background: url('../img/7.jpg')
+        transition: all .3s ease 2.5s
+    .eight
+        background: url('../img/8.jpg')
+        transition: all .3s ease 2.7s
+    .nine
+        background: url('../img/9.jpg')
+        transition: all .3s ease 3s
 
 // advertising
 
