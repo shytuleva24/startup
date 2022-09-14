@@ -1,9 +1,13 @@
 .home-page
     position: relative
     color: #fff
-    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) center / 130% auto
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) 
+    background-position: center 0
     background-color: $mainColorSite
-    transition: background-position .2s ease
+    +media(1024)
+        background-size: 130% auto
+        background-position: center
+    // transition: background-position .2s linear
     a
         color: #fff
 
@@ -93,7 +97,8 @@
 
 .home-contant
     position: absolute
-    top: 50%
+    width: 85%
+    top: 55%
     left: 50%
     opacity: 0
     transform: translate(-50%, 150%)
