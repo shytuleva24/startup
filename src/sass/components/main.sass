@@ -66,19 +66,33 @@
 .anim_left
     transform: translate(-120%, 0)
     transition: all .5s ease 1s
+
 .anim_right
     transform: translate(120%, 0)
     transition: all .5s ease 1s
+
 .anim_left._active,
 .anim_right._active
     transform: translate(0, 0)
     transition: all .5s ease 1s
     opacity: 1
-.slider-cards
-    width: 100%
-    justify-content: space-between
+.about-cards
+    overflow: hidden
 
-        
+.slider-container
+    width: 100%
+    height: 340rem
+    position: absolute
+    transition: all .5s ease
+
+.about-card
+    cursor: pointer
+    // position: absolute
+    &:hover .employee-social
+        display: block
+    figure
+        padding-right: 30rem
+
 .about-img
     position: relative
 
@@ -115,22 +129,8 @@
     padding: 10rem 0
     text-transform: uppercase
 
-.about-card
-    cursor: pointer
-    &:hover .employee-social
-        display: block
 .relative
     position: relative
-
-.description-card
-    transform: translate(0, 50%)
-    opacity: 0
-    transition: all .3s ease 0
-.description-card._active 
-    transform: translate(0, 0)
-    opacity: 1
-    transition: all .8s ease .4s
-
 
 .cards-arrow
     position: absolute
@@ -156,11 +156,12 @@
         left: 50%
         transform: translate(-50%, -50%) rotate(135deg)
         z-index: 3
-
 .right
-    right: 0
+    right: -2px
     &::before
         transform: translate(-50%, -50%) rotate(-45deg)
+.left
+    left: 0
 
 // Works
 
