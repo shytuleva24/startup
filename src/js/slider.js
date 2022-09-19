@@ -14,12 +14,14 @@ let position = 0,
 console.log(indexSlide);
 sliderCards[0].insertAdjacentElement('beforebegin',sliderCards[sliderCards.length - 1].cloneNode(true));
 sliderCards[sliderCards.length - 1].insertAdjacentElement('afterend', sliderCards[0].cloneNode(true))
+slideWisth = sliderCards[0].getBoundingClientRect().width;
+position = -slideWisth;
 
+sliderCards = document.querySelectorAll('.about-card');
 for (let i = 0; i < sliderCards.length; i++) {
-    const slide = sliderCards[i];
-    slideWisth = slide.getBoundingClientRect().width;
-    slide.dataset.order = i;
-    container.style.left = position - slideWisth + "px";
+    sliderCards[i].style.position = 'absolute';
+    sliderCards[i].style.left = `${position}px`;
+    position = position + slideWisth;
 }
 
 for (const navigation of navigations) {
@@ -28,18 +30,20 @@ for (const navigation of navigations) {
 
 function navigationHandler () {
     const { dir } = this.dataset;
-    const sliderCards = document.querySelectorAll('.about-card');
+    sliderCards = document.querySelectorAll('.about-card');
     firstSlide = sliderCards[2].cloneNode(true);
     lastSlide = sliderCards[sliderCards.length - 3].cloneNode(true);
     if (dir === "prev") {
-        sliderCards[sliderCards.length - 1].remove()
+        sliderCards[sliderCards.length - 1].remove();
         sliderCards[0].insertAdjacentElement('beforebegin', lastSlide);
-        // position = position + slideWisth;
-        // container.style.left = position + "px";
     } else if (dir === "next") {
         sliderCards[0].remove()
         sliderCards[sliderCards.length - 1].insertAdjacentElement('afterend', firstSlide)
-        // position = position - slideWisth;
-        // container.style.left = position + "px";
     }
+    sliderCards = document.querySelectorAll('.about-card');
+    position -= slideWisth;
+    sliderCards.forEach(element => {
+        element.style.left = position + "px";
+        position = position + slideWisth;
+    });
 }
