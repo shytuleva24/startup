@@ -41,7 +41,7 @@ function navigationHandler () {
         sliderCards[sliderCards.length - 1].insertAdjacentElement('afterend', firstSlide)
     }
     sliderCards = document.querySelectorAll('.about-card');
-    position -= slideWisth;
+    position = 0 - slideWisth;
     sliderCards.forEach(element => {
         element.style.left = position + "px";
         position = position + slideWisth;
