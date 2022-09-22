@@ -30,8 +30,8 @@ main
                 p.anim_left._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
                 p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
             .about-cards.text-center.relative
-                span.cards-arrow.left.slider_navigation(data-dir="prev")
-                ul.slider-container.flex
+                span.cards-arrow.left.slider_navigation#prev
+                ul.slider-container.flex.relative
                     li.about-card
                         +aboutCard (aboutCards.KhalilUddin)
                     li.about-card
@@ -40,9 +40,9 @@ main
                         +aboutCard (aboutCards.ShamimMia)
                     li.about-card
                         +aboutCard (aboutCards.JohnDoe)
-                    //- li.about-card
-                    //-     +aboutCard (aboutCards.RubelMiah)
-                span.cards-arrow.right.slider_navigation(data-dir="next")
+                    //- li.about-card.last-card
+                    //-     +aboutCard (aboutCards.ShamimMia)
+                span.cards-arrow.right.slider_navigation#next
     section.works._anim-items#works
         .wrapper 
             h2._anim-show Latest Works

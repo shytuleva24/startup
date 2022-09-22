@@ -2,6 +2,7 @@
 
 let menu = document.querySelectorAll(".home-page .menu a"),
     interval;
+const btnGetInTouch = document.querySelectorAll("a.btn-home.roboto");
     
 function scrollToBlock(href) {
     let target = document.querySelector(href),
@@ -38,7 +39,6 @@ function scrollToBlock(href) {
         } else if (Math.abs(window.pageYOffset + window.innerHeight - document.body.getBoundingClientRect().height) < 5 ) {
             clearInterval(interval);
         }
-        console.log(pixelScroll);
     },20)
 }
 

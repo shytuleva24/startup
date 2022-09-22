@@ -1,49 +1,63 @@
-const navigations = document.querySelectorAll('.slider_navigation');
-const container = document.querySelector('.slider-container');
-let sliderCards = document.querySelectorAll('.about-card');
+const prevBtnSlider = document.querySelector("#prev");
+const nextBtnSlider = document.querySelector("#next");
+let sliderCards = document.querySelectorAll(".about-card"),
+    sliderContainer = document.querySelector(".slider-container"),
+    widthSliderContainer = sliderContainer.getBoundingClientRect().width,
+    widthCards = sliderCards[0].getBoundingClientRect().width,
+    cardsCount = Math.floor(widthSliderContainer / widthCards),
+    distanceCards = (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1),
+    positionCards = 0 - (distanceCards + widthCards),    
+    firstEl = sliderCards[sliderCards.length - 1].cloneNode(true);
 
-const aboutCards = document.querySelector('.about-cards');
-aboutCards.style.height = container.getBoundingClientRect().height + "px";
+sliderContainer.insertAdjacentElement("afterbegin", firstEl);
 
-let position = 0,
-    slideWisth,
-    firstSlide,
-    lastSlide
-    indexSlide = [0, 3];
+function infinitySlider () {
+    sliderCards = document.querySelectorAll(".about-card");
+    let heightCards = sliderCards[0].getBoundingClientRect().height;
+    widthCards = sliderCards[0].getBoundingClientRect().width;
+    widthSliderContainer = sliderContainer.getBoundingClientRect().width;
+    cardsCount = Math.floor(widthSliderContainer / widthCards);
+    distanceCards = (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1);
+        
+    sliderContainer.style.height = heightCards + 'px';
+        
+    function shuffleCard () {
+        positionCards = 0 - (distanceCards + widthCards);
+        if (sliderCards.length - 1 > cardsCount) {
+            prevBtnSlider.style.display = "block";
+            nextBtnSlider.style.display = "block";
+        } else {
+            prevBtnSlider.style.display = "none";
+            nextBtnSlider.style.display = "none";
+        }
 
-console.log(indexSlide);
-sliderCards[0].insertAdjacentElement('beforebegin',sliderCards[sliderCards.length - 1].cloneNode(true));
-sliderCards[sliderCards.length - 1].insertAdjacentElement('afterend', sliderCards[0].cloneNode(true))
-slideWisth = sliderCards[0].getBoundingClientRect().width;
-position = -slideWisth;
-
-sliderCards = document.querySelectorAll('.about-card');
-for (let i = 0; i < sliderCards.length; i++) {
-    sliderCards[i].style.position = 'absolute';
-    sliderCards[i].style.left = `${position}px`;
-    position = position + slideWisth;
-}
-
-for (const navigation of navigations) {
-    navigation.addEventListener('click', navigationHandler);
-}
-
-function navigationHandler () {
-    const { dir } = this.dataset;
-    sliderCards = document.querySelectorAll('.about-card');
-    firstSlide = sliderCards[2].cloneNode(true);
-    lastSlide = sliderCards[sliderCards.length - 3].cloneNode(true);
-    if (dir === "prev") {
-        sliderCards[sliderCards.length - 1].remove();
-        sliderCards[0].insertAdjacentElement('beforebegin', lastSlide);
-    } else if (dir === "next") {
-        sliderCards[0].remove()
-        sliderCards[sliderCards.length - 1].insertAdjacentElement('afterend', firstSlide)
+        sliderCards = document.querySelectorAll(".about-card");
+        sliderCards.forEach(card => {
+            card.style.left = positionCards + 'px';
+            positionCards += (distanceCards + widthCards);
+        });
     }
-    sliderCards = document.querySelectorAll('.about-card');
-    position = 0 - slideWisth;
-    sliderCards.forEach(element => {
-        element.style.left = position + "px";
-        position = position + slideWisth;
-    });
+    shuffleCard();
+
+    function changeSlide (direction) {
+        if (direction == "left") {
+            sliderCards[sliderCards.length - 1].remove();
+            let preLastEl = sliderCards[sliderCards.length - 2].cloneNode(true);
+            sliderContainer.insertAdjacentElement("afterbegin", preLastEl);
+        } else if (direction == "right") {
+            sliderCards[0].remove();
+            let preFirstEl = sliderCards[1].cloneNode(true);
+            sliderContainer.insertAdjacentElement("beforeend", preFirstEl);
+        }
+        shuffleCard();
+    }
+    prevBtnSlider.onclick = function () {
+        changeSlide("left");
+    }
+    nextBtnSlider.onclick = function () {
+        changeSlide("right");
+    }
 }
+
+window.onresize = infinitySlider ;
+infinitySlider ();
