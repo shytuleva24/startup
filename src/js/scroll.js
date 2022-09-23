@@ -39,7 +39,7 @@ function scrollToBlock(href) {
         } else if (Math.abs(window.pageYOffset + window.innerHeight - document.body.getBoundingClientRect().height) < 5 ) {
             clearInterval(interval);
         }
-    },20)
+    }, 20)
 }
 
 menu.forEach(element => {
@@ -48,3 +48,8 @@ menu.forEach(element => {
         scrollToBlock(this.getAttribute("href"));
     } 
 });
+btnGetInTouch.onclick = function (event) {
+    console.log(this)
+    event.preventDefault();
+    scrollToBlock(this.getAttribute("href"));
+} 

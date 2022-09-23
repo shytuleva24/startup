@@ -77,7 +77,7 @@
     transition: all .5s ease 1s
     opacity: 1
 .about-cards
-    // overflow: hidden
+    overflow: hidden
 
 .slider-container
     width: 100%
@@ -87,9 +87,17 @@
 .about-card
     cursor: pointer
     position: absolute
-    transition: all .5s ease 
+    transition: all .5s ease
+    width: 100%
+    // max-width: 546px
+    min-width: 263px
+    img
+        width: 100% 
     &:hover .employee-social
         display: block
+    +media(585)
+        width: auto
+        // max-width: 263px
 .last-card
     background: black
 .about-img

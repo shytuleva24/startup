@@ -4,23 +4,38 @@ let sliderCards = document.querySelectorAll(".about-card"),
     sliderContainer = document.querySelector(".slider-container"),
     widthSliderContainer = sliderContainer.getBoundingClientRect().width,
     widthCards = sliderCards[0].getBoundingClientRect().width,
-    cardsCount = Math.floor(widthSliderContainer / widthCards),
-    distanceCards = (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1),
+    constCardWidth = widthCards,
+    cardsCount = Math.floor(widthSliderContainer / constCardWidth),
+    distanceCards = (cardsCount == 1) ? 20 : (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1),
     positionCards = 0 - (distanceCards + widthCards),    
     firstEl = sliderCards[sliderCards.length - 1].cloneNode(true);
 
+console.log(distanceCards);
 sliderContainer.insertAdjacentElement("afterbegin", firstEl);
 
 function infinitySlider () {
     sliderCards = document.querySelectorAll(".about-card");
+    widthSliderContainer = sliderContainer.getBoundingClientRect().width;
+    cardsCount = Math.floor(widthSliderContainer / constCardWidth);
+    
+    sliderCards.forEach(card => {
+        if (cardsCount == 1) {
+            card.style.width = 100 + "%";
+        } else if (cardsCount == 2) {
+            card.style.width = 47 + "%";
+        } else if (cardsCount == 3) {
+            card.style.width = 31 + "%";
+        } else {
+            card.style.width = "auto";
+        }
+    });
     let heightCards = sliderCards[0].getBoundingClientRect().height;
     widthCards = sliderCards[0].getBoundingClientRect().width;
-    widthSliderContainer = sliderContainer.getBoundingClientRect().width;
-    cardsCount = Math.floor(widthSliderContainer / widthCards);
-    distanceCards = (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1);
-        
     sliderContainer.style.height = heightCards + 'px';
-        
+
+    
+    distanceCards = (cardsCount == 1) ? 20 : (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1);
+    
     function shuffleCard () {
         positionCards = 0 - (distanceCards + widthCards);
         if (sliderCards.length - 1 > cardsCount) {
