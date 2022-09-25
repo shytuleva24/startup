@@ -1,6 +1,6 @@
 // scroll
 
-let menu = document.querySelectorAll(".home-page .menu a"),
+let homeMenuLinks = document.querySelectorAll(".home-page .menu a"),
     interval;
 const btnGetInTouch = document.querySelectorAll("a.btn-home.roboto");
     
@@ -42,14 +42,39 @@ function scrollToBlock(href) {
     }, 20)
 }
 
-menu.forEach(element => {
+homeMenuLinks.forEach(element => {
     element.onclick = function (event) {
         event.preventDefault();
         scrollToBlock(this.getAttribute("href"));
     } 
 });
+
 btnGetInTouch.onclick = function (event) {
     console.log(this)
     event.preventDefault();
     scrollToBlock(this.getAttribute("href"));
 } 
+
+// menu
+let homeMenu = document.querySelector(".home-menu");
+let hamburger = document.querySelector(".hamburger");
+let isMobile = false;
+
+hamburger.onclick = toggleMenu;
+
+window.onresize = function() {
+    isMobile = window.innerWidth < 1055
+};
+
+window.dispatchEvent(new Event('resize'));
+
+homeMenuLinks.forEach((element) => {
+    element.onclick = toggleMenu;
+});
+
+function toggleMenu() {
+    if (!isMobile ) return;
+    homeMenu.classList.toggle ("active-burger");
+    hamburger.classList.toggle ("open");
+}
+

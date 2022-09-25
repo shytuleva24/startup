@@ -1,6 +1,5 @@
 // let patern = /url\(["']?(.+)["']?\)/g;
 
-
 // появление елементов
 
 homePage.style.height = window.innerHeight + "px";

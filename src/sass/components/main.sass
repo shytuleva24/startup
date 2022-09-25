@@ -185,42 +185,109 @@
 .works-photo
     display: grid
     gap: 30rem
-    grid-template-columns: repeat(3, 1fr)
-    a
-        opacity: 0
-        width: 360rem
-        height: 320rem
-        transform: rotate(-180deg) scale(0.3)
-    a._active
-        opacity: 1
-        transform: rotate(0) scale(1)
-    .one
-        background: url('../img/1.jpg')
-        transition: all .3s ease 1.3s
-    .two
-        background: url('../img/2.jpg')
-        transition: all .3s ease 1.5s
-    .three
-        background: url('../img/3.jpg')
-        transition: all .3s ease 1.7s
-    .four
-        background: url('../img/4.jpg')
-        transition: all .3s ease 1.9s
-    .five
-        background: url('../img/5.jpg')
-        transition: all .3s ease 2.1s
-    .six
-        background: url('../img/6.jpg')
-        transition: all .3s ease 2.3s
-    .seven
-        background: url('../img/7.jpg')
-        transition: all .3s ease 2.5s
-    .eight
-        background: url('../img/8.jpg')
-        transition: all .3s ease 2.7s
-    .nine
-        background: url('../img/9.jpg')
-        transition: all .3s ease 3s
+    grid-template-columns: repeat(1, 1fr)
+    +media(500)
+        grid-template-columns: repeat(2, 1fr)
+    +media(876)
+        grid-template-columns: repeat(3, 1fr)
+
+    figure
+        transition: all .5s ease
+        cursor: pointer
+        &:hover .works-description
+            opacity: 1
+            transition: all .5s ease
+        
+.works-img
+    img
+        display: block
+        width: 100%
+        height: 100%
+
+.works-description
+    opacity: 0
+    transition: all .5s ease
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-color: rgba($mainColorSite, .7)
+    color: #fff
+.works-photo__title
+    margin-bottom: 15rem
+    font-size: 18rem
+    line-height: 24rem
+.works-photo__description
+    margin-bottom: 25rem
+    font-size: 12rem
+    line-height: 24rem
+.works-photo__btn
+    position: relative
+    padding: 6rem 35rem 6rem 20rem
+    color: #fff
+    font-size: 14rem
+    letter-spacing: 1rem
+    line-height: 24rem
+    text-transform: uppercase
+    border: 1px solid #fff
+    transition: all .5s ease
+    &:hover
+        color: $mainColorSite
+        background-color: #fff
+    &:hover::after
+        border-color: $mainColorSite
+    &::after
+        content: ''
+        position: absolute
+        width: 9rem
+        height: 9rem
+        border-right: 1px solid #fff
+        border-bottom: 1px solid #fff
+        transform: rotate(-45deg) translateY(-50%)
+        top: 45%
+        right: 20%
+        z-index: 1
+        transition: all .5s ease
+
+    // a
+    //     opacity: 0
+    //     width: 360rem
+    //     height: 320rem
+    //     transform: rotate(-180deg) scale(0.3)
+    // a._active
+    //     opacity: 1
+    //     transform: rotate(0) scale(1)
+    // .one
+    //     background: url('../img/1.jpg')
+    //     transition: all .3s ease 1.3s
+    // .two
+    //     background: url('../img/2.jpg')
+    //     transition: all .3s ease 1.5s
+    // .three
+    //     background: url('../img/3.jpg')
+    //     transition: all .3s ease 1.7s
+    // .four
+    //     background: url('../img/4.jpg')
+    //     transition: all .3s ease 1.9s
+    // .five
+    //     background: url('../img/5.jpg')
+    //     transition: all .3s ease 2.1s
+    // .six
+    //     background: url('../img/6.jpg')
+    //     transition: all .3s ease 2.3s
+    // .seven
+    //     background: url('../img/7.jpg')
+    //     transition: all .3s ease 2.5s
+    // .eight
+    //     background: url('../img/8.jpg')
+    //     transition: all .3s ease 2.7s
+    // .nine
+    //     background: url('../img/9.jpg')
+    //     transition: all .3s ease 3s
 
 // advertising
 

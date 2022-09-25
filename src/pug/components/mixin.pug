@@ -44,6 +44,64 @@
         }
     }
 -
+    let worksPhotos = {
+        one: {
+            src:"img/1.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        two: {
+            src:"img/2.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        three: {
+            src:"img/3.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        four: {
+            src:"img/4.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        five: {
+            src:"img/5.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        six: {
+            src:"img/6.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        seven: {
+            src:"img/7.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        eight: {
+            src:"img/8.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        },
+        nine: {
+            src:"img/9.jpg",
+            alt:"Hair Dresser",
+            title: "Hair Dresser",
+            category: "Branding",
+        }
+    }
+
+-
     let blogPosts = {
         one: {
             src:"img/blogPostOne.jpg",
@@ -91,6 +149,16 @@ mixin aboutCard (item)
             .description-card._anim-items
                 p.employee-name #{item.employeeName}
                 p.description.roboto #{item.description}
+
+mixin worksPhoto (item)
+    figure._anim-show._anim-no-hide
+        figcaption.relative
+            .works-img
+                img(src=item.src, alt=item.alt)
+            .works-description.flex
+                p.works-photo__title #{item.title}
+                p.works-photo__description.roboto #{item.category}
+                a.works-photo__btn.roboto(href="#") view
 
 mixin blogPost (item)
     .post-img

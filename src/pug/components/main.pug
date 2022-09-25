@@ -50,15 +50,24 @@ main
                 ul.works-menu.flex
                     +menu(worksMenu)
             .works-photo
-                a._anim-no-hide.one._anim-show(href="#") 
-                a._anim-no-hide.two._anim-show(href="#") 
-                a._anim-no-hide.three._anim-show(href="#") 
-                a._anim-no-hide.four._anim-show(href="#") 
-                a._anim-no-hide.five._anim-show(href="#") 
-                a._anim-no-hide.six._anim-show(href="#") 
-                a._anim-no-hide.seven._anim-show(href="#") 
-                a._anim-no-hide.eight._anim-show(href="#") 
-                a._anim-no-hide.nine._anim-show(href="#") 
+                +worksPhoto (worksPhotos.one)
+                +worksPhoto (worksPhotos.two)
+                +worksPhoto (worksPhotos.three)
+                +worksPhoto (worksPhotos.four)
+                +worksPhoto (worksPhotos.five)
+                +worksPhoto (worksPhotos.six)
+                +worksPhoto (worksPhotos.seven)
+                +worksPhoto (worksPhotos.eight)
+                +worksPhoto (worksPhotos.nine)
+                //- a._anim-no-hide.one._anim-show(href="#") 
+                //- a._anim-no-hide.two._anim-show(href="#") 
+                //- a._anim-no-hide.three._anim-show(href="#") 
+                //- a._anim-no-hide.four._anim-show(href="#") 
+                //- a._anim-no-hide.five._anim-show(href="#") 
+                //- a._anim-no-hide.six._anim-show(href="#") 
+                //- a._anim-no-hide.seven._anim-show(href="#") 
+                //- a._anim-no-hide.eight._anim-show(href="#") 
+                //- a._anim-no-hide.nine._anim-show(href="#") 
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center
             p.roboto Do you like OUR WORK so far? Let's talk about YOUR PROJECT!
