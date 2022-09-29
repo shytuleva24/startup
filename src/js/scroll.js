@@ -79,7 +79,7 @@ const menuBody = document.querySelector('.menu-body');
 
 if (iconMenu) {
     iconMenu.addEventListener("click", function(e) {
-        document.body.classList.add('lock');
+        document.body.classList.toggle('lock');
         iconMenu.classList.toggle("open-menu");
         menuBody.classList.toggle("open-menu");
     });

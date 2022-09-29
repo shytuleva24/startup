@@ -26,7 +26,10 @@
     transition: all .5s ease
     svg
         margin: auto
+        padding: 5rem
         fill: $mainColorSite
+        +media(768)
+            padding: 0
 
 .services-list
     flex-wrap: wrap
@@ -313,10 +316,19 @@
 // Blog
 
 .blog-post
+    flex-direction: column
     padding: 35rem 0
     transform: translate(20%, 0px) 
     transition: all 1.2s ease 0s 
     opacity: 0
+    +media(768)
+        flex-direction: row
+    .sub-name-post span,
+    .name-post p,
+    .more-post
+        color: $mainColorSite
+        +media(768)
+            color: $mainColorText
     &:hover .sub-name-post span,
     &:hover .name-post p,
     &:hover .more-post
@@ -327,16 +339,25 @@
     transition: all 0.8s ease 1.9s 
     border-top: 1rem solid #ddd
 .data-name-post
+    flex-direction: row
     justify-content: flex-start
 
 .post-img
-    margin-right: 40rem
-    max-width: 460rem
+    margin-bottom: 10rem
+    +media(768)
+        margin-right: 40rem
+        max-width: 460rem
     img
         width: 100%
+        height: 100%
 .text-info
-    max-width: 635rem
+    +media(768)
+        max-width: 635rem
 .data-post
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
     padding: 10rem
     margin-right: 20rem
     border: 2px solid #555555
@@ -353,17 +374,19 @@
 
 .name-post 
     p
-        padding: 7rem
         font-size: 16rem
         font-weight: 700
         line-height: 24rem
         text-transform: uppercase
         color: #555555
+        +media(768)
+            padding: 7rem
     i
-        padding: 7rem
         font-size: 13rem
         line-height: 24rem
         color: #777777
+        +media(768)
+            padding: 7rem
 .description-post
     padding: 25rem 0 34rem 0
 
@@ -379,14 +402,27 @@
     background-color: #f8f8f8
     text-align: center
 .brands
-    margin-bottom: 65rem
     justify-content: center
     align-items: center
+    flex-wrap: wrap
+    +media(768)
+        margin-bottom: 65rem
     a
-        margin: 0 30rem
+        width: 40%
+        margin: 7rem 12rem
         transition: all 0.8s ease 
+        &:nth-child(3)
+            order: 1
+        &:nth-child(5)
+            order: 1
+        img
+            width: 100%
         &:hover
             transform: scale(1.2)
+        +media(565)
+            margin: 0rem 30rem
+            width: auto
+        
 .review
     margin: 0 auto
     max-width: 760rem
@@ -395,12 +431,30 @@
 
 // contact
 .contact > .wrapper > .flex
-    justify-content: space-between
+    flex-direction: column
+    +media(768)
+        flex-direction: row
+        justify-content: space-between
 .contact-info
+    width: 100%
+    order: 1
+    +media(600)
+        font-size: 10rem
+        display: flex
+    +media(768)
+        flex-direction: column
+        width: auto
+        padding-top: 20rem
+        padding-right: 30rem
+        order: 0
     p, address, .p
         padding-left: 30rem
     div
-        margin-bottom: 35rem
+        padding: 10rem
+        margin-bottom: 20rem
+        +media(768)
+            padding: 0
+            margin-bottom: 35rem
     .roboto
         font-size: 12px
         line-height: 20px
@@ -410,10 +464,12 @@
         color: $mainColorSite
 
 .contact-info-title
-    margin-bottom: 18rem
+    margin-bottom: 10rem
     position: relative
     font-weight: 700
     text-transform: uppercase
+    +media(768)
+        margin-bottom: 18rem
     &::before
         content: ""
         position: absolute
@@ -443,13 +499,16 @@
     font-size: 12rem
 
 .contact-form 
-    max-width: 730rem
+    width: 100%
+    +media(768)
+        width: 64%
     form
         flex-direction: column
         align-items: stretch
+        width: 100%
     input,
     textarea
-        margin: 10rem 15rem
+        margin-bottom: 15rem
         padding: 10.5rem 17rem
         font-size: 12rem
         line-height: 20rem
@@ -467,12 +526,18 @@
         resize: vertical
         min-height: 40px
         max-height: 250px
-        width: 96%
+        width: 100%
     .name-mail,
     .phone-subj
-        width: 730rem
+        flex-direction: column
+        +media(565)
+            flex-direction: row
+            width: 100%
         input
-            width: 50%
+            width: 100%
+            &:nth-child(1)
+                margin-right: 30rem
+                
 .send-warn
     align-items: center
     input

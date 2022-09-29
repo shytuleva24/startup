@@ -21,7 +21,7 @@
 .header-container
     justify-content: space-between
     align-items: center
-    min-height: 80rem
+    min-height: 70rem
 
 .menu-body
     position: fixed
@@ -38,10 +38,11 @@
         position: static
         padding: 0
         width: auto
+        overflow: visible
     span
         position: fixed
         width: 100%
-        min-height: 80rem
+        min-height: 70rem
         top: 0
         left: 0
         transition: background-color .5s ease
@@ -74,13 +75,28 @@
                 margin-right: 0
         +media(768)
             padding: 10px 0
-a.menu-link
+.menu-link
+    padding: 5rem
+    position: relative
     font-size: 24rem
     text-align: right
+    transition: all .5s ease
     +media(768)
         font-size: 14rem
-    &:hover
-        text-decoration: underline
+    &::after
+        content: ''
+        position: absolute
+        margin: auto
+        bottom: 0
+        right: 0
+        left: 0
+        width: 0%
+        background: #fff
+        transition: all .5s ease
+        height: 1px
+    &:hover:after
+        +media(768)
+            width: 100%
 
 .menu-icon
     z-index: 5
