@@ -1,67 +1,92 @@
-const prevBtnSlider = document.querySelector("#prev");
-const nextBtnSlider = document.querySelector("#next");
-let sliderCards = document.querySelectorAll(".about-card"),
-    sliderContainer = document.querySelector(".slider-container"),
-    widthSliderContainer = sliderContainer.getBoundingClientRect().width,
-    widthCards = sliderCards[0].getBoundingClientRect().width,
-    constCardWidth = widthCards,
-    cardsCount = Math.floor(widthSliderContainer / constCardWidth),
-    distanceCards = (cardsCount == 1) ? 20 : (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1),
-    positionCards = 0 - (distanceCards + widthCards),    
-    firstEl = sliderCards[sliderCards.length - 1].cloneNode(true);
 
-console.log(distanceCards);
-sliderContainer.insertAdjacentElement("afterbegin", firstEl);
+function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
+    let positionCards = 0,
+        slider = document.querySelector(selector),
+        sliderContainer = slider.querySelector(".slider-container"),
+        sliderCards = sliderContainer.children,
+        widthSliderContainer = sliderContainer.getBoundingClientRect().width,
+        constCardWidth,
+        cardsCount,
+        widthCards,
+        distanceCards,
+        cloneCard,
+        heightCards,
+        prevBtnSlider = slider.querySelector(".slider_navigation#prev"),
+        nextBtnSlider = slider.querySelector(".slider_navigation#next");
+    const defaultSettings = {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        gap: 20,
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        responsive: []
+    };
 
-function infinitySlider () {
-    sliderCards = document.querySelectorAll(".about-card");
-    widthSliderContainer = sliderContainer.getBoundingClientRect().width;
-    cardsCount = Math.floor(widthSliderContainer / constCardWidth);
-    
-    sliderCards.forEach(card => {
-        if (cardsCount == 1) {
-            card.style.width = 100 + "%";
-        } else if (cardsCount == 2) {
-            card.style.width = 47 + "%";
-        } else if (cardsCount == 3) {
-            card.style.width = 31 + "%";
-        } else {
-            card.style.width = "auto";
-        }
+    slider.querySelectorAll(".clone").forEach(clone => {
+        clone.remove()
     });
-    let heightCards = sliderCards[0].getBoundingClientRect().height;
-    widthCards = sliderCards[0].getBoundingClientRect().width;
-    sliderContainer.style.height = heightCards + 'px';
 
+    if (localStorage.constCardWidth) {
+        constCardWidth = localStorage.constCardWidth;
+    } else {
+        constCardWidth = sliderCards[0].getBoundingClientRect().width;
+        localStorage.constCardWidth = constCardWidth;
+    }
     
-    distanceCards = (cardsCount == 1) ? 20 : (widthSliderContainer - (widthCards * cardsCount)) / (cardsCount - 1);
+    cardsCount = Math.floor(widthSliderContainer / constCardWidth);
+
+    settings = {...defaultSettings, ...settings}; // берем всі аргументи обох об'єктів останній об'єкт в дужках в приоритеті
+    distanceCards = settings.gap;
+    widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
+    positionCards = 0 - (distanceCards + widthCards);
+
+    for (let i = 1; i <= settings.slidesToScroll; i++) {
+        cloneCard = sliderCards[sliderCards.length - i].cloneNode(true)
+        cloneCard.classList.add("clone");
+        sliderContainer.insertAdjacentElement("afterbegin", cloneCard);
+    }
+
+    sliderCards = sliderContainer.children;
+
+    for (let i = 0; i < sliderCards.length; i++) {
+        sliderCards[i].style.width = widthCards + "px";
+    }
+
+    sliderCards = sliderContainer.children;
+    heightCards = sliderCards[0].getBoundingClientRect().height;
+    if (heightCards < 325) {
+        heightCards = 325;
+    }
+    
+    // console.log(heightCards)
+    sliderContainer.style.height = heightCards + 'px';
     
     function shuffleCard () {
         positionCards = 0 - (distanceCards + widthCards);
-        if (sliderCards.length - 1 > cardsCount) {
-            prevBtnSlider.style.display = "block";
-            nextBtnSlider.style.display = "block";
-        } else {
+        if (!settings.arrows || (sliderCards.length - 1 )<= cardsCount) {
             prevBtnSlider.style.display = "none";
             nextBtnSlider.style.display = "none";
+        } else {
+            prevBtnSlider.style.display = "block";
+            nextBtnSlider.style.display = "block";
         }
-
-        sliderCards = document.querySelectorAll(".about-card");
-        sliderCards.forEach(card => {
-            card.style.left = positionCards + 'px';
+        sliderCards = sliderContainer.children;
+        for (let i = 0; i < sliderCards.length; i++) {
+            sliderCards[i].style.left = positionCards + 'px';
             positionCards += (distanceCards + widthCards);
-        });
+        }
     }
     shuffleCard();
 
     function changeSlide (direction) {
         if (direction == "left") {
             sliderCards[sliderCards.length - 1].remove();
-            let preLastEl = sliderCards[sliderCards.length - 2].cloneNode(true);
+            let preLastEl = sliderCards[sliderCards.length - 1].cloneNode(true);
             sliderContainer.insertAdjacentElement("afterbegin", preLastEl);
         } else if (direction == "right") {
             sliderCards[0].remove();
-            let preFirstEl = sliderCards[1].cloneNode(true);
+            let preFirstEl = sliderCards[0].cloneNode(true);
             sliderContainer.insertAdjacentElement("beforeend", preFirstEl);
         }
         shuffleCard();
@@ -74,5 +99,58 @@ function infinitySlider () {
     }
 }
 
-window.onresize = infinitySlider ;
-infinitySlider ();
+window.onresize = function () {
+    infinitySlider(".slider", {
+        responsive: [
+            {
+                brackpoint: 625,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: true
+            }, 
+            {
+                brackpoint: 900,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                arrows: true
+            }, 
+            {
+                brackpoint: 1100,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                arrows: true
+            }
+        ]
+    });
+}
+
+function $(selector) {
+    let elements = document.querySelectorAll(selector);
+    if (elements.length == 1) {
+        return elements[0];
+    }
+    return elements;
+}
+
+infinitySlider('.slider', {
+    responsive: [
+        {
+            brackpoint: 625,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            arrows: true
+        }, 
+        {
+            brackpoint: 900,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true
+        }, 
+        {
+            brackpoint: 1100,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: true
+        }
+    ]
+});

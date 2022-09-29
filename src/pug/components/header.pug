@@ -1,18 +1,15 @@
 header
-    section.home-page.parallax#home
-        .wrapper.header.flex
-            .logo 
-                a(href="index.html") Startup
-            .hamburger
-                span 
-                span 
-                span 
-                span 
-                span 
-                span 
-            nav.home-menu
-                ul.flex
-                    +menu(menu)
+    section.home-page.parallax.relative#home
+        .header.lock-padding
+            .header-container.flex.wrapper
+                .logo 
+                    a(href="index.html") Startup
+                .menu-icon
+                    span 
+                nav.menu-body
+                    span
+                    ul.menu-list
+                        +menu(menu, "scroll-to menu-link")
         .wrapper.home-contant._anim-items._anim-no-hide.text-center
             strong.title-home 
             h1 Your Favourite Creative Agency Template

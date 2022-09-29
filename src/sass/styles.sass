@@ -18,6 +18,9 @@ body
     font-size: 14rem
     line-height: 24rem
     // scroll-behavior: smooth
+
+body.lock
+    overflow: hidden
     
 .text-center
     text-align: center
@@ -93,6 +96,82 @@ main, footer
 ._active ._anim-show
     opacity: 1 !important
     transform: translate(0px, 0px) !important
+
+// popup
+
+.popup
+    position: fixed
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, .8)
+    top: 0
+    left: 0
+    opacity: 0
+    visibility: hidden
+    overflow-x: hidden
+    overflow-y: auto
+    transition: all .5s ease
+    z-index: 10
+
+.popup.open
+    opacity: 1
+    visibility: visible
+.popup.open .popup_content
+    transform: perspective(400px) translate(0, 0) rotateX(0)
+    opacity: 1
+
+.popup_body 
+    min-height: 100%
+    padding: 30rem 10rem
+    display: flex
+    align-items: center
+    justify-content: center
+
+.popup_content
+    position: relative
+    padding: 30rem
+    background-color: #fff
+    border-radius: 3rem
+    transition: all .5s ease
+    opacity: 0
+    transform: perspective(400px) translateY(-80%) rotateX(45deg)
+    // overflow-y: scroll
+    // max-height: 60vh
+
+.popup-close
+    position: absolute
+    right: 15rem
+    top: 15rem
+    font-size: 24rem
+    text-decoration: none
+    color: $mainColorText
+
+#popupBlog
+    .popup_content
+        max-width: 80%
+        +media(1140)
+            width: 70%
+    .post-img
+        width: 50%
+        padding-bottom: 20rem
+        img
+            height: 100%
+    .blog-post
+        padding: 0
+        transform: translate(0,0)
+        opacity: 1
+        transition: all 0s ease
+    .description-post
+        padding: 8rem
+    .data-name-post
+        margin-bottom: 30rem
+        width: auto
+    .post-info
+        width: 61%
+    .text-info
+        max-width: 100%
+
+
 
 
 @import components/header

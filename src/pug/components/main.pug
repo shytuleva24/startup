@@ -29,9 +29,9 @@ main
             .about-description.flex
                 p.anim_left._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
                 p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
-            .about-cards.text-center.relative
+            .about-cards.slider.text-center.relative
                 span.cards-arrow.left.slider_navigation#prev
-                ul.slider-container.flex.relative
+                ul.slider-container.relative
                     li.about-card
                         +aboutCard (aboutCards.KhalilUddin)
                     li.about-card
@@ -48,17 +48,17 @@ main
             h2._anim-show Latest Works
             nav.roboto.sub-title.works-nav._anim-show
                 ul.works-menu.flex
-                    +menu(worksMenu)
+                    +menu(worksMenu, "menu-category")
             .works-photo
-                +worksPhoto (worksPhotos.one)
-                +worksPhoto (worksPhotos.two)
-                +worksPhoto (worksPhotos.three)
-                +worksPhoto (worksPhotos.four)
-                +worksPhoto (worksPhotos.five)
-                +worksPhoto (worksPhotos.six)
-                +worksPhoto (worksPhotos.seven)
-                +worksPhoto (worksPhotos.eight)
-                +worksPhoto (worksPhotos.nine)
+                +worksPhoto(worksPhotos.one)
+                +worksPhoto(worksPhotos.two)
+                +worksPhoto(worksPhotos.three)
+                +worksPhoto(worksPhotos.four)
+                +worksPhoto(worksPhotos.five)
+                +worksPhoto(worksPhotos.six)
+                +worksPhoto(worksPhotos.seven)
+                +worksPhoto(worksPhotos.eight)
+                +worksPhoto(worksPhotos.nine)
                 //- a._anim-no-hide.one._anim-show(href="#") 
                 //- a._anim-no-hide.two._anim-show(href="#") 
                 //- a._anim-no-hide.three._anim-show(href="#") 
@@ -71,15 +71,15 @@ main
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center
             p.roboto Do you like OUR WORK so far? Let's talk about YOUR PROJECT!
-            a.btn-home.roboto(href="#contact") Get in Touch
+            a.btn-home.roboto.scroll-to(href="#contact") Get in Touch
     section.blog._anim-items#blog
         .wrapper
             h2._anim-show Recent blog posts
             p.roboto.sub-title._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
             .blog-post.blog-post__one.flex._anim-show
-                +blogPost (blogPosts.one)
+                +blogPost(blogPosts.one, "popup-link")
             .blog-post.blog-post__two.flex._anim-show
-                +blogPost (blogPosts.two)
+                +blogPost(blogPosts.two, "show-more")
     section.clients#clients
         .wrapper._anim-items
             .brands.flex._anim-show
@@ -100,15 +100,17 @@ main
                     .hotline
                         p.contact-info-title Hotline (24x7)
                         p.contact-descr.roboto
-                            a(href="tel:+650052300") +65 0052 300,  
-                            a(href="tel:+6588251210")  +65 88251 210
-                            a(href="tel:+88 01723511340") +88 01723 511 340
+                            p
+                                a.roboto(href="tel:+650052300") +65 0052 300
+                                |, 
+                                a.roboto(href="tel:+6588251210")  +65 88251 210
+                            a.roboto.p(href="tel:+88 01723511340") +88 01723 511 340
                     .mail 
                         p.contact-info-title E-mail
                         p.contact-descr.roboto 
-                            a(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
+                            a.roboto(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
                         p.contact-descr.roboto 
-                            a(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
+                            a.roboto(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
                 .contact-form 
                     form.flex(action="index.html", method="post") 
                         .name-mail.flex

@@ -14,7 +14,7 @@
         {name: "Branding ", url: "#"},
         {name: "Design", url: "#"},
         {name: "Development", url: "#"},
-        {name: "Strategy", url: "#b"}
+        {name: "Strategy", url: "#"}
     ]
 -
     let aboutCards = {
@@ -122,17 +122,17 @@
     }
 -
     let brands = [
-        {url: "#", src: "img/deorham.png", alt: "deorham"},
+        {url: "#", src: "img/deorham.png", alt: "deorham", clas},
         {url: "#", src: "img/ratings.png", alt: "ratings"},
         {url: "#", src: "img/makikMedia.png", alt: "makikMedia"},
         {url: "#", src: "img/bcause.png", alt: "bcause"},
         {url: "#", src: "img/womgiby.png", alt: "womgiby"}
     ]
-
-mixin menu (items)
+.scroll-to
+mixin menu (items, myClass)
     for item in items 
         li 
-            a(href=item.url) #{item.name}
+            a(href=item.url class=myClass) #{item.name}
 
 mixin aboutCard (item)
     figure
@@ -158,9 +158,9 @@ mixin worksPhoto (item)
             .works-description.flex
                 p.works-photo__title #{item.title}
                 p.works-photo__description.roboto #{item.category}
-                a.works-photo__btn.roboto(href="#") view
+                a.works-photo__btn.roboto(href="#") add to card
 
-mixin blogPost (item)
+mixin blogPost (item, myClass)
     .post-img
         img(src=item.src, alt=item.alt)
     .post-info
@@ -175,7 +175,7 @@ mixin blogPost (item)
                     | Uddin in 
                     span Development!
         p.text-info.description-post.roboto #{item.description}
-        a.more-post.roboto(href="#") Read more
+        a.more-post.roboto(href="#popupBlog" class=myClass) Read more
 
 mixin brand (items)
     for item in items 

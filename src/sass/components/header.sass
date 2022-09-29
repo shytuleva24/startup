@@ -7,152 +7,130 @@
     +media(1024)
         background-size: 130% auto
         background-position: center
-    // transition: background-position .2s linear
     a
         color: #fff
 
 .header
-    padding-top: 20rem
+    position: fixed
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 10
+    transition: transform .5s linear
+
+.header-container
     justify-content: space-between
     align-items: center
-    +media(745)
-        padding-top: 40rem
+    min-height: 80rem
+
+.menu-body
+    position: fixed
+    top: 0
+    left: 100%
+    width: 100%
+    height: 100%
+    background: rgba($mainColorSite, .9)
+    padding: 110rem 30rem 30rem  
+    transition: left .3s ease
+    overflow: auto
+    +media(768)
+        background: transparent
+        position: static
+        padding: 0
+        width: auto
+    span
+        position: fixed
+        width: 100%
+        min-height: 80rem
+        top: 0
+        left: 0
+        transition: background-color .5s ease
+        z-index: 2
+        +media(768)
+            display: none
+
+.menu-body.open-menu
+    left: 0
+    span
+        background-color: $mainColorSite
+
+.menu-list
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    justify-content: space-between
+    height: 100%
+    +media(768)
+        display: flex
+        align-items: center
+        flex-direction: row
+    li
+        margin-bottom: 35rem
+        +media(768)
+            margin-right: 20px
+            margin-bottom: 0
+        &:last-child
+            +media(768)
+                margin-right: 0
+        +media(768)
+            padding: 10px 0
+a.menu-link
+    font-size: 24rem
+    text-align: right
+    +media(768)
+        font-size: 14rem
+    &:hover
+        text-decoration: underline
+
+.menu-icon
+    z-index: 5
+    position: relative
+    width: 30rem
+    height: 18rem
+    cursor: pointer
+    span,
+    &::before,
+    &::after
+        left: 0
+        position: absolute
+        width: 100%
+        height: 10%
+        border-radius: 50%
+        transition: all .3s ease
+        background-color: #fff
+    &::before,
+    &::after
+        content: ""
+        bottom: 0
+    &::before 
+        top: 0
+    span
+        top: 50%
+        transform: scale(1) translate(0, -50%)
+    +media(768)
+        display: none
+.menu-icon.open-menu span
+    transform: scale(0) translate(0, -50%)
+.menu-icon.open-menu:after 
+    bottom: 50%
+    transform: rotate(45deg) translate(0, 50%)
+.menu-icon.open-menu:before 
+    top: 50%
+    transform: rotate(-45deg) translate(0, -50%)
+
+.header-hidden
+    transform: translateY(-100%)
 
 .logo
+    z-index: 10
     a
         padding-left: 0
         font-size: 24rem
         font-weight: 700
-        transition: all .5s ease
+        transition: all .8s ease
         &:hover
-            color: $mainColorSite
+            transform: scale(1.1)
 
-.home-menu
-    display: none
-    right: -100%
-    +media(745)
-        display: block
-    a
-        +media(745)
-        position: relative
-        display: inline-block
-        padding: 5rem 15rem
-        &::before
-            content: ""
-            position: absolute
-            display: none
-            left: 0
-            bottom: 0
-            width: 100%
-            height: 1px
-            background-color: #fff
-            animation: menuLine 0.5s linear
-        &:hover::before
-            display: block
-.hamburger 
-    width: 60px
-    height: 45px
-    position: relative
-    margin: 10rem 0
-    transform: rotate(0deg)
-    transition: .5s ease-in-out
-    cursor: pointer
-    z-index: 2
-    +media(745)
-        display: none
-
-    span 
-        display: block
-        position: absolute
-        height: 6rem
-        width: 51%
-        background: #fff
-        opacity: 1
-        transform: rotate(0deg)
-        transition: .25s ease-in-out
-
-.hamburger span:nth-child(even) 
-    left: 50%
-    border-radius: 0 9px 9px 0
-
-.hamburger span:nth-child(odd) 
-    left:0px
-    border-radius: 9px 0 0 9px
-
-.hamburger span:nth-child(1),
-.hamburger span:nth-child(2) 
-    top: 0px
-
-.hamburger span:nth-child(3),
-.hamburger span:nth-child(4) 
-    top: 18px
-
-.hamburger span:nth-child(5),
-.hamburger span:nth-child(6) 
-    top: 36px
-.hamburger.open span
-    background: $mainColorText
-.hamburger.open span:nth-child(1),
-.hamburger.open span:nth-child(6) 
-    transform: rotate(45deg)
-
-.hamburger.open span:nth-child(2),
-.hamburger.open span:nth-child(5) 
-    transform: rotate(-45deg)
-
-.hamburger.open span:nth-child(1) 
-    left: 5px
-    top: 7px
-
-.hamburger.open span:nth-child(2) 
-    left: calc(50% - 5px)
-    top: 7px
-
-.hamburger.open span:nth-child(3) 
-    left: -50%
-    opacity: 0
-
-.hamburger.open span:nth-child(4) 
-    left: 100%
-    opacity: 0
-
-.hamburger.open span:nth-child(5) 
-    left: 5px
-    top: 29px
-
-.hamburger.open span:nth-child(6) 
-    left: calc(50% - 5px)
-    top: 29px
-
-
-.active-burger
-    display: block
-    position: absolute
-    top: 0
-    right: 0%
-    width: 100%
-    height: 100vh
-    margin: 0
-    padding: 80px 0
-    list-style: none
-    background-color: #ECEFF1
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2)
-    transition: all .5s ease
-    z-index: 1
-
-    +media(700)
-        top: 115rem
-    ul
-        flex-direction: column
-        align-items: flex-end
-        justify-content: space-around
-        height: calc(100vh - 150rem)
-    li
-        a
-            display: inline-block
-            font-size: 30rem
-            padding: 20px 30px
-            color: $mainColorText
 
 
 .home-contant

@@ -81,6 +81,7 @@
 
 .slider-container
     width: 100%
+    height: 234px
     position: absolute
     transition: all .5s ease
 
@@ -88,15 +89,17 @@
     cursor: pointer
     position: absolute
     transition: all .5s ease
-    width: 100%
+    // width: 100%
     // max-width: 546px
     min-width: 263px
     img
         width: 100% 
     &:hover .employee-social
-        display: block
-    +media(585)
-        width: auto
+        opacity: 1
+        visibility: visible
+        transition: all .5s ease
+    // +media(585)
+    //     width: auto
         // max-width: 263px
 .last-card
     background: black
@@ -104,9 +107,10 @@
     position: relative
 
 .employee-social
-    display: none
+    opacity: 0
+    visibility: hidden
+    transition: all .5s ease
     position: absolute
-    width: 100%
     bottom: 10%
     left: 50%
     transform: translateX(-50%)
@@ -249,7 +253,7 @@
         border-bottom: 1px solid #fff
         transform: rotate(-45deg) translateY(-50%)
         top: 45%
-        right: 20%
+        right: 10%
         z-index: 1
         transition: all .5s ease
 
@@ -313,7 +317,6 @@
     transform: translate(20%, 0px) 
     transition: all 1.2s ease 0s 
     opacity: 0
-    cursor: pointer
     &:hover .sub-name-post span,
     &:hover .name-post p,
     &:hover .more-post
@@ -394,14 +397,47 @@
 .contact > .wrapper > .flex
     justify-content: space-between
 .contact-info
-    padding-left: 25rem
+    p, address, .p
+        padding-left: 30rem
     div
         margin-bottom: 35rem
+    .roboto
+        font-size: 12px
+        line-height: 20px
+        color: #555555
+        font-style: normal
+    a:hover
+        color: $mainColorSite
 
 .contact-info-title
-    padding-bottom: 18rem
+    margin-bottom: 18rem
+    position: relative
     font-weight: 700
     text-transform: uppercase
+    &::before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 0
+        background: url(../img/sprite.png) no-repeat
+        transform: translateY(-50%)
+.address .contact-info-title
+    &::before
+        width: 12px
+        height: 17px
+        background-position: 0 -64px
+        
+.hotline .contact-info-title
+    &::before
+        width: 12px
+        height: 20px
+        background-position: -14px -64px
+
+.mail .contact-info-title
+    &::before
+        width: 15px
+        height: 11px
+        background-position: -28px -64px
 
 .contact-descr
     font-size: 12rem
@@ -440,6 +476,7 @@
 .send-warn
     align-items: center
     input
+        margin-right: 20rem
         background-color: #fff
         border: 1px solid #555
         transition: all 0.8s ease
@@ -449,6 +486,7 @@
             border-color: $mainColorSite
             color: #fff
     span
-        padding-right: 3rem
+        font-size: 16rem
+        padding-right: 5rem
         color: $mainColorSite
 

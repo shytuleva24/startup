@@ -37,3 +37,33 @@
     font-size: 12rem
     text-transform: uppercase
     color: #ffffff
+
+.arrow-up
+    position: fixed
+    bottom: 5%
+    right: 5%
+    opacity: 0
+    transition: opacity .5s ease
+    visibility: hidden
+    svg
+        fill: #c0301c
+        width: 40rem
+        height: 40rem
+        transition: transform .5s ease
+        animation: arrowUp 1s linear infinite alternate
+        border: 2px solid #c0301c
+        border-radius: 50%
+        padding: 5rem
+        background: #fff
+    &:hover svg
+        transform: scale(1.1)
+        
+.arrow-up.active
+    opacity: 1
+    visibility: visible
+    
+@keyframes arrowUp
+    0%
+        transform: translate(0px, -15px)
+    100%
+        transform: translate(0px, 0px)

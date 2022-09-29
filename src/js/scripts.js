@@ -1,6 +1,33 @@
 // let patern = /url\(["']?(.+)["']?\)/g;
+const header = document.querySelector('.header');
+const arrowUp = document.querySelector('.arrow-up')
 
-// появление елементов
+let lastScrollTop = 0;
+
+function navMenuBackground() {
+    let st = window.pageYOffset || document.documentElement.scrollTop; 
+    if (st > lastScrollTop){
+        header.classList.add("header-hidden");
+    } else {
+        header.classList.remove("header-hidden")
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+
+    if (window.pageYOffset > (window.innerHeight / 4)) {
+        header.style.backgroundColor = "#c0301c";
+    } else {
+        header.style.backgroundColor = "transparent";
+    }
+    if (st > (window.innerHeight / 2)) {
+        arrowUp.classList.add("active");
+    } else {
+        arrowUp.classList.remove("active");
+    }
+
+}
+window.addEventListener(`scroll`, navMenuBackground)
+
+// анимация появления элементов при скролле
 
 homePage.style.height = window.innerHeight + "px";
 
@@ -27,6 +54,7 @@ if (animItems.length > 0) {
             }            
         });
     }
+
     function offset(el) {
         const rect = el.getBoundingClientRect()
         let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
@@ -95,3 +123,5 @@ function changeInClick () {
         element.innerText = "Yeah, you did triple-click!!!"
     });
 }
+
+
