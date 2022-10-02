@@ -1,3 +1,6 @@
+const sliderProps = {
+    arrows: true
+};
 
 function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
     let positionCards = 0,
@@ -11,27 +14,25 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         distanceCards,
         cloneCard,
         heightCards,
-        prevBtnSlider = slider.querySelector(".slider_navigation#prev"),
-        nextBtnSlider = slider.querySelector(".slider_navigation#next");
+        prevBtnSlider = document.createElement("span"),
+        nextBtnSlider = document.createElement("span");
     const defaultSettings = {
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScrollAll: false,
         gap: 20,
-        arrows: true,
+        arrows: false,
         autoplay: true,
         autoplaySpeed: 3000,
-        responsive: []
     };
 
     slider.querySelectorAll(".clone").forEach(clone => {
         clone.remove()
     });
-
-    if (localStorage.constCardWidth) {
-        constCardWidth = localStorage.constCardWidth;
+  
+    if (localStorage[slider.id]) {
+        constCardWidth = localStorage[slider.id];
     } else {
         constCardWidth = sliderCards[0].getBoundingClientRect().width;
-        localStorage.constCardWidth = constCardWidth;
+        localStorage[slider.id] = constCardWidth;
     }
     
     cardsCount = Math.floor(widthSliderContainer / constCardWidth);
@@ -40,11 +41,19 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     distanceCards = settings.gap;
     widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
     positionCards = 0 - (distanceCards + widthCards);
-
-    for (let i = 1; i <= settings.slidesToScroll; i++) {
-        cloneCard = sliderCards[sliderCards.length - i].cloneNode(true)
+    let counter = 1;
+    do {
+        cloneCard = sliderCards[sliderCards.length - counter].cloneNode(true)
         cloneCard.classList.add("clone");
+        cloneCard.style.transition = 'none';
         sliderContainer.insertAdjacentElement("afterbegin", cloneCard);
+        counter++;
+    } while (counter <= cardsCount && settings.slidesToScrollAll) 
+
+    if (cloneCard.classList.contains("clone")) {
+        setTimeout(() => {
+            cloneCard.style.transition = 'all .5s ease';
+        }, 10);
     }
 
     sliderCards = sliderContainer.children;
@@ -53,24 +62,34 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         sliderCards[i].style.width = widthCards + "px";
     }
 
-    sliderCards = sliderContainer.children;
     heightCards = sliderCards[0].getBoundingClientRect().height;
-    if (heightCards < 325) {
-        heightCards = 325;
-    }
-    
-    // console.log(heightCards)
     sliderContainer.style.height = heightCards + 'px';
     
     function shuffleCard () {
+        const areArrowsExist = document.querySelectorAll('.slider_navigation').length;
         positionCards = 0 - (distanceCards + widthCards);
-        if (!settings.arrows || (sliderCards.length - 1 )<= cardsCount) {
+        prevBtnSlider.className = "left slider_navigation";
+        nextBtnSlider.className = "right slider_navigation";
+        if (!areArrowsExist){
+            slider.insertAdjacentElement("afterbegin", prevBtnSlider)
+            slider.insertAdjacentElement("beforeend", nextBtnSlider)
+    
+            prevBtnSlider.onclick = function () {
+                changeSlide("left");
+            }
+            nextBtnSlider.onclick = function () {
+                changeSlide("right");
+            }
+        }
+
+        if (!settings.arrows && (sliderCards.length - 1) <= cardsCount) {
             prevBtnSlider.style.display = "none";
             nextBtnSlider.style.display = "none";
-        } else {
+        } else if (settings.arrows) {
             prevBtnSlider.style.display = "block";
             nextBtnSlider.style.display = "block";
         }
+
         sliderCards = sliderContainer.children;
         for (let i = 0; i < sliderCards.length; i++) {
             sliderCards[i].style.left = positionCards + 'px';
@@ -82,47 +101,27 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     function changeSlide (direction) {
         if (direction == "left") {
             sliderCards[sliderCards.length - 1].remove();
-            let preLastEl = sliderCards[sliderCards.length - 1].cloneNode(true);
-            sliderContainer.insertAdjacentElement("afterbegin", preLastEl);
+            let cloneLast = sliderCards[sliderCards.length - 1].cloneNode(true);
+            cloneLast.classList.add("clone");
+            sliderContainer.insertAdjacentElement("afterbegin", cloneLast);
+            sliderCards[1].classList.remove("clone");
         } else if (direction == "right") {
             sliderCards[0].remove();
-            let preFirstEl = sliderCards[0].cloneNode(true);
-            sliderContainer.insertAdjacentElement("beforeend", preFirstEl);
+            let cloneFirst = sliderCards[0].cloneNode(true);
+            cloneFirst.classList.add("clone");
+            sliderContainer.insertAdjacentElement("beforeend", cloneFirst);
+            sliderCards[sliderCards.length - 2].classList.remove("clone");
         }
         shuffleCard();
     }
-    prevBtnSlider.onclick = function () {
-        changeSlide("left");
-    }
-    nextBtnSlider.onclick = function () {
-        changeSlide("right");
-    }
+
 }
 
 window.onresize = function () {
-    infinitySlider(".slider", {
-        responsive: [
-            {
-                brackpoint: 625,
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                arrows: true
-            }, 
-            {
-                brackpoint: 900,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                arrows: true
-            }, 
-            {
-                brackpoint: 1100,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                arrows: true
-            }
-        ]
-    });
+    infinitySlider(".slider", sliderProps);
 }
+
+infinitySlider('.slider', sliderProps);
 
 function $(selector) {
     let elements = document.querySelectorAll(selector);
@@ -131,26 +130,3 @@ function $(selector) {
     }
     return elements;
 }
-
-infinitySlider('.slider', {
-    responsive: [
-        {
-            brackpoint: 625,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            arrows: true
-        }, 
-        {
-            brackpoint: 900,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            arrows: true
-        }, 
-        {
-            brackpoint: 1100,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            arrows: true
-        }
-    ]
-});

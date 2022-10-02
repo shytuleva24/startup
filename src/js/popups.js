@@ -10,7 +10,6 @@ if (popupLinks.length > 0) {
     for (let index = 0; index < popupLinks.length; index++) {
         const popupLink = popupLinks[index];
         popupLink.addEventListener("click", function (e) {
-            console.log("popupActive")
             const popupName = popupLink.getAttribute('href').replace('#', '');
             const curentPopup = document.getElementById(popupName);
             popupOpen(curentPopup);
@@ -99,3 +98,16 @@ document.addEventListener('keydown', function (e) {
     }
 });
     
+// blog post 2
+const blogShowMore = document.querySelector('.show-more');
+const blogTwo = document.querySelector('.blog-post_two');
+
+blogShowMore.addEventListener("click", function (e) {
+    e.preventDefault()
+    blogTwo.classList.toggle('active');
+});
+    
+// blogHide.addEventListener("click", function (e) {
+//     e.preventDefault()
+//     blogTwo.classList.remove('active');
+// });

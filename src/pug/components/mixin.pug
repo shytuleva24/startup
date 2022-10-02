@@ -161,21 +161,28 @@ mixin worksPhoto (item)
                 a.works-photo__btn.roboto(href="#") add to card
 
 mixin blogPost (item, myClass)
-    .post-img
-        img(src=item.src, alt=item.alt)
-    .post-info
-        .data-name-post.flex 
-            .data-post
-                p #{item.dataPost}
-                span #{item.monthPost}
-            .name-post
-                p.text-left #{item.namePost}
-                i.text-left.roboto.sub-name-post By 
-                    span Khalil 
-                    | Uddin in 
-                    span Development!
-        p.text-info.description-post.roboto #{item.description}
-        a.more-post.roboto(href="#popupBlog" class=myClass) Read more
+    .post
+        .post-img
+            img(src=item.src, alt=item.alt)
+        .post-info
+            .data-name-post.flex 
+                .data-post
+                    p #{item.dataPost}
+                    span #{item.monthPost}
+                .name-post
+                    p.text-left #{item.namePost}
+                    i.text-left.roboto.sub-name-post By 
+                        span Khalil 
+                        | Uddin in 
+                        span Development!
+            .description-post
+                p.text-info.roboto #{item.description}
+                .read-more-content
+                    p.text-info.roboto #{item.description}
+                    p.text-info.roboto #{item.description}
+                    p.text-info.roboto #{item.description}
+                    p.text-info.roboto #{item.description}
+            a.more-post.roboto(href="#popupBlog" class=myClass) Read more
 
 mixin brand (items)
     for item in items 
