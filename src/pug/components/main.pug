@@ -59,15 +59,6 @@ main
                 +worksPhoto(worksPhotos.seven)
                 +worksPhoto(worksPhotos.eight)
                 +worksPhoto(worksPhotos.nine)
-                //- a._anim-no-hide.one._anim-show(href="#") 
-                //- a._anim-no-hide.two._anim-show(href="#") 
-                //- a._anim-no-hide.three._anim-show(href="#") 
-                //- a._anim-no-hide.four._anim-show(href="#") 
-                //- a._anim-no-hide.five._anim-show(href="#") 
-                //- a._anim-no-hide.six._anim-show(href="#") 
-                //- a._anim-no-hide.seven._anim-show(href="#") 
-                //- a._anim-no-hide.eight._anim-show(href="#") 
-                //- a._anim-no-hide.nine._anim-show(href="#") 
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center
             p.roboto Do you like OUR WORK so far? Let's talk about YOUR PROJECT!
@@ -80,10 +71,6 @@ main
                 +blogPost(blogPosts.one, "popup-link")
             .blog-post.blog-post_two._anim-show
                 +blogPost(blogPosts.two, "show-more")
-                //- .show
-                //-     p.text-info.description-post.roboto Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam
-                //-     p.text-info.description-post.roboto Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam
-                //-     a.more-post.roboto.hide-blog(href="#") Hide
     section.clients#clients
         .wrapper._anim-items
             .brands.flex._anim-show
@@ -119,13 +106,13 @@ main
                     form.flex(action="index.html", method="post") 
                         .name-mail.flex
                             input#userName(type="name", name="name", placeholder="Your name")
-                            input#UserMail(type="email", name="email", placeholder="Your E-mail")
+                            input#userMail(type="email", name="email", placeholder="Your E-mail")
                         .phone-subj.flex
                             input#userTel(type="tel", name="tel", placeholder="Your phone")
                             input#userCompany(type="text", name="company", placeholder="Company name")
                         .teaxtarea
-                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") Write your message
+                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") 
                         .send-warn.flex
-                            input(type="submit", value="Send message")
+                            input.popup-link#messageSend(type="submit", value="Send message" href="#contactForm")
                             span * 
                             p.roboto We’ll contact you as as possible. We don’t reply on Monday.

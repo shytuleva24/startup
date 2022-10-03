@@ -257,7 +257,7 @@
           <div class="wrapper">
             <h2 class="_anim-show">Recent blog posts</h2>
             <p class="roboto sub-title _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</p>
-            <div class="blog-post blog-post__one _anim-show">
+            <div class="blog-post blog-post_one _anim-show">
               <div class="post">
                 <div class="post-img"><img src="img/blogPostOne.jpg" alt="Startup ideas"></div>
                 <div class="post-info">
@@ -271,7 +271,7 @@
                   </div>
                   <div class="description-post">
                     <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
-                    <div class="show">
+                    <div class="read-more-content">
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
@@ -281,7 +281,7 @@
                 </div>
               </div>
             </div>
-            <div class="blog-post blog-post__two _anim-show">
+            <div class="blog-post blog-post_two _anim-show">
               <div class="post">
                 <div class="post-img"><img src="img/blogPostTwo.jpg" alt="User Interface Designing Elements"></div>
                 <div class="post-info">
@@ -295,7 +295,7 @@
                   </div>
                   <div class="description-post">
                     <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
-                    <div class="show">
+                    <div class="read-more-content">
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
                       <p class="text-info roboto">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam</p>
@@ -343,17 +343,17 @@
                 <form class="flex" action="index.html" method="post"> 
                   <div class="name-mail flex">
                     <input id="userName" type="name" name="name" placeholder="Your name">
-                    <input id="UserMail" type="email" name="email" placeholder="Your E-mail">
+                    <input id="userMail" type="email" name="email" placeholder="Your E-mail">
                   </div>
                   <div class="phone-subj flex">
                     <input id="userTel" type="tel" name="tel" placeholder="Your phone">
                     <input id="userCompany" type="text" name="company" placeholder="Company name">
                   </div>
                   <div class="teaxtarea">
-                    <textarea id="userMessege" name="message" rows="6" placeholder="Write your message">Write your message</textarea>
+                    <textarea id="userMessege" name="message" rows="6" placeholder="Write your message"> </textarea>
                   </div>
                   <div class="send-warn flex">
-                    <input type="submit" value="Send message"><span>* </span>
+                    <input class="popup-link" id="messageSend" type="submit" value="Send message" href="#contactForm"><span>* </span>
                     <p class="roboto">We’ll contact you as as possible. We don’t reply on Monday.</p>
                   </div>
                 </form>
@@ -399,6 +399,25 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup popup-form" id="contactForm">
+        <div class="popup_body"> 
+          <div class="popup_content"><a class="popup-close close-popup" href="#">X</a>
+            <div class="popup-form">
+              <h3 class="roboto">Сonfirm the entered data</h3>
+              <p class="popap-sub-title">Your name:</p>
+              <p class="user-name roboto user-informaton"></p>
+              <p class="popap-sub-title">Your E-mail:</p>
+              <p class="user-mail roboto user-informaton"></p>
+              <p class="popap-sub-title">Your phone:</p>
+              <p class="user-phone roboto user-informaton"> </p>
+              <p class="popap-sub-title">Company name:</p>
+              <p class="user-company roboto user-informaton"> </p>
+              <p class="popap-sub-title">Your message:</p>
+              <p class="user-message roboto user-informaton"></p>
+            </div><a class="popap-send" href="#">send </a>
           </div>
         </div>
       </div>
