@@ -342,15 +342,15 @@
               <div class="contact-form"> 
                 <form class="flex" action="index.html" method="post"> 
                   <div class="name-mail flex">
-                    <input id="userName" type="name" name="name" placeholder="Your name">
-                    <input id="userMail" type="email" name="email" placeholder="Your E-mail">
+                    <input id="userName" type="name" name="name" placeholder="Your name" required>
+                    <input id="userMail" type="email" name="email" placeholder="Your E-mail" required>
                   </div>
                   <div class="phone-subj flex">
-                    <input id="userTel" type="tel" name="tel" placeholder="Your phone">
-                    <input id="userCompany" type="text" name="company" placeholder="Company name">
+                    <input id="userTel" type="tel" name="tel" placeholder="Your phone" required>
+                    <input id="userCompany" type="text" name="company" placeholder="Company name" required>
                   </div>
                   <div class="teaxtarea">
-                    <textarea id="userMessege" name="message" rows="6" placeholder="Write your message"> </textarea>
+                    <textarea id="userMessage" name="message" rows="6" placeholder="Write your message" required> </textarea>
                   </div>
                   <div class="send-warn flex">
                     <input class="popup-link" id="messageSend" type="submit" value="Send message" href="#contactForm"><span>* </span>
@@ -417,7 +417,8 @@
               <p class="user-company roboto user-informaton"> </p>
               <p class="popap-sub-title">Your message:</p>
               <p class="user-message roboto user-informaton"></p>
-            </div><a class="popap-send" href="#">send </a>
+            </div>
+            <p> <a class="popap-accept" href="#">accept</a><a class="popap-decline" href="#">decline</a></p>
           </div>
         </div>
       </div>

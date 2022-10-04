@@ -417,10 +417,22 @@
     color: #777777
 
 .read-more-content
-    display: none    
+    transition: all .3s ease
+    max-height: 0px
+    p.text-info
+        padding: 0
+        max-height: 0px
+        color: transparent
+        transition: all .3s ease
+
 .blog-post_two.active
     .read-more-content
-        display: block
+        max-height: 10000rem
+        p.text-info
+            color: $mainColorText
+            padding: 7rem 0
+            max-height: 10000rem
+        
 // clients
 .clients
     background-color: #f8f8f8

@@ -1,15 +1,16 @@
 // let patern = /url\(["']?(.+)["']?\)/g;
 const header = document.querySelector('.header');
-const arrowUp = document.querySelector('.arrow-up')
-
+const arrowUp = document.querySelector('.arrow-up');
 let lastScrollTop = 0;
+
+homePage.style.height = window.innerHeight + "px";
 
 function navMenuBackground() {
     let st = window.pageYOffset || document.documentElement.scrollTop; 
     if (st > lastScrollTop){
         header.classList.add("header-hidden");
     } else {
-        header.classList.remove("header-hidden")
+        header.classList.remove("header-hidden");
     }
     lastScrollTop = st <= 0 ? 0 : st;
 
@@ -29,51 +30,50 @@ window.addEventListener(`scroll`, navMenuBackground)
 
 // анимация появления элементов при скролле
 
-homePage.style.height = window.innerHeight + "px";
+const animItems = document.querySelectorAll(`._anim-items`);
 
-const animItems = document.querySelectorAll(`._anim-items`)
 if (animItems.length > 0) {
-    window.addEventListener(`scroll`, animOnScroll)
+    window.addEventListener(`scroll`, animOnScroll);
 
     function animOnScroll() {
         animItems.forEach(element => {
-            const animItem = element
-            const animItemHeight = animItem.offsetHeight
-            const animItemOffSet = offset(animItem).top
-            const animStart = 4
-            let animItemPoint = window.innerHeight - animItemHeight / animStart
+            const animItem = element;
+            const animItemHeight = animItem.offsetHeight;
+            const animItemOffSet = offset(animItem).top;
+            const animStart = 4;
+            let animItemPoint = window.innerHeight - animItemHeight / animStart;
             if (animItemHeight > window.innerHeight) {
-                animItemPoint = window.innerHeight - window.innerHeight / animStart
+                animItemPoint = window.innerHeight - window.innerHeight / animStart;
             }
             if ((window.pageYOffset > animItemOffSet - animItemPoint) && window.pageYOffset < (animItemOffSet + animItemHeight)) {
-                animItem.classList.add(`_active`)
+                animItem.classList.add(`_active`);
             } else {
                 if (!(animItem.classList.contains(`_anim-no-hide`))) {
-                    animItem.classList.remove(`_active`)
+                    animItem.classList.remove(`_active`);
                 }
             }            
         });
     }
 
     function offset(el) {
-        const rect = el.getBoundingClientRect()
-        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop
-        return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+        const rect = el.getBoundingClientRect();
+        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
     }
 
     setTimeout(() => {
-        animOnScroll()
+        animOnScroll();
     }, 300)
 }
+
 // localStorage home page
 
-let titleHome = document.querySelector(".title-home"),
-    firstVisit,
-    lastVisit,
-    timeInSite;
-
 window.onload = function () {
+    let titleHome = document.querySelector(".title-home"),
+        firstVisit,
+        lastVisit,
+        timeInSite;
     if (!localStorage.firstVisit || localStorage.firstVisit == "undefined") {
         localStorage.firstVisit = new Date ();
         titleHome.innerText = "Welcome to STARTUP";
@@ -104,13 +104,14 @@ window.onload = function () {
 // tripl click
 
 const tripleClick = document.querySelector(".rock-solid svg")
-const changeClicks = document.querySelectorAll(".services-card h3")
+
 let timer;  
 tripleClick.addEventListener("dblclick", function () {
     timer = setTimeout(function () {
         timer = null;
     }, 200);
 });
+
 tripleClick.addEventListener("click", function () {
     if (timer) {
         clearTimeout(timer);
@@ -118,10 +119,41 @@ tripleClick.addEventListener("click", function () {
         changeInClick();
     }
 });
+
 function changeInClick () {
+    const changeClicks = document.querySelectorAll(".services-card h3")
     changeClicks.forEach(element => {
         element.innerText = "Yeah, you did triple-click!!!"
     });
 }
 
+// slider
+window.onresize = function () {
+    infinitySlider(".slider", sliderProps);
+}
 
+window.onload = function () {
+    infinitySlider(".slider", sliderProps);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function $(selector) {
+//     let elements = document.querySelectorAll(selector);
+//     if (elements.length == 1) {
+//         return elements[0];
+//     }
+//     return elements;
+// }

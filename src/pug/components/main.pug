@@ -105,13 +105,13 @@ main
                 .contact-form 
                     form.flex(action="index.html", method="post") 
                         .name-mail.flex
-                            input#userName(type="name", name="name", placeholder="Your name")
-                            input#userMail(type="email", name="email", placeholder="Your E-mail")
+                            input#userName(type="name", name="name", placeholder="Your name" required)
+                            input#userMail(type="email", name="email", placeholder="Your E-mail" required)
                         .phone-subj.flex
-                            input#userTel(type="tel", name="tel", placeholder="Your phone")
-                            input#userCompany(type="text", name="company", placeholder="Company name")
+                            input#userTel(type="tel", name="tel", placeholder="Your phone" required)
+                            input#userCompany(type="text", name="company", placeholder="Company name" required)
                         .teaxtarea
-                            textarea#userMessege(name="message", rows="6", placeholder="Write your message") 
+                            textarea#userMessage(name="message", rows="6", placeholder="Write your message" required) 
                         .send-warn.flex
                             input.popup-link#messageSend(type="submit", value="Send message" href="#contactForm")
                             span * 

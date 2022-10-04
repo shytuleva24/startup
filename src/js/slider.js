@@ -3,8 +3,36 @@ const sliderProps = {
 };
 
 function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
+    let slider = document.querySelector(selector),
+        prevBtnSlider,
+        nextBtnSlider;
+    // window.onload = function () {
+    //     if (settings.arrows) {
+    //         prevBtnSlider = document.createElement("span");
+    //         nextBtnSlider = document.createElement("span");
+    //         prevBtnSlider.className = "left slider_navigation";
+    //         nextBtnSlider.className = "right slider_navigation";
+
+    //         slider.insertAdjacentElement("afterbegin", prevBtnSlider);
+    //         slider.insertAdjacentElement("beforeend", nextBtnSlider);
+            
+    //         prevBtnSlider.onclick = function () {
+    //             changeSlide("left");
+    //         }
+    //         nextBtnSlider.onclick = function () {
+    //             changeSlide("right");
+    //         }
+    //     }
+    // }
+
+    // if (settings.arrows && (sliderCards.length - 1) <= cardsCount) {
+    //     prevBtnSlider.style.display = "none";
+    //     nextBtnSlider.style.display = "none";
+    // } else if (settings.arrows) {
+    //     prevBtnSlider.style.display = "block";
+    //     nextBtnSlider.style.display = "block";
+    // }
     let positionCards = 0,
-        slider = document.querySelector(selector),
         sliderContainer = slider.querySelector(".slider-container"),
         sliderCards = sliderContainer.children,
         widthSliderContainer = sliderContainer.getBoundingClientRect().width,
@@ -13,9 +41,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         widthCards,
         distanceCards,
         cloneCard,
-        heightCards,
-        prevBtnSlider = document.createElement("span"),
-        nextBtnSlider = document.createElement("span");
+        heightCards;
     const defaultSettings = {
         slidesToScrollAll: false,
         gap: 20,
@@ -23,9 +49,11 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         autoplay: true,
         autoplaySpeed: 3000,
     };
+    prevBtnSlider = slider.querySelector('.left .slider_navigation');
+    nextBtnSlider = slider.querySelector('.right .slider_navigation');
 
     slider.querySelectorAll(".clone").forEach(clone => {
-        clone.remove()
+        clone.remove();
     });
   
     if (localStorage[slider.id]) {
@@ -64,39 +92,16 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
 
     heightCards = sliderCards[0].getBoundingClientRect().height;
     sliderContainer.style.height = heightCards + 'px';
-    
+
     function shuffleCard () {
-        const areArrowsExist = document.querySelectorAll('.slider_navigation').length;
-        positionCards = 0 - (distanceCards + widthCards);
-        prevBtnSlider.className = "left slider_navigation";
-        nextBtnSlider.className = "right slider_navigation";
-        if (!areArrowsExist){
-            slider.insertAdjacentElement("afterbegin", prevBtnSlider)
-            slider.insertAdjacentElement("beforeend", nextBtnSlider)
-    
-            prevBtnSlider.onclick = function () {
-                changeSlide("left");
-            }
-            nextBtnSlider.onclick = function () {
-                changeSlide("right");
-            }
-        }
-
-        if (!settings.arrows && (sliderCards.length - 1) <= cardsCount) {
-            prevBtnSlider.style.display = "none";
-            nextBtnSlider.style.display = "none";
-        } else if (settings.arrows) {
-            prevBtnSlider.style.display = "block";
-            nextBtnSlider.style.display = "block";
-        }
-
         sliderCards = sliderContainer.children;
+        positionCards = 0 - (distanceCards + widthCards);
+
         for (let i = 0; i < sliderCards.length; i++) {
             sliderCards[i].style.left = positionCards + 'px';
             positionCards += (distanceCards + widthCards);
         }
     }
-    shuffleCard();
 
     function changeSlide (direction) {
         if (direction == "left") {
@@ -114,19 +119,6 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         }
         shuffleCard();
     }
-
-}
-
-window.onresize = function () {
-    infinitySlider(".slider", sliderProps);
-}
-
-infinitySlider('.slider', sliderProps);
-
-function $(selector) {
-    let elements = document.querySelectorAll(selector);
-    if (elements.length == 1) {
-        return elements[0];
-    }
-    return elements;
+    
+   shuffleCard();
 }

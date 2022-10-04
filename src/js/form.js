@@ -1,30 +1,44 @@
 const messageSend = document.querySelector('#messageSend');
-const popapSend = document.querySelector('.popap-send');
+const popapAccept = document.querySelector('.popap-accept');
+const popapDecl = document.querySelector('.popap-decline');
 const contactForm = document.querySelector('#contactForm');
+let userInfo = {};
+
 messageSend.onclick = function (e) {
-    e.preventDefault()
-    const userInfo = {
+    e.preventDefault();
+    userInfo = {
         userName: document.querySelector('#userName').value,
         userMail: document.querySelector('#userMail').value,
         userTel: document.querySelector('#userTel').value,
         userCompany: document.querySelector('#userCompany').value,
-        userMessege: document.querySelector('#userMessege').value
+        userMessage: document.querySelector('#userMessage').value
     };
 
     document.querySelector('.user-name').innerHTML = userInfo.userName;
     document.querySelector('.user-mail').innerHTML = userInfo.userMail;
     document.querySelector('.user-phone').innerHTML = userInfo.userTel;
     document.querySelector('.user-company').innerHTML = userInfo.userCompany;
-    document.querySelector('.user-message').innerHTML = userInfo.userMessege;
+    document.querySelector('.user-message').innerHTML = userInfo.userMessage;
     
-    // console.log(userInfo.userName)
-    // console.log(userInfo.userMail)
-    // console.log(userInfo.userTel)
-    // console.log(userInfo.userCompany)
-    // console.log(userInfo.userMessege)
+}
+popapDecl.onclick = function (e) {
+    e.preventDefault();
+    contactForm.classList.remove('open');
+    bodyUnLock();
 }
 
-popapSend.onclick = function (e) {
-    e.preventDefault()
+popapAccept.onclick = function (e) {
+    e.preventDefault();
+    if (localStorage.userMessage) {
+        let userMessage = JSON.parse(localStorage.getItem("userMessage"));
+        let rewrite = confirm("Rewrite your message? " + userMessage.userMessage);
+        console.log(rewrite)
+        if (rewrite) {
+            localStorage.setItem("userMessage", JSON.stringify(userInfo));
+        }
+    } else {
+        localStorage.setItem("userMessage", JSON.stringify(userInfo));
+    }
     contactForm.classList.remove('open');
+    bodyUnLock();
 }
