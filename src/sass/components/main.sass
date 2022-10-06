@@ -199,8 +199,7 @@
         grid-template-columns: repeat(2, 1fr)
     +media(876)
         grid-template-columns: repeat(3, 1fr)
-
-    figure
+    .photo-card
         transition: all .5s ease
         cursor: pointer
         &:hover .works-description
@@ -261,42 +260,14 @@
         right: 10%
         z-index: 1
         transition: all .5s ease
-
-    // a
-    //     opacity: 0
-    //     width: 360rem
-    //     height: 320rem
-    //     transform: rotate(-180deg) scale(0.3)
-    // a._active
-    //     opacity: 1
-    //     transform: rotate(0) scale(1)
-    // .one
-    //     background: url('../img/1.jpg')
-    //     transition: all .3s ease 1.3s
-    // .two
-    //     background: url('../img/2.jpg')
-    //     transition: all .3s ease 1.5s
-    // .three
-    //     background: url('../img/3.jpg')
-    //     transition: all .3s ease 1.7s
-    // .four
-    //     background: url('../img/4.jpg')
-    //     transition: all .3s ease 1.9s
-    // .five
-    //     background: url('../img/5.jpg')
-    //     transition: all .3s ease 2.1s
-    // .six
-    //     background: url('../img/6.jpg')
-    //     transition: all .3s ease 2.3s
-    // .seven
-    //     background: url('../img/7.jpg')
-    //     transition: all .3s ease 2.5s
-    // .eight
-    //     background: url('../img/8.jpg')
-    //     transition: all .3s ease 2.7s
-    // .nine
-    //     background: url('../img/9.jpg')
-    //     transition: all .3s ease 3s
+.photo-card
+    opacity: 0
+    width: 360rem
+    height: 320rem
+    transform: rotate(-180deg) scale(0.3)
+.photo-card._active
+    opacity: 1
+    transform: rotate(0) scale(1)
 
 // advertising
 

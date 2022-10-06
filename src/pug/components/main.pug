@@ -43,13 +43,13 @@ main
                     //- li.about-card.last-card
                     //-     +aboutCard (aboutCards.ShamimMia)
                 //- span.right.slider_navigation#next
-    section.works._anim-items#works
+    section.works._anim-items._anim-no-hide#works
         .wrapper 
             h2._anim-show Latest Works
             nav.roboto.sub-title.works-nav._anim-show
                 ul.works-menu.flex
                     +menu(worksMenu, "menu-category")
-            .works-photo
+            .works-photo._anim-no-hide
                 +worksPhoto(worksPhotos.one)
                 +worksPhoto(worksPhotos.two)
                 +worksPhoto(worksPhotos.three)

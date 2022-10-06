@@ -75,7 +75,7 @@ window.onload = function () {
         firstVisit,
         lastVisit,
         timeInSite;
-        console.log(titleHome)
+
     if (!localStorage.firstVisit || localStorage.firstVisit == "undefined") {
         localStorage.firstVisit = new Date ();
         titleHome.innerText = "Welcome to STARTUP";
@@ -103,7 +103,6 @@ window.onload = function () {
     lastVisit = localStorage.lastVisit;
 
     infinitySlider(".slider", sliderProps);
-
 }
 
 // tripl click
