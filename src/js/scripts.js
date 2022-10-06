@@ -70,10 +70,12 @@ if (animItems.length > 0) {
 // localStorage home page
 
 window.onload = function () {
+    
     let titleHome = document.querySelector(".title-home"),
         firstVisit,
         lastVisit,
         timeInSite;
+        console.log(titleHome)
     if (!localStorage.firstVisit || localStorage.firstVisit == "undefined") {
         localStorage.firstVisit = new Date ();
         titleHome.innerText = "Welcome to STARTUP";
@@ -99,6 +101,9 @@ window.onload = function () {
         localStorage.lastVisit = new Date ();
     }
     lastVisit = localStorage.lastVisit;
+
+    infinitySlider(".slider", sliderProps);
+
 }
 
 // tripl click
@@ -132,9 +137,9 @@ window.onresize = function () {
     infinitySlider(".slider", sliderProps);
 }
 
-window.onload = function () {
-    infinitySlider(".slider", sliderProps);
-}
+// window.onload = function () {
+//     infinitySlider(".slider", sliderProps);
+// }
 
 
 

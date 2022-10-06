@@ -105,8 +105,13 @@ const blogTwo = document.querySelector('.blog-post_two');
 blogShowMore.addEventListener("click", function (e) {
     e.preventDefault()
     blogTwo.classList.toggle('active');
+    if (blogTwo.classList.contains('active')) {
+        blogShowMore.innerHTML = "Hide";
+    } else {
+        blogShowMore.innerHTML = "Read more";
+    }
 });
-    
+
 // blogHide.addEventListener("click", function (e) {
 //     e.preventDefault()
 //     blogTwo.classList.remove('active');
