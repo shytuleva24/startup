@@ -14,7 +14,7 @@
   <body>
     <div class="overflowX-hidden">
       <header>
-        <section class="home-page parallax relative" id="home">
+        <section class="home-page parallax relative" data-bg="img/parallaxBG.jpg" id="home">
           <div class="header lock-padding">
             <div class="header-container flex wrapper">
               <div class="logo"> <a href="index.html">Startup</a></div>
@@ -83,12 +83,12 @@
             </div>
             <div class="about-cards slider text-center relative _anim-items" id="aboutSlider">
               <ul class="slider-container relative">
-                <li class="about-card">
+                <li class="about-card 1r">
                   <figure>
                     <figcaption>
                       <div class="about-img">
                         <picture> 
-                          <source srcset="img/KhalilUddin.webp" tipe="image/webp"><img src="img/KhalilUddin.png" alt="Khalil Uddin">
+                          <source srcset="img/KhalilUddin.webp" tipe="image/webp" data-src="lazy.svg"><img src="img/KhalilUddin.png" alt="Khalil Uddin" data-src="lazy.svg">
                         </picture>
                         <div class="employee-social flex"><a class="fb" href="#"> </a><a class="tw" href="#"> </a><a class="gg" href="#"></a><a class="in" href="#"></a></div>
                       </div>
@@ -99,12 +99,12 @@
                     </figcaption>
                   </figure>
                 </li>
-                <li class="about-card">
+                <li class="about-card 2r">
                   <figure>
                     <figcaption>
                       <div class="about-img">
                         <picture> 
-                          <source srcset="img/RubelMiah.webp" tipe="image/webp"><img src="img/RubelMiah.png" alt="Rubel Miah">
+                          <source srcset="img/RubelMiah.webp" tipe="image/webp" data-src="lazy.svg"><img src="img/RubelMiah.png" alt="Rubel Miah" data-src="lazy.svg">
                         </picture>
                         <div class="employee-social flex"><a class="fb" href="#"> </a><a class="tw" href="#"> </a><a class="gg" href="#"></a><a class="in" href="#"></a></div>
                       </div>
@@ -115,12 +115,12 @@
                     </figcaption>
                   </figure>
                 </li>
-                <li class="about-card">
+                <li class="about-card 3r">
                   <figure>
                     <figcaption>
                       <div class="about-img">
                         <picture> 
-                          <source srcset="img/ShamimMia.webp" tipe="image/webp"><img src="img/ShamimMia.png" alt="Shamim Mia">
+                          <source srcset="img/ShamimMia.webp" tipe="image/webp" data-src="lazy.svg"><img src="img/ShamimMia.png" alt="Shamim Mia" data-src="lazy.svg">
                         </picture>
                         <div class="employee-social flex"><a class="fb" href="#"> </a><a class="tw" href="#"> </a><a class="gg" href="#"></a><a class="in" href="#"></a></div>
                       </div>
@@ -131,18 +131,34 @@
                     </figcaption>
                   </figure>
                 </li>
-                <li class="about-card">
+                <li class="about-card 4r">
                   <figure>
                     <figcaption>
                       <div class="about-img">
                         <picture> 
-                          <source srcset="img/JohnDoe.webp" tipe="image/webp"><img src="img/JohnDoe.png" alt="John Doe">
+                          <source srcset="img/JohnDoe.webp" tipe="image/webp" data-src="lazy.svg"><img src="img/JohnDoe.png" alt="John Doe" data-src="lazy.svg">
                         </picture>
                         <div class="employee-social flex"><a class="fb" href="#"> </a><a class="tw" href="#"> </a><a class="gg" href="#"></a><a class="in" href="#"></a></div>
                       </div>
                       <div class="description-card _anim-items">
                         <p class="employee-name">John Doe</p>
                         <p class="description roboto">Front-end Developer</p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+                <li class="about-card last-card 5r">
+                  <figure>
+                    <figcaption>
+                      <div class="about-img">
+                        <picture> 
+                          <source srcset="img/ShamimMia.webp" tipe="image/webp" data-src="lazy.svg"><img src="img/ShamimMia.png" alt="Shamim Mia" data-src="lazy.svg">
+                        </picture>
+                        <div class="employee-social flex"><a class="fb" href="#"> </a><a class="tw" href="#"> </a><a class="gg" href="#"></a><a class="in" href="#"></a></div>
+                      </div>
+                      <div class="description-card _anim-items">
+                        <p class="employee-name">Shamim Mia</p>
+                        <p class="description roboto">Sr. Web Developer</p>
                       </div>
                     </figcaption>
                   </figure>
@@ -164,81 +180,81 @@
               </ul>
             </nav>
             <div class="works-photo _anim-no-hide">
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="0">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/1.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/1.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="1">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/2.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/2.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="2">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/3.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/3.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="3">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/4.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/4.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="4">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/5.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/5.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="5">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/6.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/6.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="6">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/7.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/7.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="7">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/8.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/8.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
                   </div>
                 </figcaption>
               </figure>
-              <figure class="_anim-show _anim-no-hide photo-card">
+              <figure class="_anim-show _anim-no-hide photo-card" data-id="8">
                 <figcaption class="relative">
-                  <div class="works-img"><img src="img/9.jpg" alt="Hair Dresser"></div>
+                  <div class="works-img"><img src="img/9.jpg" alt="Hair Dresser" data-src="lazy.svg"></div>
                   <div class="works-description flex">
                     <p class="works-photo__title">Hair Dresser</p>
                     <p class="works-photo__description roboto">Branding</p><a class="works-photo__btn roboto" href="#">add to card</a>
@@ -259,7 +275,7 @@
             <p class="roboto sub-title _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</p>
             <div class="blog-post blog-post_one _anim-show">
               <div class="post">
-                <div class="post-img"><img src="img/blogPostOne.jpg" alt="Startup ideas"></div>
+                <div class="post-img"><img src="img/blogPostOne.jpg" alt="Startup ideas" data-src="lazy.svg"></div>
                 <div class="post-info">
                   <div class="data-name-post flex"> 
                     <div class="data-post">
@@ -283,7 +299,7 @@
             </div>
             <div class="blog-post blog-post_two _anim-show">
               <div class="post">
-                <div class="post-img"><img src="img/blogPostTwo.jpg" alt="User Interface Designing Elements"></div>
+                <div class="post-img"><img src="img/blogPostTwo.jpg" alt="User Interface Designing Elements" data-src="lazy.svg"></div>
                 <div class="post-info">
                   <div class="data-name-post flex"> 
                     <div class="data-post">
@@ -309,7 +325,7 @@
         </section>
         <section class="clients" id="clients">
           <div class="wrapper _anim-items">
-            <div class="brands flex _anim-show"><a href="#"> <img src="img/deorham.png" alt="deorham"></a><a href="#"> <img src="img/ratings.png" alt="ratings"></a><a href="#"> <img src="img/makikMedia.png" alt="makikMedia"></a><a href="#"> <img src="img/bcause.png" alt="bcause"></a><a href="#"> <img src="img/womgiby.png" alt="womgiby"></a>
+            <div class="brands flex _anim-show slider" id="brandSlider"><a class="brand-company" href="#"> <img src="img/deorham.png" alt="deorham"></a><a class="brand-company" href="#"> <img src="img/ratings.png" alt="ratings"></a><a class="brand-company" href="#"> <img src="img/makikMedia.png" alt="makikMedia"></a><a class="brand-company" href="#"> <img src="img/bcause.png" alt="bcause"></a><a class="brand-company" href="#"> <img src="img/womgiby.png" alt="womgiby"></a>
             </div>
             <div class="review"><i class="text-review roboto">"Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”</i>
               <p class="name-review">John Doe, Google Inc.</p>

@@ -1,8 +1,39 @@
+/** Slider by Hashtag team
+ * .slider                              - обов'язковий клас для слайдера
+ * .slider-container                    - обов'язковий клас для контейнера слайдів 
+ * id                                   - обов'язково задати id
+
+.left.slider_navigation                 - класи для заддяння стилів на кнопки
+.right.slider_navigation                - класи для заддяння стилів на кнопки
+
+ * const sliderProps = {
+        slidesToScrollAll: false,       - cкролити одразу всі видимі слаййди
+        gap: 20,                        - відстань між слайдами
+        arrows: false,                  - наявність стрілочок
+        autoplay: true,                 - автоскролл
+        autoplaySpeed: 3000             - швидкість автоскролла
+    }
+    
+ * infinitySlider(selector, settings)
+        - selector - шлях до слайдера, 
+        - settings - нестанарні налаштування sliderProps
+
+ **/
+
 const sliderProps = {
-    arrows: true
+    arrows: true,
+    slidesToScrollAll: true,
+    dots: true
+};
+
+const cleintBrandsProp = {
+    dots: true
 };
 
 function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
+    window.onresize = function () {
+        infinitySlider(selector, sliderProps);
+    };
     let slider = document.querySelector(selector),
         positionCards = 0,
         sliderContainer = slider.querySelector(".slider-container"),
@@ -16,37 +47,38 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         heightCards,
         prevBtnSlider,
         nextBtnSlider,
-        sliderInterval;
+        sliderInterval,
+        realCardsLength;
     const defaultSettings = {
         slidesToScrollAll: false,
         gap: 20,
         arrows: false,
         autoplay: true,
         autoplaySpeed: 3000,
+        dots: false
     };
 
     slider.querySelectorAll(".clone").forEach(clone => {
         clone.remove();
     });
     
-    if (localStorage[slider.id]) {
-        clearInterval(localStorage[slider.id + "interval"])
-        constCardWidth = localStorage[slider.id];
+    if (localStorage[slider.id + "CardWidth"]) {
+        clearInterval(localStorage[slider.id + "Interval"]);
+        constCardWidth = localStorage[slider.id + "CardWidth"];
     } else {
         constCardWidth = sliderCards[0].getBoundingClientRect().width;
-        localStorage[slider.id] = constCardWidth;
+        localStorage[slider.id + "CardWidth"] = constCardWidth;
     }
     cardsCount = Math.floor(widthSliderContainer / constCardWidth);
-    
+
     settings = {...defaultSettings, ...settings}; // берем всі аргументи обох об'єктів останній об'єкт в дужках в приоритеті
     distanceCards = settings.gap;
     widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
     positionCards = 0 - (distanceCards + widthCards);
-    if (settings.arrows) createArrows ();
-
+    if (settings.arrows) creationArrows ();
     prevBtnSlider = slider.querySelector('.left.slider_navigation');
     nextBtnSlider = slider.querySelector('.right.slider_navigation');
-
+    
     if (settings.arrows && sliderCards.length <= cardsCount) {
         prevBtnSlider.style.display = "none";
         nextBtnSlider.style.display = "none";
@@ -54,7 +86,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         prevBtnSlider.style.display = "block";
         nextBtnSlider.style.display = "block";
     }
-
+    
     let counter = 1;
     do {
         cloneCard = sliderCards[sliderCards.length - counter].cloneNode(true);
@@ -62,12 +94,28 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         cloneCard.style.transition = 'none';
         sliderContainer.insertAdjacentElement("afterbegin", cloneCard);
         counter++;
-    } while (counter <= cardsCount && settings.slidesToScrollAll); 
+        realCardsLength = sliderCards.length - slider.querySelectorAll('.clone').length
+    } while (counter <= realCardsLength && settings.slidesToScrollAll); 
 
-    if (cloneCard.classList.contains("clone")) {
-        setTimeout(() => {
-            cloneCard.style.transition = 'all .5s ease'; /// vsem clonam nado
-        }, 1);
+    if (settings.dots) creationDots ();
+    
+    if (settings.slidesToScrollAll) {
+        counter = 0;
+        while (counter < realCardsLength) {
+            cloneCard = sliderCards[counter].cloneNode(true);
+            cloneCard.classList.add("clone");
+            cloneCard.style.transition = 'none';
+            sliderContainer.insertAdjacentElement("beforeend", cloneCard);
+            counter++;
+        }
+    }
+
+    if (slider.querySelectorAll(".clone").length > 0) {
+        slider.querySelectorAll(".clone").forEach(clone => {
+            setTimeout(() => {
+                clone.style.transition = 'all .5s ease'; 
+            }, 1);
+        });
     }
 
     sliderCards = sliderContainer.children;
@@ -75,11 +123,10 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     for (let i = 0; i < sliderCards.length; i++) {
         sliderCards[i].style.width = widthCards + "px";
     }
-
     heightCards = sliderCards[0].getBoundingClientRect().height;
     sliderContainer.style.height = heightCards + 'px';
 
-    function createArrows () {
+    function creationArrows () {
         const areArrowsExist = slider.querySelectorAll('.slider_navigation').length
         if (areArrowsExist < 1) {
             prevBtnSlider = document.createElement("span");
@@ -92,45 +139,70 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
             
             prevBtnSlider.onclick = function () {
                 changeSlide("left");
-                clearInterval(localStorage[slider.id + "interval"]);
-                startAutoPlay();
             }
             nextBtnSlider.onclick = function () {
                 changeSlide("right");
-                clearInterval(localStorage[slider.id + "interval"]);
-                startAutoPlay();
             }
         }
+    }
+
+    function creationDots () {
+        const areDotsExist = slider.querySelectorAll('.dots-container').length;
+        if (areDotsExist < 1) {        
+            let dotsContainer = document.createElement("div");
+            dotsContainer.className = `dots-container`;
+            slider.insertAdjacentElement("beforeend", dotsContainer);
+
+            for (let index = 0; index < realCardsLength; index++) {
+                let dot = document.createElement("span");
+                dot.className = `dot-${index} slider_dots`;
+                dotsContainer.insertAdjacentElement("beforeend", dot);
+                console.log(dot)
+            }
+        }    
     }
     
     function shuffleCard () {
         sliderCards = sliderContainer.children;
-        positionCards = 0 - (distanceCards + widthCards);
-
+        positionCards = 0 - (distanceCards + widthCards); 
+        if (settings.slidesToScrollAll) {
+            positionCards = 0 - (distanceCards + widthCards) * realCardsLength; 
+        } 
         for (let i = 0; i < sliderCards.length; i++) {
             sliderCards[i].style.left = positionCards + 'px';
             positionCards += (distanceCards + widthCards);
         }
-
     }
 
     function changeSlide (direction) {
         widthSliderContainer = sliderContainer.getBoundingClientRect().width;
         cardsCount = Math.floor(widthSliderContainer / constCardWidth);
         widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
-
+        sliderCards = sliderContainer.children;
         if (direction == "left") {
-            sliderCards[sliderCards.length - 1].remove();
-            let cloneLast = sliderCards[sliderCards.length - 1].cloneNode(true);
-            cloneLast.classList.add("clone");
-            sliderContainer.insertAdjacentElement("afterbegin", cloneLast);
-            sliderCards[1].classList.remove("clone");
+            if (settings.slidesToScrollAll) {
+                for (let index = 0; index < cardsCount; index++) {
+                    sliderContainer.insertAdjacentElement("afterbegin", sliderCards[sliderCards.length - 1]);                
+                }                
+            } else {
+                sliderCards[sliderCards.length - 1].remove();
+                let cloneLast = sliderCards[sliderCards.length - 1].cloneNode(true);
+                cloneLast.classList.add("clone");
+                sliderContainer.insertAdjacentElement("afterbegin", cloneLast);
+                sliderCards[1].classList.remove("clone");
+            }
         } else if (direction == "right") {
-            sliderCards[0].remove();
-            let cloneFirst = sliderCards[0].cloneNode(true);
-            cloneFirst.classList.add("clone");
-            sliderContainer.insertAdjacentElement("beforeend", cloneFirst);
-            sliderCards[sliderCards.length - 2].classList.remove("clone");
+            if (settings.slidesToScrollAll) {
+                for (let index = 0; index < cardsCount; index++) {
+                    sliderContainer.insertAdjacentElement("beforeend", sliderCards[0]);                
+                }  
+            } else {              
+                sliderCards[0].remove();
+                let cloneFirst = sliderCards[0].cloneNode(true);
+                cloneFirst.classList.add("clone");
+                sliderContainer.insertAdjacentElement("beforeend", cloneFirst);
+                sliderCards[sliderCards.length - 2].classList.remove("clone");
+            }
         }
         shuffleCard();
     }
@@ -157,5 +229,19 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     slider.onmouseleave = () => {
         startAutoPlay();
     }
-   shuffleCard();
+    shuffleCard();
+
+    // slider.addEventListener('touchstart', dragStart);
+    // slider.addEventListener('touchend', dragEnd);
+    // slider.addEventListener('touchmove', ()=> {
+
+    // });
+    
 }
+// window.addEventListener('mousewheel', this.onWheel)
+// window.addEventListener('wheel', this.onWheel)
+// window.addEventListener('resize', _.debounce(this.onResize, 200))
+
+// window.addEventListener('mousedown', this.onTouchDown)
+// window.addEventListener('mousemove', this.onTouchMove)
+// window.addEventListener('mouseup', this.onTouchUp)

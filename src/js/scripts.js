@@ -103,6 +103,8 @@ window.onload = function () {
     lastVisit = localStorage.lastVisit;
 
     infinitySlider(".slider", sliderProps);
+    // infinitySlider(".slider", cleintBrandsProp);
+    // infinitySlider(".slider", sliderProps);
 }
 
 // tripl click
@@ -132,9 +134,7 @@ function changeInClick () {
 }
 
 // slider
-window.onresize = function () {
-    infinitySlider(".slider", sliderProps);
-}
+
 
 // window.onload = function () {
 //     infinitySlider(".slider", sliderProps);

@@ -32,15 +32,21 @@ main
             .about-cards.slider.text-center.relative#aboutSlider._anim-items
                 //- span.left.slider_navigation#prev
                 ul.slider-container.relative
-                    li.about-card
+                    li.about-card.1r
                         +aboutCard (aboutCards.KhalilUddin)
-                    li.about-card
+                    li.about-card.2r
                         +aboutCard (aboutCards.RubelMiah)
-                    li.about-card
+                    li.about-card.3r
                         +aboutCard (aboutCards.ShamimMia)
-                    li.about-card
+                    li.about-card.4r
                         +aboutCard (aboutCards.JohnDoe)
-                    //- li.about-card.last-card
+                    li.about-card.last-card.5r
+                        +aboutCard (aboutCards.ShamimMia)
+                    //- li.about-card.6r
+                    //-     +aboutCard (aboutCards.KhalilUddin)
+                    //- li.about-card.7r
+                    //-     +aboutCard (aboutCards.RubelMiah)
+                    //- li.about-card.8r
                     //-     +aboutCard (aboutCards.ShamimMia)
                 //- span.right.slider_navigation#next
     section.works._anim-items._anim-no-hide#works
@@ -50,15 +56,7 @@ main
                 ul.works-menu.flex
                     +menu(worksMenu, "menu-category")
             .works-photo._anim-no-hide
-                +worksPhoto(worksPhotos.one)
-                +worksPhoto(worksPhotos.two)
-                +worksPhoto(worksPhotos.three)
-                +worksPhoto(worksPhotos.four)
-                +worksPhoto(worksPhotos.five)
-                +worksPhoto(worksPhotos.six)
-                +worksPhoto(worksPhotos.seven)
-                +worksPhoto(worksPhotos.eight)
-                +worksPhoto(worksPhotos.nine)
+                +worksPhoto(worksPhotos)
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center
             p.roboto Do you like OUR WORK so far? Let's talk about YOUR PROJECT!
@@ -73,7 +71,8 @@ main
                 +blogPost(blogPosts.two, "show-more")
     section.clients#clients
         .wrapper._anim-items
-            .brands.flex._anim-show
+            .brands.flex._anim-show.slider#brandSlider
+                //- .slider-container
                 +brand(brands)
             .review
                 i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”

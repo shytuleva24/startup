@@ -79,22 +79,32 @@
     transform: translate(0, 0)
     transition: all .5s ease 1s
     opacity: 1
+// slider
 
 .slider
     overflow: hidden
+    position: relative
 
 .slider-container
     width: 100%
     height: 234px
     position: absolute
     transition: all .5s ease
+.slider_dots   
+    
+.dots-container
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    justify-content: space-between
+
 
 .about-card
     cursor: pointer
     position: absolute
     transition: all .5s ease
-    // width: 100%
-    // max-width: 546px
     min-width: 263px
     img
         width: 100% 
@@ -103,9 +113,6 @@
         opacity: 1
         visibility: visible
         transition: all .5s ease
-    // +media(585)
-    //     width: auto
-        // max-width: 263px
 .last-card
     background: black
 .about-img

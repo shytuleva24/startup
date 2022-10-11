@@ -139,8 +139,8 @@ mixin aboutCard (item)
         figcaption
             .about-img
                 picture 
-                    source(srcset=item.src + ".webp", tipe="image/webp")
-                    img(src=item.src + ".png", alt=item.alt)
+                    source(srcset=item.src + ".webp", tipe="image/webp", data-src="lazy.svg")
+                    img(src=item.src + ".png", alt=item.alt, data-src="lazy.svg")
                 .employee-social.flex
                     a.fb(href="#") 
                     a.tw(href="#") 
@@ -150,20 +150,22 @@ mixin aboutCard (item)
                 p.employee-name #{item.employeeName}
                 p.description.roboto #{item.description}
 
-mixin worksPhoto (item)
-    figure._anim-show._anim-no-hide.photo-card
-        figcaption.relative
-            .works-img
-                img(src=item.src, alt=item.alt)
-            .works-description.flex
-                p.works-photo__title #{item.title}
-                p.works-photo__description.roboto #{item.category}
-                a.works-photo__btn.roboto(href="#") add to card
+mixin worksPhoto (items)
+    -let idAtr = 0
+    for item in items
+        figure(data-id=idAtr++)._anim-show._anim-no-hide.photo-card
+            figcaption.relative
+                .works-img
+                    img(src=item.src, alt=item.alt, data-src="lazy.svg")
+                .works-description.flex
+                    p.works-photo__title #{item.title}
+                    p.works-photo__description.roboto #{item.category}
+                    a.works-photo__btn.roboto(href="#") add to card
 
 mixin blogPost (item, myClass)
     .post
         .post-img
-            img(src=item.src, alt=item.alt)
+            img(src=item.src, alt=item.alt, data-src="lazy.svg")
         .post-info
             .data-name-post.flex 
                 .data-post
@@ -186,6 +188,6 @@ mixin blogPost (item, myClass)
 
 mixin brand (items)
     for item in items 
-        a(href=item.url) 
+        a.brand-company(href=item.url) 
             img(src=item.src, alt=item.alt)
             
