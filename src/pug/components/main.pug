@@ -29,7 +29,7 @@ main
             .about-description.flex
                 p.anim_left._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
                 p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
-            .about-cards.slider.text-center.relative#aboutSlider._anim-items
+            .slider.about-slider.text-center.relative#aboutSlider._anim-items._anim-show
                 //- span.left.slider_navigation#prev
                 ul.slider-container.relative
                     li.about-card.1r
@@ -65,24 +65,31 @@ main
         .wrapper
             h2._anim-show Recent blog posts
             p.roboto.sub-title._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
-            .blog-post.blog-post_one._anim-show
+            .blog-post.blog-post_one._anim-show.anim_right
                 +blogPost(blogPosts.one, "popup-link")
-            .blog-post.blog-post_two._anim-show
+            .blog-post.blog-post_two._anim-show.anim_right
                 +blogPost(blogPosts.two, "show-more")
     section.clients#clients
         .wrapper._anim-items
-            .brands.flex._anim-show.slider#brandSlider
-                //- .slider-container
-                +brand(brands)
-            .review
-                i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
-                p.name-review John Doe, Google Inc.
+            .brands.slider.slider-brands._anim-show#brandSlider._anim-items._anim-show
+                .slider-container
+                    +brand(brands)
+            .reviews
+                .review
+                    i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
+                    p.name-review John Doe, Google Inc.
+                .review
+                    i.text-review.roboto "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores!”
+                    p.name-review Rubel Miah, Sr. Web Developer.
+                .review
+                    i.text-review.roboto "Sapiente a accusantium maxime natus dicta nobis numquam ex fugiat ullam, quasi molestias velit. Assumenda, non illum dolor laudantium nemo consequuntur ab.”
+                    p.name-review Shamim Mia, Head of Ideas.
     section.contact._anim-items#contact
         .wrapper
             h2._anim-show Get in touch
             p.roboto.sub-title._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
             .flex
-                .contact-info
+                .contact-info._anim-show.anim_left
                     .address
                         p.contact-info-title Address
                         address.contact-descr.roboto 312, 7th Ave, New York 
@@ -101,7 +108,7 @@ main
                             a.roboto(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
                         p.contact-descr.roboto 
                             a.roboto(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
-                .contact-form 
+                .contact-form._anim-show.anim_right
                     form.flex(action="index.html", method="post") 
                         .name-mail.flex
                             input#userName(type="name", name="name", placeholder="Your name" required)

@@ -68,10 +68,12 @@
 
 .anim_left
     transform: translate(-120%, 0)
+    opacity: 0
     transition: all .5s ease 1s
 
 .anim_right
     transform: translate(120%, 0)
+    opacity: 0
     transition: all .5s ease 1s
 
 .anim_left._active,
@@ -80,31 +82,20 @@
     transition: all .5s ease 1s
     opacity: 1
 // slider
-
+.about-slider
+    opacity: 0
+    transition: all .8s ease 1.5s
+    justify-content: space-between
 .slider
     overflow: hidden
-    position: relative
 
 .slider-container
     width: 100%
-    height: 234px
-    position: absolute
-    transition: all .5s ease
-.slider_dots   
-    
-.dots-container
-    position: absolute
-    bottom: 0
-    left: 50%
-    transform: translateX(-50%)
-    display: flex
-    justify-content: space-between
-
 
 .about-card
+    // position: absolute
+    // transition: all .8s ease
     cursor: pointer
-    position: absolute
-    transition: all .5s ease
     min-width: 263px
     img
         width: 100% 
@@ -200,7 +191,7 @@
 
 .works-photo
     display: grid
-    gap: 30rem
+    grid-gap: 30rem
     grid-template-columns: repeat(1, 1fr)
     +media(500)
         grid-template-columns: repeat(2, 1fr)
@@ -210,16 +201,19 @@
         transition: all .5s ease
         cursor: pointer
         &:hover .works-description
+            visibility: visible
             opacity: 1
             transition: all .5s ease
         
 .works-img
+    width: 100%
     img
         display: block
         width: 100%
         height: 100%
 
 .works-description
+    visibility: hidden
     opacity: 0
     transition: all .5s ease
     position: absolute
@@ -269,8 +263,8 @@
         transition: all .5s ease
 .photo-card
     opacity: 0
-    width: 360rem
-    height: 320rem
+    width: 100%
+    height: 100%
     transform: rotate(-180deg) scale(0.3)
 .photo-card._active
     opacity: 1
@@ -415,33 +409,44 @@
 .clients
     background-color: #f8f8f8
     text-align: center
-.brands
-    justify-content: center
+.slider-brands
+    max-width: 920rem   
+    margin: 0 auto 40rem
     align-items: center
-    flex-wrap: wrap
-    +media(768)
-        margin-bottom: 65rem
-    a
-        width: 40%
-        margin: 7rem 12rem
-        transition: all 0.8s ease 
-        &:nth-child(3)
-            order: 1
-        &:nth-child(5)
-            order: 1
-        img
-            width: 100%
-        &:hover
-            transform: scale(1.2)
-        +media(565)
-            margin: 0rem 30rem
-            width: auto
-        
-.review
+.brand-company
+    top: 50%
+    transform: translateY(-50%)
+    // transition: all .8s ease
+    img
+        min-width: 110rem
+        width: 100%
+        height: 100%
+.reviews
     margin: 0 auto
     max-width: 760rem
+.review
+    opacity: 0
+    visibility: hidden
+.review.active
+    opacity: 1
+    visibility: visible
+
 .name-review
     padding-top: 40rem
+.dots-container
+    left: 50%
+    transform: translateX(-50%)
+.slider-dot
+    display: inline-block
+    margin: 0 5rem
+    width: 13rem
+    height: 13rem
+    border-radius: 50%
+    background-color: #ddd
+    transition: all .5s ease
+    cursor: pointer
+.slider-dot.active
+    background-color: $mainColorSite
 
 // contact
 .contact > .wrapper > .flex
@@ -450,6 +455,7 @@
         flex-direction: row
         justify-content: space-between
 .contact-info
+    transform: translate(-20%, 0px) 
     width: 100%
     order: 1
     +media(600)
@@ -513,6 +519,7 @@
     font-size: 12rem
 
 .contact-form 
+    transform: translate(20%, 0px) 
     width: 100%
     +media(768)
         width: 64%

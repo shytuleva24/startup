@@ -81,7 +81,7 @@
               <p class="anim_left _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.</p>
               <p class="anim_right _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.</p>
             </div>
-            <div class="about-cards slider text-center relative _anim-items" id="aboutSlider">
+            <div class="slider about-slider text-center relative _anim-items _anim-show" id="aboutSlider">
               <ul class="slider-container relative">
                 <li class="about-card 1r">
                   <figure>
@@ -273,7 +273,7 @@
           <div class="wrapper">
             <h2 class="_anim-show">Recent blog posts</h2>
             <p class="roboto sub-title _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</p>
-            <div class="blog-post blog-post_one _anim-show">
+            <div class="blog-post blog-post_one _anim-show anim_right">
               <div class="post">
                 <div class="post-img"><img src="img/blogPostOne.jpg" alt="Startup ideas" data-src="lazy.svg"></div>
                 <div class="post-info">
@@ -297,7 +297,7 @@
                 </div>
               </div>
             </div>
-            <div class="blog-post blog-post_two _anim-show">
+            <div class="blog-post blog-post_two _anim-show anim_right">
               <div class="post">
                 <div class="post-img"><img src="img/blogPostTwo.jpg" alt="User Interface Designing Elements" data-src="lazy.svg"></div>
                 <div class="post-info">
@@ -325,10 +325,20 @@
         </section>
         <section class="clients" id="clients">
           <div class="wrapper _anim-items">
-            <div class="brands flex _anim-show slider" id="brandSlider"><a class="brand-company" href="#"> <img src="img/deorham.png" alt="deorham"></a><a class="brand-company" href="#"> <img src="img/ratings.png" alt="ratings"></a><a class="brand-company" href="#"> <img src="img/makikMedia.png" alt="makikMedia"></a><a class="brand-company" href="#"> <img src="img/bcause.png" alt="bcause"></a><a class="brand-company" href="#"> <img src="img/womgiby.png" alt="womgiby"></a>
+            <div class="brands slider slider-brands _anim-show _anim-items _anim-show" id="brandSlider">
+              <div class="slider-container"><a class="brand-company" href="#"> <img src="img/ratings.png" alt="ratings"></a><a class="brand-company" href="#"> <img src="img/deorham.png" alt="deorham"></a><a class="brand-company" href="#"> <img src="img/makikMedia.png" alt="makikMedia"></a><a class="brand-company" href="#"> <img src="img/bcause.png" alt="bcause"></a><a class="brand-company" href="#"> <img src="img/womgiby.png" alt="womgiby"></a>
+              </div>
             </div>
-            <div class="review"><i class="text-review roboto">"Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”</i>
-              <p class="name-review">John Doe, Google Inc.</p>
+            <div class="reviews">
+              <div class="review"><i class="text-review roboto">"Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”</i>
+                <p class="name-review">John Doe, Google Inc.</p>
+              </div>
+              <div class="review"><i class="text-review roboto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores!”</i>
+                <p class="name-review">Rubel Miah, Sr. Web Developer.</p>
+              </div>
+              <div class="review"><i class="text-review roboto">"Sapiente a accusantium maxime natus dicta nobis numquam ex fugiat ullam, quasi molestias velit. Assumenda, non illum dolor laudantium nemo consequuntur ab.”</i>
+                <p class="name-review">Shamim Mia, Head of Ideas.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -337,7 +347,7 @@
             <h2 class="_anim-show">Get in touch</h2>
             <p class="roboto sub-title _anim-show">Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</p>
             <div class="flex">
-              <div class="contact-info">
+              <div class="contact-info _anim-show anim_left">
                 <div class="address">
                   <p class="contact-info-title">Address</p>
                   <address class="contact-descr roboto">312, 7th Ave, New York </address>
@@ -355,7 +365,7 @@
                   <p class="contact-descr roboto"> <a class="roboto" href="mailto:khalilkode@gmail.com">khalilkode@gmail.com</a></p>
                 </div>
               </div>
-              <div class="contact-form"> 
+              <div class="contact-form _anim-show anim_right">
                 <form class="flex" action="index.html" method="post"> 
                   <div class="name-mail flex">
                     <input id="userName" type="name" name="name" placeholder="Your name" required>

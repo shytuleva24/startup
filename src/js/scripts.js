@@ -61,12 +61,11 @@ if (animItems.length > 0) {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
     }
-
-    setTimeout(() => {
-        animOnScroll();
-    }, 300)
 }
 
+setTimeout(() => {
+    animOnScroll();
+}, 300)
 // localStorage home page
 
 window.onload = function () {
@@ -102,8 +101,8 @@ window.onload = function () {
     }
     lastVisit = localStorage.lastVisit;
 
-    infinitySlider(".slider", sliderProps);
-    // infinitySlider(".slider", cleintBrandsProp);
+    infinitySlider(".slider.about-slider", sliderProps);
+    infinitySlider(".slider.slider-brands", cleintBrandsProp);
     // infinitySlider(".slider", sliderProps);
 }
 

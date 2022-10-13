@@ -258,12 +258,11 @@ if (animItems.length > 0) {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
     }
-
-    setTimeout(() => {
-        animOnScroll();
-    }, 300)
 }
 
+setTimeout(() => {
+    animOnScroll();
+}, 300)
 // localStorage home page
 
 window.onload = function () {
@@ -299,8 +298,8 @@ window.onload = function () {
     }
     lastVisit = localStorage.lastVisit;
 
-    infinitySlider(".slider", sliderProps);
-    // infinitySlider(".slider", cleintBrandsProp);
+    infinitySlider(".slider.about-slider", sliderProps);
+    infinitySlider(".slider.slider-brands", cleintBrandsProp);
     // infinitySlider(".slider", sliderProps);
 }
 
@@ -512,17 +511,18 @@ for (let index = 0; index < worksPhotosCards.length; index++) {
 const sliderProps = {
     arrows: true,
     slidesToScrollAll: true,
-    dots: true
 };
 
 const cleintBrandsProp = {
-    dots: true
+    gap: 65,
+    autoplaySpeed: 1800,
+    transitionCard: "all 1.8s linear"
 };
-
+window.onresize = function () {
+    infinitySlider(".slider.about-slider", sliderProps);
+    infinitySlider(".slider.slider-brands", cleintBrandsProp);
+};
 function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
-    window.onresize = function () {
-        infinitySlider(selector, sliderProps);
-    };
     let slider = document.querySelector(selector),
         positionCards = 0,
         sliderContainer = slider.querySelector(".slider-container"),
@@ -544,13 +544,13 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         arrows: false,
         autoplay: true,
         autoplaySpeed: 3000,
-        dots: false
+        transitionCard: "all .8s ease-in-out"
     };
 
     slider.querySelectorAll(".clone").forEach(clone => {
         clone.remove();
     });
-    
+    sliderContainer.style.position = "relative";
     if (localStorage[slider.id + "CardWidth"]) {
         clearInterval(localStorage[slider.id + "Interval"]);
         constCardWidth = localStorage[slider.id + "CardWidth"];
@@ -585,8 +585,6 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         counter++;
         realCardsLength = sliderCards.length - slider.querySelectorAll('.clone').length
     } while (counter <= realCardsLength && settings.slidesToScrollAll); 
-
-    if (settings.dots) creationDots ();
     
     if (settings.slidesToScrollAll) {
         counter = 0;
@@ -599,18 +597,14 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         }
     }
 
-    if (slider.querySelectorAll(".clone").length > 0) {
-        slider.querySelectorAll(".clone").forEach(clone => {
-            setTimeout(() => {
-                clone.style.transition = 'all .5s ease'; 
-            }, 1);
-        });
-    }
-
     sliderCards = sliderContainer.children;
 
     for (let i = 0; i < sliderCards.length; i++) {
         sliderCards[i].style.width = widthCards + "px";
+        sliderCards[i].style.position = "absolute";
+        setTimeout(() => {
+            sliderCards[i].style.transition = settings.transitionCard; 
+        }, 1);
     }
     heightCards = sliderCards[0].getBoundingClientRect().height;
     sliderContainer.style.height = heightCards + 'px';
@@ -633,22 +627,6 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
                 changeSlide("right");
             }
         }
-    }
-
-    function creationDots () {
-        const areDotsExist = slider.querySelectorAll('.dots-container').length;
-        if (areDotsExist < 1) {        
-            let dotsContainer = document.createElement("div");
-            dotsContainer.className = `dots-container`;
-            slider.insertAdjacentElement("beforeend", dotsContainer);
-
-            for (let index = 0; index < realCardsLength; index++) {
-                let dot = document.createElement("span");
-                dot.className = `dot-${index} slider_dots`;
-                dotsContainer.insertAdjacentElement("beforeend", dot);
-                console.log(dot)
-            }
-        }    
     }
     
     function shuffleCard () {
@@ -718,14 +696,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     slider.onmouseleave = () => {
         startAutoPlay();
     }
-    shuffleCard();
-
-    // slider.addEventListener('touchstart', dragStart);
-    // slider.addEventListener('touchend', dragEnd);
-    // slider.addEventListener('touchmove', ()=> {
-
-    // });
-    
+    shuffleCard();    
 }
 // window.addEventListener('mousewheel', this.onWheel)
 // window.addEventListener('wheel', this.onWheel)
@@ -734,3 +705,98 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
 // window.addEventListener('mousedown', this.onTouchDown)
 // window.addEventListener('mousemove', this.onTouchMove)
 // window.addEventListener('mouseup', this.onTouchUp)
+
+// Slider rewiews
+function sliderRewiews(selector) {
+    const slider = document.querySelector(selector);
+    const sliderRewiew = document.querySelectorAll('.review');
+    let maxHeight = 0,
+        heightCardRewiew = 0,
+        intervalSpeed = 6000,
+        intervalChange,
+        sliderDots;
+    slider.style.position = "relative";
+    window.onresize = init ();
+    init ();
+    function init () {
+        sliderRewiew.forEach(element => {
+            element.style.position = "absolute";
+            element.style.top = "0";
+            element.style.left = "0";
+            element.style.transition = 'all 1s ease-in-out';
+            maxHeight = element.getBoundingClientRect().height
+            if (heightCardRewiew < maxHeight) {
+                heightCardRewiew = maxHeight;
+                console.log(heightCardRewiew)
+            }
+        });
+        slider.style.height = heightCardRewiew + 40 + 'px';
+    }
+
+    creationDots ();
+    changeSlide (0);
+    sliderDots = document.querySelectorAll('.slider-dot');
+
+    sliderRewiew[0].classList.add("active");
+    sliderDots[0].classList.add("active");
+    
+    function changeSlide () {
+        let slideIndex = 0;
+        for (let i = 0; i < sliderRewiew.length; i++) {
+            if (sliderRewiew[i].classList.contains("active")) {
+                slideIndex = i;
+            }
+        }
+        const setActive = (index) => {
+            setTimeout(() => sliderRewiew[index].classList.add("active"), 800);
+            setTimeout(() => sliderDots[index].classList.add("active"), 800);
+        }
+        
+        intervalChange = setInterval(() => {
+            sliderRewiew[slideIndex].classList.remove("active");
+            sliderDots[slideIndex].classList.remove("active");
+            sliderRewiew[slideIndex + 1] ? slideIndex++ : slideIndex = 0
+            setActive(slideIndex);
+        }, intervalSpeed);
+    }
+
+    function creationDots () {
+        const dotsContainer = slider.querySelector('.dots-container');
+        if (!dotsContainer) {
+            let dotContainer = document.createElement("div");
+            dotContainer.style.position = "absolute";
+            dotContainer.className = "dots-container";
+            dotContainer.style.bottom = "0";
+            slider.insertAdjacentElement("beforeend", dotContainer);
+            for (let index = 0; index < sliderRewiew.length; index++) {
+                const slideDot = document.createElement("span");
+                slideDot.className = "slider-dot";
+                slideDot.dataset.order = index;
+                dotContainer.insertAdjacentElement("beforeend", slideDot);
+            }
+            console.log(dotContainer)
+        }
+    }
+    
+    sliderDots.forEach(element => {
+        element.onclick = function () {
+            clearInterval(intervalChange);
+            for (let index = 0; index < sliderRewiew.length; index++) {
+                sliderDots[index].classList.remove("active");
+                sliderRewiew[index].classList.remove("active");   
+            }
+            sliderRewiew[element.dataset.order].classList.add("active");
+            element.classList.add("active");
+        }
+    });
+
+    slider.onmouseenter = () => {
+        clearInterval(intervalChange);
+    }
+    slider.onmouseleave = () => {
+        changeSlide ();
+    }
+    
+}
+
+sliderRewiews(".reviews");
