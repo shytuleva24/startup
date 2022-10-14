@@ -66,6 +66,7 @@ if (animItems.length > 0) {
 setTimeout(() => {
     animOnScroll();
 }, 300)
+
 // localStorage home page
 
 window.onload = function () {
@@ -103,7 +104,6 @@ window.onload = function () {
 
     infinitySlider(".slider.about-slider", sliderProps);
     infinitySlider(".slider.slider-brands", cleintBrandsProp);
-    // infinitySlider(".slider", sliderProps);
 }
 
 // tripl click

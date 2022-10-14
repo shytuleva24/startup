@@ -23,24 +23,30 @@
 const sliderProps = {
     arrows: true,
     slidesToScrollAll: true,
+    baseCardWidth: "263rem",
+    autoplay: false,
 };
 
 const cleintBrandsProp = {
+    autoplay: false,
     gap: 65,
     autoplaySpeed: 1800,
-    transitionCard: "all 1.8s linear"
+    transitionCard: "all 1.8s linear",
+    baseCardWidth: "145rem"
 };
+
 window.onresize = function () {
-    infinitySlider(".slider.about-slider", sliderProps);
-    infinitySlider(".slider.slider-brands", cleintBrandsProp);
+    infinitySlider(".slider", sliderProps);
+    infinitySlider(".slider-brands", cleintBrandsProp);
+    sliderRewiews(".reviews");
 };
+
 function infinitySlider(selector, settings) {  // selector - шлях до слайдера, settings - нестанарні налаштування
     let slider = document.querySelector(selector),
         positionCards = 0,
         sliderContainer = slider.querySelector(".slider-container"),
         sliderCards = sliderContainer.children,
         widthSliderContainer = sliderContainer.getBoundingClientRect().width,
-        constCardWidth,
         cardsCount,
         widthCards,
         distanceCards,
@@ -56,21 +62,23 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         arrows: false,
         autoplay: true,
         autoplaySpeed: 3000,
+        baseCardWidth: "100%",
         transitionCard: "all .8s ease-in-out"
     };
 
     slider.querySelectorAll(".clone").forEach(clone => {
         clone.remove();
     });
-    sliderContainer.style.position = "relative";
-    if (localStorage[slider.id + "CardWidth"]) {
+
+    if (localStorage[slider.id + "Interval"]) {
         clearInterval(localStorage[slider.id + "Interval"]);
-        constCardWidth = localStorage[slider.id + "CardWidth"];
-    } else {
-        constCardWidth = sliderCards[0].getBoundingClientRect().width;
-        localStorage[slider.id + "CardWidth"] = constCardWidth;
-    }
-    cardsCount = Math.floor(widthSliderContainer / constCardWidth);
+    } 
+
+    slider.style.position = "relative";
+    sliderContainer.style.overflow = "hidden";
+    sliderContainer.style.position = "relative";
+    sliderContainer.style.width = "100%";
+    cardsCount = Math.floor(widthSliderContainer / parseInt(settings.baseCardWidth));
 
     settings = {...defaultSettings, ...settings}; // берем всі аргументи обох об'єктів останній об'єкт в дужках в приоритеті
     distanceCards = settings.gap;
@@ -110,8 +118,8 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     }
 
     sliderCards = sliderContainer.children;
-
     for (let i = 0; i < sliderCards.length; i++) {
+        console.log(widthCards)
         sliderCards[i].style.width = widthCards + "px";
         sliderCards[i].style.position = "absolute";
         setTimeout(() => {
@@ -152,11 +160,22 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
             positionCards += (distanceCards + widthCards);
         }
     }
-
+    
+    console.log(`(${widthSliderContainer} widthSliderContainer - ((${cardsCount} cardsCount - 1) *${distanceCards} distanceCards)) / ${cardsCount} cardsCount`)
+    console.log(widthSliderContainer + "- widthSliderContainer")
+    console.log(cardsCount + "- cardsCount")
+    console.log(widthCards + "- widthCards")
     function changeSlide (direction) {
+        console.log(`(${widthSliderContainer} widthSliderContainer - ((${cardsCount} cardsCount - 1) *${distanceCards} distanceCards)) / ${cardsCount} cardsCount`)
+        console.log(widthSliderContainer + "- widthSliderContainer")
+        console.log(cardsCount + "- cardsCount")
+        console.log(widthCards + "- widthCards")
+        console.log(parseInt(settings.baseCardWidth)+ "parseInt")
+        console.log(settings.baseCardWidth + "baseCardWidth")
         widthSliderContainer = sliderContainer.getBoundingClientRect().width;
-        cardsCount = Math.floor(widthSliderContainer / constCardWidth);
+        cardsCount = Math.floor(widthSliderContainer / parseInt(settings.baseCardWidth));
         widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
+
         sliderCards = sliderContainer.children;
         if (direction == "left") {
             if (settings.slidesToScrollAll) {
@@ -228,22 +247,20 @@ function sliderRewiews(selector) {
         intervalChange,
         sliderDots;
     slider.style.position = "relative";
-    window.onresize = init ();
-    init ();
-    function init () {
-        sliderRewiew.forEach(element => {
-            element.style.position = "absolute";
-            element.style.top = "0";
-            element.style.left = "0";
-            element.style.transition = 'all 1s ease-in-out';
-            maxHeight = element.getBoundingClientRect().height
-            if (heightCardRewiew < maxHeight) {
-                heightCardRewiew = maxHeight;
-                console.log(heightCardRewiew)
-            }
-        });
-        slider.style.height = heightCardRewiew + 40 + 'px';
-    }
+
+    sliderRewiew.forEach(element => {
+        element.classList.remove("active")
+        element.style.position = "absolute";
+        element.style.top = "0";
+        element.style.left = "0";
+        element.style.transition = 'all 1s ease-in-out';
+        maxHeight = element.getBoundingClientRect().height
+        if (heightCardRewiew < maxHeight) {
+            heightCardRewiew = maxHeight;
+        }
+    });
+    slider.style.height = heightCardRewiew + 40 + 'px';
+
 
     creationDots ();
     changeSlide (0);
@@ -253,6 +270,7 @@ function sliderRewiews(selector) {
     sliderDots[0].classList.add("active");
     
     function changeSlide () {
+        clearInterval(intervalChange);
         let slideIndex = 0;
         for (let i = 0; i < sliderRewiew.length; i++) {
             if (sliderRewiew[i].classList.contains("active")) {
@@ -286,7 +304,6 @@ function sliderRewiews(selector) {
                 slideDot.dataset.order = index;
                 dotContainer.insertAdjacentElement("beforeend", slideDot);
             }
-            console.log(dotContainer)
         }
     }
     
