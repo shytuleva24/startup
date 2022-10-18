@@ -104,6 +104,7 @@ window.onload = function () {
 
     infinitySlider(".slider.about-slider", sliderProps);
     infinitySlider(".slider.slider-brands", cleintBrandsProp);
+    infinitySlider(".reviews.slider", sliderReview);
 }
 
 // tripl click

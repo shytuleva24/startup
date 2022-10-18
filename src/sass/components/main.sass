@@ -404,7 +404,7 @@
     background-color: #f8f8f8
     text-align: center
 .slider-brands
-    max-width: 920rem   
+    max-width: 900rem   
     margin: 0 auto 40rem
     align-items: center
 .brand-company
@@ -413,17 +413,14 @@
     align-items: center
     width: 145rem
     height: 50rem
+    text-align: center
     img
         width: 100%
+        object-fit: contain
+        height: 100%
 .reviews
     margin: 0 auto
     max-width: 760rem
-.review
-    opacity: 0
-    visibility: hidden
-.review.active
-    opacity: 1
-    visibility: visible
 
 .name-review
     padding-top: 40rem
@@ -441,6 +438,13 @@
     cursor: pointer
 .slider-dot.active
     background-color: $mainColorSite
+.review
+    opacity: 0
+    visibility: hidden
+    transition: all .5s ease
+.review.active
+    opacity: 1
+    visibility: visible
 
 // contact
 .contact > .wrapper > .flex

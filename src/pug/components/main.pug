@@ -30,7 +30,6 @@ main
                 p.anim_left._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
                 p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
             .slider.about-slider.text-center._anim-items._anim-show#aboutSlider
-                //- span.left.slider_navigation#prev
                 ul.slider-container
                     li.about-card.1r
                         +aboutCard (aboutCards.KhalilUddin)
@@ -40,15 +39,8 @@ main
                         +aboutCard (aboutCards.ShamimMia)
                     li.about-card.4r
                         +aboutCard (aboutCards.JohnDoe)
-                    li.about-card.last-card.5r
-                        +aboutCard (aboutCards.ShamimMia)
-                    //- li.about-card.6r
-                    //-     +aboutCard (aboutCards.KhalilUddin)
-                    //- li.about-card.7r
-                    //-     +aboutCard (aboutCards.RubelMiah)
-                    //- li.about-card.8r
-                    //-     +aboutCard (aboutCards.ShamimMia)
-                //- span.right.slider_navigation#next
+                    li.about-card.5r
+                        +aboutCard (aboutCards.AlisaMur)
     section.works._anim-items._anim-no-hide#works
         .wrapper 
             h2._anim-show Latest Works
@@ -74,16 +66,20 @@ main
             .brands.slider.slider-brands._anim-show#brandSlider._anim-items._anim-show
                 .slider-container
                     +brand(brands)
-            .reviews
-                .review
-                    i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
-                    p.name-review John Doe, Google Inc.
-                .review
-                    i.text-review.roboto "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores!”
-                    p.name-review Rubel Miah, Sr. Web Developer.
-                .review
-                    i.text-review.roboto "Sapiente a accusantium maxime natus dicta nobis numquam ex fugiat ullam, quasi molestias velit. Assumenda, non illum dolor laudantium nemo consequuntur.”
-                    p.name-review Shamim Mia, Head of Ideas.
+            .reviews.slider#sliderReviews._anim-items._anim-show
+                .slider-container
+                    .review
+                        i.text-review.roboto "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
+                        p.name-review John Doe, Google Inc.
+                    .review
+                        i.text-review.roboto "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores!”
+                        p.name-review Rubel Miah, Sr. Web Developer.
+                    .review
+                        i.text-review.roboto "Sapiente a accusantium maxime natus dicta nobis numquam ex fugiat ullam, quasi molestias velit. Assumenda, non illum dolor laudantium nemo consequuntur.”
+                        p.name-review Shamim Mia, Head of Ideas.
+                    //- .review
+                    //-     i.text-review.roboto "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae a veniam rem cupiditate iure, eius sapiente, quam, iusto alias rerum asperiores”
+                    //-     p.name-review Rubel Miah, Sr. Web Developer.
     section.contact._anim-items#contact
         .wrapper
             h2._anim-show Get in touch
