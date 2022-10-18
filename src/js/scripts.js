@@ -133,31 +133,5 @@ function changeInClick () {
     });
 }
 
-// slider
+// filter works-photo
 
-
-// window.onload = function () {
-//     infinitySlider(".slider", sliderProps);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function $(selector) {
-//     let elements = document.querySelectorAll(selector);
-//     if (elements.length == 1) {
-//         return elements[0];
-//     }
-//     return elements;
-// }

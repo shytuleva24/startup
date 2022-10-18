@@ -177,28 +177,35 @@
     .flex
         justify-content: center
         flex-wrap: wrap
-    a
-        padding: 0 15rem
-        color: $mainColorText
-        &:hover
-            color: $mainColorSite
-
+.menu-category
+    padding: 0 15rem
+    color: $mainColorText
+    &:hover
+        color: $mainColorSite
+.menu-category.active
+        color: $mainColorSite
 .works-photo
-    display: grid
-    grid-gap: 30rem
-    grid-template-columns: repeat(1, 1fr)
-    +media(500)
-        grid-template-columns: repeat(2, 1fr)
-    +media(876)
-        grid-template-columns: repeat(3, 1fr)
-    .photo-card
+    display: flex
+    gap: 30rem
+    flex-wrap: wrap
+
+    // display: grid
+    // grid-gap: 30rem
+    // grid-template-columns: repeat(1, 1fr)
+    // +media(500)
+    //     grid-template-columns: repeat(2, 1fr)
+    // +media(876)
+    //     grid-template-columns: repeat(3, 1fr)
+.photo-card
+    width: calc((100%-60rem)/3)
+    transition: all .5s ease
+    cursor: pointer
+    &:hover .works-description
+        visibility: visible
+        opacity: 1
         transition: all .5s ease
-        cursor: pointer
-        &:hover .works-description
-            visibility: visible
-            opacity: 1
-            transition: all .5s ease
-        
+
+
 .works-img
     width: 100%
     img
@@ -228,6 +235,7 @@
     margin-bottom: 25rem
     font-size: 12rem
     line-height: 24rem
+    text-transform: capitalize
 .works-photo__btn
     position: relative
     padding: 6rem 35rem 6rem 20rem
@@ -263,6 +271,11 @@
 .photo-card._active
     opacity: 1
     transform: rotate(0) scale(1)
+.photo-card.anime
+    width: 0
+    height: 0
+    opacity: 0
+    transform: rotate(-180deg) scale(0.3)        
 
 // advertising
 

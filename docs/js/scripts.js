@@ -330,34 +330,9 @@ function changeInClick () {
     });
 }
 
-// slider
+// filter works-photo
 
 
-// window.onload = function () {
-//     infinitySlider(".slider", sliderProps);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function $(selector) {
-//     let elements = document.querySelectorAll(selector);
-//     if (elements.length == 1) {
-//         return elements[0];
-//     }
-//     return elements;
-// }
 // scroll
 
 // let homeMenuLinks = document.querySelectorAll(".home-menu a"),
@@ -478,15 +453,54 @@ if (homeMenuLinks.length > 0) {
 }
 
 
-const worksPhotosContainer = document.querySelector('.works-photo');
-const worksPhotosCards = worksPhotosContainer.children
-let delayTimeAnim = 1.3;
+// const worksPhotosContainer = document.querySelector('.works-photo');
+// const worksPhotosCards = worksPhotosContainer.children
+// let delayTimeAnim = 1.3;
 
-for (let index = 0; index < worksPhotosCards.length; index++) {
-    const element = worksPhotosCards[index]; 
-    element.style.transition = `all .3s ease ${delayTimeAnim}s`;
-    delayTimeAnim = delayTimeAnim + 0.2;
+// for (let index = 0; index < worksPhotosCards.length; index++) {
+//     const element = worksPhotosCards[index]; 
+//     element.style.transition = `all .3s ease ${delayTimeAnim}s`;
+//     delayTimeAnim = delayTimeAnim + 0.2;
+// }
+
+function filterCards () {
+    const worksMenu = document.querySelectorAll('.menu-category');
+    const cards = document.querySelectorAll('.photo-card');
+
+    function filter (category, items) {
+        items.forEach(item => {
+            const isItemFiltered = item.classList.contains(category);
+            const isShowAll = category === 'all'
+            if (!isItemFiltered && !isShowAll) {
+                item.classList.add('anime');
+            } else {
+                item.classList.remove('anime');
+            }
+        });
+    }
+
+    worksMenu.forEach(element => {
+        element.addEventListener('click', (e) => {
+            worksMenu.forEach(el => {
+                el.classList.remove('active');
+            });
+            e.preventDefault();
+            element.classList.add('active');
+            const currentCategory = element.dataset.filter;
+            filter(currentCategory, cards);
+        })
+    });
+    // cards.forEach(card => {
+    //     card.ontransitionend = function () {
+    //         if (card.classList.contains('anime')) {
+    //             card.classList.add('hide')
+    //         }
+    //     }
+    // });
+    
 }
+
+filterCards();
 /** Slider by Hashtag team
  * .slider                                      - обов'язковий клас для слайдера
  * .slider-container                            - обов'язковий клас для контейнера слайдів 

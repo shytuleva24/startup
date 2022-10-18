@@ -31,15 +31,15 @@ main
                 p.anim_right._anim-show Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
             .slider.about-slider.text-center._anim-items._anim-show#aboutSlider
                 ul.slider-container
-                    li.about-card.1r
+                    li.about-card
                         +aboutCard (aboutCards.KhalilUddin)
-                    li.about-card.2r
+                    li.about-card
                         +aboutCard (aboutCards.RubelMiah)
-                    li.about-card.3r
+                    li.about-card
                         +aboutCard (aboutCards.ShamimMia)
-                    li.about-card.4r
+                    li.about-card
                         +aboutCard (aboutCards.JohnDoe)
-                    li.about-card.5r
+                    li.about-card
                         +aboutCard (aboutCards.AlisaMur)
     section.works._anim-items._anim-no-hide#works
         .wrapper 
@@ -47,7 +47,7 @@ main
             nav.roboto.sub-title.works-nav._anim-show
                 ul.works-menu.flex
                     +menu(worksMenu, "menu-category")
-            .works-photo._anim-no-hide
+            .works-photo
                 +worksPhoto(worksPhotos)
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center

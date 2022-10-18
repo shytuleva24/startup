@@ -10,11 +10,11 @@
     ]
 -
     let worksMenu = [
-        {name: "All", url: "#"},
-        {name: "Branding ", url: "#"},
-        {name: "Design", url: "#"},
-        {name: "Development", url: "#"},
-        {name: "Strategy", url: "#"}
+        {name: "All", url: "#", filter: "all"},
+        {name: "Branding", url: "#", filter: "branding"},
+        {name: "Design", url: "#", filter: "design"},
+        {name: "Development", url: "#", filter: "development"},
+        {name: "Strategy", url: "#", filter: "strategy"}
     ]
 -
     let aboutCards = {
@@ -50,60 +50,60 @@
         }
     }
 -
-    let worksPhotos = {
+    let worksPhotos = { // All Branding Design Development Strategy
         one: {
             src:"img/1.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "strategy",
         },
         two: {
             src:"img/2.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "development",
         },
         three: {
             src:"img/3.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "design",
         },
         four: {
             src:"img/4.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "branding",
         },
         five: {
             src:"img/5.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "strategy",
         },
         six: {
             src:"img/6.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "development",
         },
         seven: {
             src:"img/7.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "design",
         },
         eight: {
             src:"img/8.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "branding",
         },
         nine: {
             src:"img/9.jpg",
             alt:"Hair Dresser",
             title: "Hair Dresser",
-            category: "Branding",
+            category: "strategy",
         }
     }
 
@@ -134,11 +134,11 @@
         {url: "#", src: "img/bcause.png", alt: "bcause"},
         {url: "#", src: "img/womgiby.png", alt: "womgiby"}
     ]
-.scroll-to
+
 mixin menu (items, myClass)
     for item in items 
         li 
-            a(href=item.url class=myClass) #{item.name}
+            a(data-filter=item.filter href=item.url class=myClass) #{item.name}
 
 mixin aboutCard (item)
     figure
@@ -159,7 +159,7 @@ mixin aboutCard (item)
 mixin worksPhoto (items)
     -let idAtr = 0
     for item in items
-        figure(data-id=idAtr++)._anim-show._anim-no-hide.photo-card
+        figure(data-id=idAtr++ class=item.category)._anim-show.photo-card
             figcaption.relative
                 .works-img
                     img(src=item.src, alt=item.alt, data-src="lazy.svg")
