@@ -453,19 +453,23 @@ if (homeMenuLinks.length > 0) {
 }
 
 
-// const worksPhotosContainer = document.querySelector('.works-photo');
-// const worksPhotosCards = worksPhotosContainer.children
-// let delayTimeAnim = 1.3;
-
-// for (let index = 0; index < worksPhotosCards.length; index++) {
-//     const element = worksPhotosCards[index]; 
-//     element.style.transition = `all .3s ease ${delayTimeAnim}s`;
-//     delayTimeAnim = delayTimeAnim + 0.2;
-// }
-
 function filterCards () {
+    let delayTimeAnim = 1.3;
     const worksMenu = document.querySelectorAll('.menu-category');
     const cards = document.querySelectorAll('.photo-card');
+    let selectedFilter,
+        currentCategory;
+
+    for (let index = 0; index < cards.length; index++) {
+        const element = cards[index]; 
+        element.style.transition = `all .3s ease ${delayTimeAnim}s`;
+        delayTimeAnim = delayTimeAnim + 0.2;
+    }
+
+    if (localStorage["currentCategory"]) {
+        filter(localStorage["currentCategory"], cards);
+    } 
+
 
     function filter (category, items) {
         items.forEach(item => {
@@ -486,18 +490,11 @@ function filterCards () {
             });
             e.preventDefault();
             element.classList.add('active');
-            const currentCategory = element.dataset.filter;
+            currentCategory = element.dataset.filter;
             filter(currentCategory, cards);
+            localStorage["currentCategory"] = currentCategory;
         })
-    });
-    // cards.forEach(card => {
-    //     card.ontransitionend = function () {
-    //         if (card.classList.contains('anime')) {
-    //             card.classList.add('hide')
-    //         }
-    //     }
-    // });
-    
+    });    
 }
 
 filterCards();
