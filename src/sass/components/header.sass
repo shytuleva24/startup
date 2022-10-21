@@ -17,11 +17,38 @@
     left: 0
     z-index: 10
     transition: transform .5s linear
-
+.header-container > .flex
+    align-items: center
 .header-container
     justify-content: space-between
     align-items: center
     min-height: 70rem
+    .basket
+        margin: 10px
+        position: relative
+        cursor: pointer
+        order: -1
+        +media(768)
+            order: 0
+    .basket-counter
+        position: absolute
+        display: flex
+        align-items: center
+        justify-content: center
+        font-weight: bold
+        color: $mainColorSite
+        font-size: 12rem
+        border: 2px solid $mainColorSite
+        bottom: 0
+        right: 0
+        border-radius: 50%
+        width: 17px
+        height: 17px
+        background-color: #f8f8f8
+    svg
+        fill: #fff
+        width: 30px
+        order: 0
 
 .menu-body
     position: fixed

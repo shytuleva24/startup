@@ -16,12 +16,12 @@
 
 
  * const sliderProps = {
-        slidesToScrollAll: false,               - cкролити одразу всі видимі слайди
+        isSlidesToScrollAll: false,               - cкролити одразу всі видимі слайди
         gap: 20,                                - відстань між слайдами
-        arrows: false,                          - наявність стрілочок
-        autoplay: true,                         - автоскролл
+        isArrows: false,                          - наявність стрілочок
+        isAutoplay: true,                         - автоскролл
         autoplaySpeed: 3000                     - швидкість автоскролла
-        dots: false,                            - наявність точок знизу слайдера
+        isDots: false,                            - наявність точок знизу слайдера
         distanceToDots: 0,                      - паддінг для відображення точок, якщо потрібен
         baseCardWidth: widthSliderContainer,    - базова ширина карточок слайдера
         transitionCard: "all .8s ease-in-out",  - єффект появи карточок
@@ -34,10 +34,10 @@
  **/
 
 const sliderProps = {
-    arrows: true,
-    slidesToScrollAll: true,
+    isArrows: true,
+    isSlidesToScrollAll: true,
     baseCardWidth: "263rem",
-    autoplay: true,
+    isAutoplay: true,
     gap: 20,
     autoplaySpeed: 5000,
     transitionCard: "all 1.5s ease-in-out",
@@ -45,16 +45,16 @@ const sliderProps = {
 
 const cleintBrandsProp = {
     gap: 45,
-    autoplay: true,
+    isAutoplay: true,
     autoplaySpeed: 5000,
     transitionCard: "all 3s ease",
     baseCardWidth: "127rem",
 };
 
 const sliderReview = {
-    autoplay: true,
+    isAutoplay: true,
     autoplaySpeed: 6000,
-    dots: true,
+    isDots: true,
     distanceToDots: 40,
     isEffectFadeOut: true,
     transitionCard: "all .8s ease-in-out",
@@ -84,12 +84,12 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         maxHeight,
         sliderDots;
     const defaultSettings = {
-        slidesToScrollAll: false,
+        isSlidesToScrollAll: false,
         gap: 0,
-        arrows: false,
-        dots: false,
+        isArrows: false,
+        isDots: false,
         distanceToDots: 0,
-        autoplay: false,
+        isAutoplay: false,
         autoplaySpeed: 3000,
         baseCardWidth: widthSliderContainer,
         transitionCard: "all 1s ease-in-out",
@@ -109,27 +109,24 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     sliderContainer.style.position = "relative";
     sliderContainer.style.width = "100%";
     settings = {...defaultSettings, ...settings}; // берем всі аргументи обох об'єктів останній об'єкт в дужках в приоритеті
-    // if (settings.baseCardWidth == "100%") {
-    //     settings.baseCardWidth = widthSliderContainer;
-    // }
-    // console.log(settings)
+
     cardsCount = Math.floor(widthSliderContainer / (parseInt(settings.baseCardWidth) + settings.gap));
     distanceCards = settings.gap;
     widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
     positionCards = 0 - (distanceCards + widthCards);
-    if (settings.arrows) creationArrows ();
+    if (settings.isArrows) creationArrows ();
     prevBtnSlider = slider.querySelector('.left.slider_navigation');
     nextBtnSlider = slider.querySelector('.right.slider_navigation');
     
-    if (settings.arrows && sliderCards.length <= cardsCount) {
+    if (settings.isArrows && sliderCards.length <= cardsCount) {
         prevBtnSlider.style.display = "none";
         nextBtnSlider.style.display = "none";
-    } else if (settings.arrows) {
+    } else if (settings.isArrows) {
         prevBtnSlider.style.display = "block";
         nextBtnSlider.style.display = "block";
     }
     
-    if (settings.dots && realCardsLength > 1) {
+    if (settings.isDots && realCardsLength > 1) {
         creationDots ();
         sliderDots = document.querySelectorAll('.slider-dot')
         for (let i = 0; i < sliderCards.length; i++) {
@@ -157,7 +154,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         }, 1);
     }
 
-    if (settings.dots && realCardsLength > 1) {
+    if (settings.isDots && realCardsLength > 1) {
         sliderContainer.style.height = heightCards + settings.distanceToDots + 'px';
     } else {
         sliderContainer.style.height = heightCards + 'px';
@@ -172,9 +169,9 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
             sliderContainer.insertAdjacentElement("afterbegin", cloneCard);
             counter++;
             realCardsLength = sliderCards.length - slider.querySelectorAll('.clone').length
-        } while (counter <= realCardsLength && settings.slidesToScrollAll); 
+        } while (counter <= realCardsLength && settings.isSlidesToScrollAll); 
         
-        if (settings.slidesToScrollAll) {
+        if (settings.isSlidesToScrollAll) {
             counter = 0;
             while (counter < realCardsLength) {
                 cloneCard = sliderCards[counter].cloneNode(true);
@@ -193,15 +190,27 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
             nextBtnSlider = document.createElement("span");
             prevBtnSlider.className = "left slider_navigation";
             nextBtnSlider.className = "right slider_navigation";
-            
             slider.insertAdjacentElement("afterbegin", prevBtnSlider);
             slider.insertAdjacentElement("beforeend", nextBtnSlider);
             
+            let isClickUnabled = true;
+            const clickUnabled = () => {
+                isClickUnabled = false;
+                setTimeout(() => {
+                    isClickUnabled = true;
+                }, 1000); 
+            };
             prevBtnSlider.onclick = function () {
-                changeSlide("left");
+                if (isClickUnabled) {
+                    changeSlide("left");    
+                    clickUnabled();
+                }
             }
             nextBtnSlider.onclick = function () {
-                changeSlide("right");
+                if (isClickUnabled) {
+                    changeSlide("right");
+                    clickUnabled();
+                }
             }
         }
     }
@@ -226,7 +235,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
     function shuffleCard () {
         sliderCards = sliderContainer.children;
         positionCards = 0 - (distanceCards + widthCards); 
-        if (settings.slidesToScrollAll) {
+        if (settings.isSlidesToScrollAll) {
             positionCards = 0 - (distanceCards + widthCards) * realCardsLength; 
         } 
         for (let i = 0; i < sliderCards.length; i++) {
@@ -239,13 +248,24 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         widthSliderContainer = sliderContainer.getBoundingClientRect().width;
         cardsCount = Math.floor(widthSliderContainer / (parseInt(settings.baseCardWidth) + settings.gap));
         widthCards = (widthSliderContainer - ((cardsCount - 1) * distanceCards)) / cardsCount;
-
         sliderCards = sliderContainer.children;
+        let slideIndex = 0;
+        for (let i = 0; i < sliderCards.length; i++) {
+            if (sliderCards[i].classList.contains("active")) {
+                slideIndex = i;
+            }
+        }
         if (direction == "left") {
-            if (settings.slidesToScrollAll) {
+            if (settings.isSlidesToScrollAll) {
                 for (let index = 0; index < cardsCount; index++) {
                     sliderContainer.insertAdjacentElement("afterbegin", sliderCards[sliderCards.length - 1]);                
-                }                
+                }   
+            } else if (settings.isEffectFadeOut) {
+                sliderCards[slideIndex].classList.remove("active");
+                sliderDots[slideIndex].classList.remove("active");
+                sliderCards[slideIndex - 1] ? slideIndex -= 1 : slideIndex = sliderCards.length - 1;
+                setTimeout(() => sliderCards[slideIndex].classList.add("active"), 1000);
+                setTimeout(() => sliderDots[slideIndex].classList.add("active"), 1000);
             } else {
                 sliderCards[sliderCards.length - 1].remove();
                 let cloneLast = sliderCards[sliderCards.length - 1].cloneNode(true);
@@ -254,10 +274,16 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
                 sliderCards[1].classList.remove("clone");
             }
         } else if (direction == "right") {
-            if (settings.slidesToScrollAll) {
+            if (settings.isSlidesToScrollAll) {
                 for (let index = 0; index < cardsCount; index++) {
                     sliderContainer.insertAdjacentElement("beforeend", sliderCards[0]);                
                 }  
+            } else if (settings.isEffectFadeOut) {
+                sliderCards[slideIndex].classList.remove("active");
+                sliderDots[slideIndex].classList.remove("active");
+                sliderCards[slideIndex + 1] ? slideIndex++ : slideIndex = 0
+                setTimeout(() => sliderCards[slideIndex].classList.add("active"), 1000);
+                setTimeout(() => sliderDots[slideIndex].classList.add("active"), 1000);
             } else {              
                 sliderCards[0].remove();
                 let cloneFirst = sliderCards[0].cloneNode(true);
@@ -309,7 +335,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         }
     });
 
-    if (settings.autoplay && realCardsLength > cardsCount) {
+    if (settings.isAutoplay && realCardsLength > cardsCount) {
         startAutoPlay();
     } 
 
@@ -317,7 +343,7 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         clearInterval(localStorage[slider.id + "Interval"]);
     }
     slider.onmouseleave = () => {
-        if (settings.autoplay && realCardsLength > cardsCount) {
+        if (settings.isAutoplay && realCardsLength > cardsCount) {
             startAutoPlay();
         }
     }
@@ -331,101 +357,15 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
 // window.addEventListener('mousemove', this.onTouchMove)
 // window.addEventListener('mouseup', this.onTouchUp)
 
-// Slider rewiews
-
-// function sliderRewiews(selector) {
-//     const slider = document.querySelector(selector);
-//     const sliderRewiew = document.querySelectorAll('.review');
-//     let maxHeight = 0,
-//     heightCardRewiew = 0,
-//     intervalSpeed = 6000,
-//     intervalChange,
-//     sliderDots;
-    
-//     window.addEventListener("resize", init())
-//     init()
-    
-//     function init() {
-//         slider.style.position = "relative";
-//         sliderRewiew.forEach(element => {
-//             element.classList.remove("active")
-//             element.style.position = "absolute";
-//             element.style.top = "0";
-//             element.style.left = "0";
-//             element.style.transition = 'all 1s ease-in-out';
-//             maxHeight = element.getBoundingClientRect().height
-//             if (heightCardRewiew < maxHeight) {
-//                 heightCardRewiew = maxHeight;
-//             }
-//         });
-//         slider.style.height = heightCardRewiew + 50 + 'rem';
-//     }
-
-
-//     creationDots ();
-//     changeSlide (0);
-//     sliderDots = document.querySelectorAll('.slider-dot');
-
-//     sliderRewiew[0].classList.add("active");
-//     sliderDots[0].classList.add("active");
-    
-//     function changeSlide () {
-        
-//         let slideIndex = 0;
-//         for (let i = 0; i < sliderRewiew.length; i++) {
-//             if (sliderRewiew[i].classList.contains("active")) {
-//                 slideIndex = i;
-//             }
-//         }
-//         const setActive = (index) => {
-//             setTimeout(() => sliderRewiew[index].classList.add("active"), 800);
-//             setTimeout(() => sliderDots[index].classList.add("active"), 800);
-//         }
-        
-//         intervalChange = setInterval(() => {
-//             sliderRewiew[slideIndex].classList.remove("active");
-//             sliderDots[slideIndex].classList.remove("active");
-//             sliderRewiew[slideIndex + 1] ? slideIndex++ : slideIndex = 0
-//             setActive(slideIndex);
-//         }, intervalSpeed);
-//     }
-
-//     function creationDots () {
-//         const dotsContainer = slider.querySelector('.dots-container');
-//         if (!dotsContainer) {
-//             let dotContainer = document.createElement("div");
-//             dotContainer.style.position = "absolute";
-//             dotContainer.className = "dots-container";
-//             dotContainer.style.bottom = "0";
-//             slider.insertAdjacentElement("beforeend", dotContainer);
-//             for (let index = 0; index < sliderRewiew.length; index++) {
-//                 const slideDot = document.createElement("span");
-//                 slideDot.className = "slider-dot";
-//                 slideDot.dataset.order = index;
-//                 dotContainer.insertAdjacentElement("beforeend", slideDot);
-//             }
-//         }
-//     }
-    
-//     sliderDots.forEach(element => {
-//         element.onclick = function () {
-//             clearInterval(intervalChange);
-//             for (let index = 0; index < sliderRewiew.length; index++) {
-//                 sliderDots[index].classList.remove("active");
-//                 sliderRewiew[index].classList.remove("active");   
-//             }
-//             sliderRewiew[element.dataset.order].classList.add("active");
-//             element.classList.add("active");
-//         }
-//     });
-
-//     slider.onmouseenter = () => {
-//         clearInterval(intervalChange);
-//     }
-//     slider.onmouseleave = () => {
-//         changeSlide ();
-//     }
-    
-// }
-
-// sliderRewiews(".reviews");
+/** Drag`n`drop
+ * mousedown - початок Drag`n`drop
+ * mousemove - сам момент перетягування
+ * mouseup - кінець Drag`n`drop
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */

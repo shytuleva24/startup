@@ -34,6 +34,8 @@ const animItems = document.querySelectorAll(`._anim-items`);
 
 if (animItems.length > 0) {
     window.addEventListener(`scroll`, animOnScroll);
+    window.addEventListener(`touchmove`, animOnScroll);
+    window.addEventListener(`wheel`, animOnScroll);
 
     function animOnScroll() {
         animItems.forEach(element => {
@@ -134,4 +136,3 @@ function changeInClick () {
 }
 
 // filter works-photo
-
