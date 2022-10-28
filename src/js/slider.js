@@ -73,16 +73,8 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         widthSliderContainer = sliderContainer.getBoundingClientRect().width,
         sliderCards = sliderContainer.children,
         realCardsLength = sliderCards.length,
-        cardsCount,
-        widthCards,
-        distanceCards,
-        cloneCard,
         heightCards = 0,
-        prevBtnSlider,
-        nextBtnSlider,
-        sliderInterval,
-        maxHeight,
-        sliderDots;
+        cardsCount, widthCards, distanceCards, cloneCard, prevBtnSlider, nextBtnSlider, sliderInterval, maxHeight, sliderDots, touchPoint;
     const defaultSettings = {
         isSlidesToScrollAll: false,
         gap: 0,
@@ -322,6 +314,22 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         localStorage[slider.id + "Interval"] = sliderInterval;
     }
 
+    function touchSlider (e) {
+        if ((touchPoint + 20) < e.touches[0].pageX) {
+            changeSlide('left');
+            this.removeEventListener('touchmove', touchSlider);
+        } else if ((touchPoint - 20) > e.touches[0].pageX) {
+            changeSlide('right');
+            this.removeEventListener('touchmove', touchSlider);
+        }
+    }
+
+    slider.addEventListener('touchend', function () {
+        if (settings.isAutoplay && realCardsLength > cardsCount) {
+            startAutoPlay();
+        }             
+    });
+
     sliderDots = document.querySelectorAll('.slider-dot');
     sliderDots.forEach(element => {
         element.onclick = function () {
@@ -339,14 +347,26 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
         startAutoPlay();
     } 
 
+    slider.ontouchstart = function (e) {
+        touchPoint = e.touches[0].pageX;
+        this.addEventListener('touchmove', touchSlider);
+        clearInterval(localStorage[slider.id + "Interval"]);
+    };
+
+    // slider.ontouchmove = function (e) {
+    //     console.log(e)
+    // };
+
+
     slider.onmouseenter = () => {
         clearInterval(localStorage[slider.id + "Interval"]);
-    }
+    };
     slider.onmouseleave = () => {
         if (settings.isAutoplay && realCardsLength > cardsCount) {
             startAutoPlay();
         }
-    }
+    };
+
     if (!settings.isEffectFadeOut) shuffleCard();    
 }
 // window.addEventListener('mousewheel', this.onWheel)
@@ -357,15 +377,3 @@ function infinitySlider(selector, settings) {  // selector - шлях до сл�
 // window.addEventListener('mousemove', this.onTouchMove)
 // window.addEventListener('mouseup', this.onTouchUp)
 
-/** Drag`n`drop
- * mousedown - початок Drag`n`drop
- * mousemove - сам момент перетягування
- * mouseup - кінець Drag`n`drop
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * */
