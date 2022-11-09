@@ -87,6 +87,16 @@ export const files = () => {
         stream: true
     }))
 }
+export const php = () => { 
+    return gulp
+    .src([
+        "src/php/*.*"
+    ], {dot: true}) // все файлы которые начинаються с точки
+    .pipe(gulp.dest("docs/php"))
+    .pipe(browserSync.reload({
+        stream: true
+    }))
+}
 
 export const fonts = () => { // для шрифтов
     return gulp
@@ -122,6 +132,7 @@ export const delDocs = () => { // для удаления папки Docs
 export const watch = () => { // следит за любымими изменениями в проекте
     gulp.watch("src/sass/**/*.sass", gulp.parallel(css)) // в случае изменения паралельно вызывай css файл
     gulp.watch("src/js/**/*.js", gulp.parallel(js)) // в случае изменения паралельно вызывай js файл
+    gulp.watch("src/php/**/*.php", gulp.parallel(php)) // в случае изменения паралельно вызывай js файл
     gulp.watch("src/pug/**/*.pug", gulp.parallel(html)) // в случае изменения паралельно вызывай html файл
     gulp.watch("src*.*", gulp.parallel(files)) // в случае изменения паралельно вызывай html файл
     gulp.watch("src/fonts/**/*.*", gulp.parallel(fonts)) // в случае изменения паралельно вызывай html файл
@@ -135,6 +146,7 @@ export default gulp.series ( //запускает все таски
         html,
         css,
         js,
+        php,
         files,
         fonts,
         images,
