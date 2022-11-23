@@ -49,72 +49,72 @@
             description: "Front-end Developer"
         }
     }
--
-    let worksPhotos = { // All Branding Design Development Strategy
-        one: {
-            src:"img/1.jpg",
-            alt:"Hair Dresser",
-            title: "Hair Dresser",
-            category: "strategy branding",
-            price: "50 $"
-        },
-        two: {
-            src:"img/2.jpg",
-            alt:"Hair Dresser",
-            title: "Pigeon",
-            category: "development",
-            price: "60 $"
-        },
-        three: {
-            src:"img/3.jpg",
-            alt:"Telephone",
-            title: "Telephone",
-            category: "design",
-            price: "35 $"
-        },
-        four: {
-            src:"img/4.jpg",
-            alt:"Camera",
-            title: "Camera",
-            category: "branding",
-            price: "70 $"
-        },
-        five: {
-            src:"img/5.jpg",
-            alt:"Bike",
-            title: "Bike",
-            category: "strategy",
-            price: "68 $"
-        },
-        six: {
-            src:"img/6.jpg",
-            alt:"Notebook",
-            title: "Notebook",
-            category: "development",
-            price: "300 $"
-        },
-        seven: {
-            src:"img/7.jpg",
-            alt:"Glasses",
-            title: "Glasses",
-            category: "design",
-            price: "15 $"
-        },
-        eight: {
-            src:"img/8.jpg",
-            alt:"office",
-            title: "Оffice",
-            category: "branding development",
-            price: "5 $"
-        },
-        nine: {
-            src:"img/9.jpg",
-            alt:"entertainment",
-            title: "Entertainment",
-            category: "strategy",
-            price: "40 $"
-        }
-    }
+//- -
+//-     let worksPhotos = { // All Branding Design Development Strategy
+//-         one: {
+//-             src:"img/1.jpg",
+//-             alt:"Hair Dresser",
+//-             title: "Hair Dresser",
+//-             category: "strategy branding",
+//-             price: "50 $"
+//-         },
+//-         two: {
+//-             src:"img/2.jpg",
+//-             alt:"Hair Dresser",
+//-             title: "Pigeon",
+//-             category: "development",
+//-             price: "60 $"
+//-         },
+//-         three: {
+//-             src:"img/3.jpg",
+//-             alt:"Telephone",
+//-             title: "Telephone",
+//-             category: "design",
+//-             price: "35 $"
+//-         },
+//-         four: {
+//-             src:"img/4.jpg",
+//-             alt:"Camera",
+//-             title: "Camera",
+//-             category: "branding",
+//-             price: "70 $"
+//-         },
+//-         five: {
+//-             src:"img/5.jpg",
+//-             alt:"Bike",
+//-             title: "Bike",
+//-             category: "strategy",
+//-             price: "68 $"
+//-         },
+//-         six: {
+//-             src:"img/6.jpg",
+//-             alt:"Notebook",
+//-             title: "Notebook",
+//-             category: "development",
+//-             price: "300 $"
+//-         },
+//-         seven: {
+//-             src:"img/7.jpg",
+//-             alt:"Glasses",
+//-             title: "Glasses",
+//-             category: "design",
+//-             price: "15 $"
+//-         },
+//-         eight: {
+//-             src:"img/8.jpg",
+//-             alt:"office",
+//-             title: "Оffice",
+//-             category: "branding development",
+//-             price: "5 $"
+//-         },
+//-         nine: {
+//-             src:"img/9.jpg",
+//-             alt:"entertainment",
+//-             title: "Entertainment",
+//-             category: "strategy",
+//-             price: "40 $"
+//-         }
+//-     }
 
 -
     let blogPosts = {
@@ -165,18 +165,18 @@ mixin aboutCard (item)
                 p.employee-name #{item.employeeName}
                 p.description.roboto #{item.description}
 
-mixin worksPhoto (items)
-    //- -let idAtr = 0
-    for item in items
-        figure(data-id=item.title class=item.category)._anim-show.photo-card
-            figcaption.relative
-                .works-img
-                    img(src=item.src, alt=item.alt, data-src="lazy.svg")
-                .works-description.flex
-                    p.works-photo__title #{item.title}
-                    p.works-photo__price #{item.price}
-                    p.works-photo__description.roboto #{item.category}
-                    a.works-photo__btn.roboto(href="#") add to card
+//- mixin worksPhoto (items)
+//-     //- -let idAtr = 0
+//-     for item in items
+//-         figure(data-id=item.title class=item.category)._anim-show.photo-card
+//-             figcaption.relative
+//-                 .works-img
+//-                     img(src=item.src, alt=item.alt, data-src="lazy.svg")
+//-                 .works-description.flex
+//-                     p.works-photo__title #{item.title}
+//-                     p.works-photo__price #{item.price}
+//-                     p.works-photo__description.roboto #{item.category}
+//-                     a.works-photo__btn.roboto(href="#") add to card
 
 mixin blogPost (item, myClass)
     .post

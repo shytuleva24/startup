@@ -35,6 +35,10 @@
 
 class InfinitySlider {
     constructor(selector, settings = {}) {
+        this.settings = {
+            ...InfinitySlider.defaultSettings,
+            ...settings
+        };
         this.slider = document.querySelector(selector);
         this.positionCards = 0;
         this.sliderContainer = this.slider.querySelector(".slider-container");
@@ -52,31 +56,11 @@ class InfinitySlider {
         this.maxHeight;
         this.sliderDots;
         this.touchPoint;
-        // this.defaultSettings = {
-        //     isSlidesToScrollAll: false,
-        //     gap: 0,
-        //     isArrows: false,
-        //     isDots: false,
-        //     distanceToDots: 0,
-        //     isAutoplay: false,
-        //     autoplaySpeed: 3000,
-        //     baseCardWidth: this.widthSliderContainer,
-        //     transitionCard: "all 1s ease-in-out",
-        //     isEffectFadeOut: false
-        // };
-        // this.settings = {
-        //     ...this.defaultSettings,
-        //     ...settings
-        // };
-        InfinitySlider.defaultSettings.baseCardWidth = this.widthSliderContainer;
-        this.settings = {
-            ...InfinitySlider.defaultSettings,
-            ...settings
-        };
+        // InfinitySlider.defaultSettings.baseCardWidth = this.widthSliderContainer;
     };
 
     static defaultSettings = {
-        isSlidesToScrollAll: false,
+        // isSlidesToScrollAll: false,
         gap: 0,
         isArrows: false,
         isDots: false,
@@ -124,68 +108,67 @@ class InfinitySlider {
         }
         if (this.settings.isDots && this.realCardsLength > 1) {
             this.creationDots();
-            this.sliderDots = document.querySelectorAll('.slider-dot')
+            this.sliderDots = document.querySelectorAll('.slider-dot');
             for (let i = 0; i < this.sliderCards.length; i++) {
-                if (this.sliderCards[i].classList.contains("active")) {
-                    this.sliderDots[i].classList.remove("active");
-                    this.sliderCards[i].classList.remove("active");
+                if (this.sliderCards[i].classList.contains("activeFade")) {
+                    this.sliderDots[i].classList.remove("activeFade");
+                    this.sliderCards[i].classList.remove("activeFade");
                 }
             }
-            this.sliderDots[0].classList.add("active");
-            this.sliderCards[0].classList.add("active");
+            this.sliderDots[0].classList.add("activeFade");
+            this.sliderCards[0].classList.add("activeFade");
         }
 
-        if (!this.settings.isEffectFadeOut) this.creationClons();
+        if (!this.settings.isEffectFadeOut) {
+            this.creationClons();
+            this.shuffleCard();
+        }
+
         this.sliderCards = this.sliderContainer.children;
         this.heightCards = 0;
         for (let i = 0; i < this.sliderCards.length; i++) {
-            // this.sliderCards[i].style.transition = 'none';
             this.sliderCards[i].style.width = this.widthCards + "px";
             this.sliderCards[i].style.position = "absolute";
             this.maxHeight = this.sliderCards[i].getBoundingClientRect().height;
             if (this.heightCards < this.maxHeight) {
                 this.heightCards = this.maxHeight;
             }
+            this.sliderCards[i].style.transition = 'none';
             setTimeout(() => {
                 this.sliderCards[i].style.transition = this.settings.transitionCard;
             }, 1);
         }
 
-        if (this.settings.isDots) {
-            this.sliderContainer.style.height = this.heightCards + this.settings.distanceToDots + 'px';
-        } else {
-            this.sliderContainer.style.height = this.heightCards + 'px';
-        }
-
-        this.slider.addEventListener('touchend', () => {
-            if (this.settings.isAutoplay && this.realCardsLength > this.cardsCount) {
-                this.startAutoPlay();
-            }
-        });
-
+        this.settings.isDots ? this.sliderContainer.style.height = this.heightCards + this.settings.distanceToDots + 'px' : this.sliderContainer.style.height = this.heightCards + 'px';
+        
         this.sliderDots = document.querySelectorAll('.slider-dot');
         this.sliderDots.forEach(element => {
             element.onclick = () => {
                 clearInterval(localStorage[this.slider.id + "Interval"]);
                 for (let index = 0; index < this.realCardsLength; index++) {
-                    this.sliderDots[index].classList.remove("active");
-                    this.sliderCards[index].classList.remove("active");
+                    this.sliderDots[index].classList.remove("activeFade");
+                    this.sliderCards[index].classList.remove("activeFade");
                 }
-                this.sliderCards[element.dataset.order].classList.add("active");
-                element.classList.add("active");
+                this.sliderCards[element.dataset.order].classList.add("activeFade");
+                element.classList.add("activeFade");
             }
         });
-
         if (this.settings.isAutoplay && this.realCardsLength > this.cardsCount) {
             this.startAutoPlay();
         }
+        this.slider.addEventListener('touchend', () => {
+            if (this.settings.isAutoplay && this.realCardsLength > this.cardsCount) {
+                this.startAutoPlay();
+            }
+        });
+        
         this.touchSlider = this.touchSlider.bind(this);
 
-        this.slider.ontouchstart = (e) => {
+        this.slider.addEventListener('touchstart', (e) => {
             this.touchPoint = e.touches[0].pageX;
             this.slider.addEventListener('touchmove', this.touchSlider);
             clearInterval(localStorage[this.slider.id + "Interval"]);
-        };
+        });
 
         this.slider.onmouseenter = () => {
             clearInterval(localStorage[this.slider.id + "Interval"]);
@@ -196,7 +179,6 @@ class InfinitySlider {
                 this.startAutoPlay();
             }
         };
-        if (!this.settings.isEffectFadeOut) this.shuffleCard();
     }
 
     creationClons() {
@@ -204,20 +186,20 @@ class InfinitySlider {
         do {
             this.cloneCard = this.sliderCards[this.sliderCards.length - counter].cloneNode(true);
             this.cloneCard.classList.add("clone");
-            // this.cloneCard.style.transition = 'none';
+            this.cloneCard.style.transition = 'none';
             this.sliderContainer.insertAdjacentElement("afterbegin", this.cloneCard);
-            counter++;
             this.realCardsLength = this.sliderCards.length - this.slider.querySelectorAll('.clone').length
+            counter++;
         } while (counter <= this.realCardsLength && this.settings.isSlidesToScrollAll);
-
+        
         if (this.settings.isSlidesToScrollAll) {
             counter = 0;
-            while (this.counter < this.realCardsLength) {
+            while (counter < this.realCardsLength) {
                 this.cloneCard = this.sliderCards[counter].cloneNode(true);
                 this.cloneCard.classList.add("clone");
-                // this.cloneCard.style.transition = 'none';
+                this.cloneCard.style.transition = 'none';
                 this.sliderContainer.insertAdjacentElement("beforeend", this.cloneCard);
-                counter++;
+                counter++;            
             }
         }
     }
@@ -293,7 +275,7 @@ class InfinitySlider {
         this.sliderCards = this.sliderContainer.children;
         let slideIndex = 0;
         for (let i = 0; i < this.sliderCards.length; i++) {
-            if (this.sliderCards[i].classList.contains("active")) {
+            if (this.sliderCards[i].classList.contains("activeFade")) {
                 slideIndex = i;
             }
         }
@@ -303,11 +285,11 @@ class InfinitySlider {
                     this.sliderContainer.insertAdjacentElement("afterbegin", this.sliderCards[this.sliderCards.length - 1]);
                 }
             } else if (this.settings.isEffectFadeOut) {
-                this.sliderCards[slideIndex].classList.remove("active");
-                this.sliderDots[slideIndex].classList.remove("active");
-                this.sliderCards[slideIndex - 1] ? slideIndex -= 1 : slideIndex = this.sliderCards.length - 1;
-                setTimeout(() => this.sliderCards[slideIndex].classList.add("active"), 1000);
-                setTimeout(() => this.sliderDots[slideIndex].classList.add("active"), 1000);
+                setTimeout(() => this.sliderCards[slideIndex].classList.add("activeFade"), 800);
+                setTimeout(() => this.sliderDots[slideIndex].classList.add("activeFade"), 800);
+                this.sliderCards[slideIndex].classList.remove("activeFade");
+                this.sliderDots[slideIndex].classList.remove("activeFade");
+                this.sliderCards[slideIndex - 1] ? slideIndex-- : slideIndex = this.sliderCards.length - 1;
             } else {
                 this.sliderCards[this.sliderCards.length - 1].remove();
                 let cloneLast = this.sliderCards[this.sliderCards.length - 1].cloneNode(true);
@@ -321,11 +303,11 @@ class InfinitySlider {
                     this.sliderContainer.insertAdjacentElement("beforeend", this.sliderCards[0]);
                 }
             } else if (this.settings.isEffectFadeOut) {
-                this.sliderCards[slideIndex].classList.remove("active");
-                this.sliderDots[slideIndex].classList.remove("active");
+                setTimeout(() => this.sliderCards[slideIndex].classList.add("activeFade"), 800);
+                setTimeout(() => this.sliderDots[slideIndex].classList.add("activeFade"), 800);
+                this.sliderCards[slideIndex].classList.remove("activeFade");
+                this.sliderDots[slideIndex].classList.remove("activeFade");
                 this.sliderCards[slideIndex + 1] ? slideIndex++ : slideIndex = 0
-                setTimeout(() => this.sliderCards[slideIndex].classList.add("active"), 1000);
-                setTimeout(() => this.sliderDots[slideIndex].classList.add("active"), 1000);
             } else {
                 this.sliderCards[0].remove();
                 let cloneFirst = this.sliderCards[0].cloneNode(true);
@@ -342,17 +324,17 @@ class InfinitySlider {
         if (this.settings.isEffectFadeOut) {
             let slideIndex = 0;
             for (let i = 0; i < this.sliderCards.length; i++) {
-                if (this.sliderCards[i].classList.contains("active")) {
+                if (this.sliderCards[i].classList.contains("activeFade")) {
                     slideIndex = i;
                 }
             }
             const setActive = (index) => {
-                setTimeout(() => this.sliderCards[index].classList.add("active"), 1000);
-                setTimeout(() => this.sliderDots[index].classList.add("active"), 1000);
+                setTimeout(() => this.sliderCards[index].classList.add("activeFade"), 1000);
+                setTimeout(() => this.sliderDots[index].classList.add("activeFade"), 1000);
             }
             this.sliderInterval = setInterval(() => {
-                this.sliderCards[slideIndex].classList.remove("active");
-                this.sliderDots[slideIndex].classList.remove("active");
+                this.sliderCards[slideIndex].classList.remove("activeFade");
+                this.sliderDots[slideIndex].classList.remove("activeFade");
                 this.sliderCards[slideIndex + 1] ? slideIndex++ : slideIndex = 0
                 setActive(slideIndex);
             }, this.settings.autoplaySpeed);
@@ -380,8 +362,8 @@ const sliderBoys = new InfinitySlider(".slider", {
     isArrows: true,
     isSlidesToScrollAll: true,
     baseCardWidth: "263rem",
-    isAutoplay: true,
     gap: 20,
+    isAutoplay:true,
     autoplaySpeed: 5000,
     transitionCard: "all 1.5s ease-in-out",
 });
@@ -390,17 +372,17 @@ const sliderBrands = new InfinitySlider(".slider-brands", {
     gap: 45,
     isAutoplay: true,
     autoplaySpeed: 5000,
-    transitionCard: "all 3s ease",
     baseCardWidth: "127rem",
+    transitionCard: "all 1.3s ease-in-out",
 });
 
 const sliderReviews = new InfinitySlider(".reviews.slider", {
-    isAutoplay: true,
-    autoplaySpeed: 6000,
+    // isAutoplay: true,
+    // autoplaySpeed: 6000,
     isDots: true,
     distanceToDots: 40,
     isEffectFadeOut: true,
-    transitionCard: "all .8s ease-in-out",
+    transitionCard: "all 1s ease-in-out",
 });
 
 sliderBoys.init();

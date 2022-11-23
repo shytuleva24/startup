@@ -58,6 +58,33 @@ footer
             p 
                 a.popap-accept(href="#") accept
                 a.popap-decline(href="#") decline
+.popup.popup-basket#popupBasket
+    .popup_body 
+        .popup_content
+            a.popup-close.close-popup(href="#") X
+            .popup-basket
+                h3.roboto  you shopping basket 
+                .products
+                    table.products-head
+                        thead
+                            tr 
+                                th.align-left photo
+                                th name 
+                                th price 
+                                th delite 
+                                th amount 
+                                th.total-price-product total price
+                        tbody.products-container
+                    .flex.total-container
+                        p Total price:
+                        p.total-price-basket
+                            //- tr.total-price
+                            //-     td(colspan=5) Total price:
+                            //-     td.total-price-basket
+                p.product-none There are no items in your cart
+                p.buttons 
+                    a.popap-checkout(href="#") checkout
+                    a.popap-cancel.close-popup(href="#") cancel
 
 
 

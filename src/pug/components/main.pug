@@ -47,8 +47,7 @@ main
             nav.roboto.sub-title.works-nav._anim-show
                 ul.works-menu.flex
                     +menu(worksMenu, "menu-category")
-            .works-photo
-                +worksPhoto(worksPhotos)
+            .works-photo.shop-block
     section.parallax._anim-no-hidelax.advertising
         .wrapper.text-center
             p.roboto Do you like OUR WORK so far? Let's talk about YOUR PROJECT!
@@ -105,16 +104,16 @@ main
                         p.contact-descr.roboto 
                             a.roboto(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
                 .contact-form._anim-show.anim_right
-                    form.flex(action="index.html", method="post") 
+                    form.flex#contactForms(action="php/getStarted.php", method="post") 
                         .name-mail.flex
-                            input#userName(type="name", name="name", placeholder="Your name" required)
-                            input#userMail(type="email", name="email", placeholder="Your E-mail" required)
+                            input#userName(type="name", name="rol", placeholder="Your role")
+                            input#userMail(type="email", name="email", placeholder="Your E-mail")
                         .phone-subj.flex
-                            input#userTel(type="tel", name="tel", placeholder="Your phone" required)
-                            input#userCompany(type="text", name="company", placeholder="Company name" required)
+                            input#userTel(type="tel", name="tel", placeholder="Your phone")
+                            input#userCompany(type="text", name="company", placeholder="Company name")
                         .teaxtarea
-                            textarea#userMessage(name="message", rows="6", placeholder="Write your message" required) 
+                            textarea#userMessage(name="message", rows="6", placeholder="Write your message") 
                         .send-warn.flex
-                            input.popup-link#messageSend(type="submit", value="Send message" href="#contactForm")
+                            input#messageSend(type="submit", value="Send message" href="#contactForm")
                             span * 
                             p.roboto We’ll contact you as as possible. We don’t reply on Monday.

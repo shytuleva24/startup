@@ -1,102 +1,104 @@
-const popupLinks = document.querySelectorAll('.popup-link');
-const body = document.querySelector('body');
-const lockPadding = document.querySelectorAll(".lock-padding");
-
-let unlock = true;
-
-const timeout = 800;
-
-if (popupLinks.length > 0) {
-    for (let index = 0; index < popupLinks.length; index++) {
-        const popupLink = popupLinks[index];
-        popupLink.addEventListener("click", function (e) {
-            const popupName = popupLink.getAttribute('href').replace('#', '');
-            const curentPopup = document.getElementById(popupName);
-            popupOpen(curentPopup);
-            e.preventDefault();
-        });
-    }
-}
-
-const popupCloseIcon = document.querySelectorAll('.close-popup');
-if (popupCloseIcon.length > 0) {
-    for (let index = 0; index < popupCloseIcon.length; index++) {
-        const el = popupCloseIcon[index];
-        el.addEventListener('click', function (e) {
-            popupClose(el.closest('.popup'));
-            e.preventDefault();
-        });
-    }
-}
-
-function popupOpen(curentPopup) {
-    if (curentPopup && unlock) {
-        const popupActive = document.querySelector('.popup.open');
-        if (popupActive) {
-            popupClose(popupActive, false);
-        } else {
-            bodyLock();
+function popap () {
+    
+    const popupLinks = document.querySelectorAll('.popup-link');
+    const body = document.querySelector('body');
+    const lockPadding = document.querySelectorAll(".lock-padding");
+    let unlock = true;
+    const timeout = 800;
+    
+    if (popupLinks.length > 0) {
+        for (let index = 0; index < popupLinks.length; index++) {
+            const popupLink = popupLinks[index];
+            // const bodyPopap = popupLink.querySelectorAll(".popup_content");
+            popupLink.addEventListener("click", function (e) {
+                const popupName = popupLink.getAttribute('href').replace('#', '');
+                const curentPopup = document.getElementById(popupName);
+                popupOpen(curentPopup);
+                e.preventDefault();
+            });
         }
-        curentPopup.classList.add('open');
-        curentPopup.addEventListener("click", function (e) {
-            if (!e.target.closest('.popup_content')) {
-                popupClose(e.target.closest('.popup'));
+    }
+    
+    const popupCloseIcon = document.querySelectorAll('.close-popup');
+    if (popupCloseIcon.length > 0) {
+        for (let index = 0; index < popupCloseIcon.length; index++) {
+            const el = popupCloseIcon[index];
+            el.addEventListener('click', function (e) {
+                popupClose(el.closest('.popup'));
+                e.preventDefault();
+            });
+        }
+    }
+    
+    function popupOpen(curentPopup) {
+        if (curentPopup && unlock) {
+            const popupActive = document.querySelector('.popup.open');
+            if (popupActive) {
+                popupClose(popupActive, false);
+            } else {
+                bodyLock();
             }
-        });
-    }
-}
-
-function popupClose(popupActive, doUnlock = true) {
-    if (unlock) {
-        popupActive.classList.remove('open');
-        if (doUnlock) {
-            bodyUnLock();
+            curentPopup.classList.add('open');
+            curentPopup.addEventListener("click", function (e) {
+                if (!e.target.closest('.popup_content')) {
+                    popupClose(e.target.closest('.popup'));
+                }
+            });
         }
     }
-}
-
-function bodyLock() {
-    const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px';
-
-    if (lockPadding.length > 0) {
-        for (let index = 0; index < lockPadding.length; index++) {
-            const el = lockPadding[index];
-            el.style.paddingRight = lockPaddingValue;
+    
+    function popupClose(popupActive, doUnlock = true) {
+        if (unlock && popupActive) {
+            popupActive.classList.remove('open');
+            if (doUnlock) {
+                bodyUnLock();
+            }
         }
     }
-    body.style.paddingRight = lockPaddingValue;
-    body.classList.add('lock');
-
-    unlock = false;
-    setTimeout(function () {
-        unlock = true;
-    }, timeout);
-}
-
-function bodyUnLock() {
-    setTimeout(function () {
+    
+    function bodyLock() {
+        const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px';
+    
         if (lockPadding.length > 0) {
             for (let index = 0; index < lockPadding.length; index++) {
                 const el = lockPadding[index];
-                el.style.paddingRight = '0px';
+                el.style.paddingRight = lockPaddingValue;
             }
         }
-        body.style.paddingRight = '0px';
-        body.classList.remove('lock');
-    }, timeout);
-
-    unlock = false;
-    setTimeout(function () {
-        unlock = true;
-    }, timeout);
-}
-
-document.addEventListener('keydown', function (e) {
-    if (e.which === 27) {
-        const popupActive = document.querySelector('.popup.open');
-        popupClose(popupActive);
+        body.style.paddingRight = lockPaddingValue;
+        body.classList.add('lock');
+    
+        unlock = false;
+        setTimeout(function () {
+            unlock = true;
+        }, timeout);
     }
-});
+    
+    function bodyUnLock() {
+        setTimeout(function () {
+            if (lockPadding.length > 0) {
+                for (let index = 0; index < lockPadding.length; index++) {
+                    const el = lockPadding[index];
+                    el.style.paddingRight = '0px';
+                }
+            }
+            body.style.paddingRight = '0px';
+            body.classList.remove('lock');
+        }, timeout);
+    
+        unlock = false;
+        setTimeout(function () {
+            unlock = true;
+        }, timeout);
+    }
+    
+    document.addEventListener('keydown', function (e) {
+        if (e.which === 27) {
+            const popupActive = document.querySelector('.popup.open');
+            popupClose(popupActive);
+        }
+    });
+}
     
 // blog post 2
 const blogShowMore = document.querySelector('.show-more');

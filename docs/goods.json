@@ -1,0 +1,82 @@
+{
+    "1": {
+        "src":"img/1.jpg",
+        "alt":"Hair Dresser",
+        "title": "Hair Dresser",
+        "category": "strategy branding",
+        "price": "50",
+        "href": "#"
+    },
+    "2": {
+        "src":"img/2.jpg",
+        "alt":"Pigeon",
+        "title": "Pigeon",
+        "category": "development",
+        "price": "60",
+        "href": "#"
+
+    },
+    "3": {
+        "src":"img/3.jpg",
+        "alt":"Telephone",
+        "title": "Telephone",
+        "category": "design",
+        "price": "35",
+        "href": "#"
+
+    },
+    "4": {
+        "src":"img/4.jpg",
+        "alt":"Camera",
+        "title": "Camera",
+        "category": "branding",
+        "price": "70",
+        "href": "#"
+
+    },
+    "5": {
+        "src":"img/5.jpg",
+        "alt":"Bike",
+        "title": "Bike",
+        "category": "strategy",
+        "price": "68",
+        "href": "#"
+
+    },
+    "6": {
+        "src":"img/6.jpg",
+        "alt":"Notebook",
+        "title": "Notebook",
+        "category": "development",
+        "price": "300",
+        "href": "#"
+
+    },
+    "7": {
+        "src":"img/7.jpg",
+        "alt":"Glasses",
+        "title": "Glasses",
+        "category": "design",
+        "price": "15",
+        "href": "#"
+
+    },
+    "8": {
+        "src":"img/8.jpg",
+        "alt":"office",
+        "title": "Оffice",
+        "category": "branding development",
+        "price": "5",
+        "href": "#"
+
+    },
+    "9": {
+        "src":"img/9.jpg",
+        "alt":"entertainment",
+        "title": "Entertainment",
+        "category": "strategy",
+        "price": "40",
+        "href": "#"
+
+    }
+}

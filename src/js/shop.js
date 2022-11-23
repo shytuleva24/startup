@@ -1,58 +1,10 @@
-// const cardsWorksPhoto = document.querySelectorAll('.photo-card');
 // const basketCounter = document.querySelector('.basket-counter');
 // const productContainer = document.querySelector('.products-container');
 // const notProduct = document.querySelector('.product-none');
 // const btnCheckout = document.querySelector('.popap-checkout');
 
 
-// function filterCards () {
-//     const worksMenu = document.querySelectorAll('.menu-category');
-//     let currentCategory;
-    
-//     // let delayTimeAnim = 1.3;
-//     // for (let index = 0; index < cardsWorksPhoto.length; index++) {
-//     //     const element = cardsWorksPhoto[index]; 
-//     //     element.style.transition = `all .3s ease ${delayTimeAnim}s`;
-//     //     delayTimeAnim = delayTimeAnim + 0.2;
-//     // }
 
-//     if (localStorage["currentCategory"]) {
-//         filter(localStorage["currentCategory"], cardsWorksPhoto);
-//         worksMenu.forEach(element => {
-//             if (element.dataset.filter == localStorage["currentCategory"]) {
-//                 element.classList.add('active');
-//             }
-//         });
-//     } 
-
-
-//     function filter (category, items) {
-//         items.forEach(item => {
-//             const isItemFiltered = item.classList.contains(category);
-//             const isShowAll = category === 'all'
-//             if (!isItemFiltered && !isShowAll) {
-//                 item.classList.add('anime');
-//             } else {
-//                 item.classList.remove('anime');
-//             }
-//         });
-//     }
-
-//     worksMenu.forEach(element => {
-//         element.addEventListener('click', (e) => {
-//             worksMenu.forEach(el => {
-//                 el.classList.remove('active');
-//             });
-//             e.preventDefault();
-//             element.classList.add('active');
-//             currentCategory = element.dataset.filter;
-//             filter(currentCategory, cardsWorksPhoto);
-//             localStorage["currentCategory"] = currentCategory;
-//         })
-//     });    
-// }
-
-// filterCards();
 
 
 // class Shop {
@@ -304,16 +256,99 @@ function rand(min, max) {
 
 // new Shop('.works-photo', '.basket').addProduct();
 
-const homeBtn = document.querySelector('#getStarted');
-console.log("eah");
-homeBtn.onclick = function (e) {
-    e.preventDefault();
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", '../docs/php/getStarted.php', true);
-    xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-    xhr.onload = () => {
-        homeBtn.innerHTML = xhr.responseText;
-    }
-    let params = `rol=admin`
-    xhr.send(params);
-}
+// const homeBtn = document.querySelector('#getStarted');
+
+// homeBtn.onclick = function (e) {
+//     e.preventDefault();
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", '../docs/php/getStarted.php', true);
+    // xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+    // xhr.onload = () => {
+    //     homeBtn.innerHTML = xhr.responseText;
+    // }
+    // let params = `rol=admin`
+    // xhr.send(params);
+    // sendAjaxFetch ("POST", '../docs/php/getStarted.php', params = "rol=admin")
+    //     .then(params => {
+            // homeBtn.innerHTML = params;
+            // console.log(params)
+//         })
+// }
+// function sendAjaxFetch (method, url, params = null) {
+//     const headers = {
+        // "Content-Type": "aplication/json"
+        // "Content-Type": "text/html"
+        // "Content-Type": ""
+        // "Content-Type": "application/x-www-form-urlencoded"
+    // }
+//     return fetch(url, {
+//         method: method,
+//         body: JSON.stringify(params),
+//         // body: params,
+//         headers: headers
+//     }).then(response => { // переменная в которую вернулись данные
+//         if (response.ok) return response.text()
+//         return response.then(error => {})
+//     })
+// }
+
+// function sendAjax (url) {
+//     return fetch(url).then(data => {
+//         return data
+//     })
+// }
+
+// fetch('../docs/php/getStarted.php')
+//     .then(data => {
+//         return data;
+//         console.log(data);
+//     })
+
+// const myPromise = new Promise ((resolve, reject) => {
+//     console.log("prepair data...");
+//     setTimeout(() => {
+//         const becendData = {name: "Dmitriy", company: "Hashtag academy"}
+//         resolve(becendData)
+//     }, 2000);
+// })
+
+
+// myPromise.then((becendData) => {
+//     return new Promise ((resolve, reject) => {
+//         setTimeout(function() {
+//             becendData.type = "Education"
+//             resolve(becendData)
+//         }, 2000);
+//     })
+// }).then((becendData) => {console.log('Promise done!')});
+
+// function sendAjax (method, requestURL, params = null) {
+//     return new Promise ((resolve, reject) => {
+//         const xhr = new XMLHttpRequest()
+//         xhr.open(method, requestURL)
+//         xhr.responseType = "json"
+//         xhr.onerror = () => {
+//             reject(xhr.response)
+//         }
+//         xhr.onload = () => {
+//             if(xhr.status == 200) {
+//                 reject(xhr.reject)
+//             } else {
+//                 resolve(xhr.response)
+//             }
+//         }
+//         xhr.send(params)
+//     })
+// }
+
+// fetch('../docs/php/getStarted.php')
+//     .then(data => {
+//         return data.json()
+//     })
+    // .then(data => {
+    //     console.log(data[0])
+    // })
+
+
+// let test = sendAjaxFetch("https://jsonplaceholder.typicode.com/users")
+// console.log(test)

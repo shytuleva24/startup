@@ -84,13 +84,9 @@
 // slider
 .about-slider
     opacity: 0
-    transition: all .8s ease 1.5s
-    justify-content: space-between
-
 .about-card
     cursor: pointer
     width: 100%
-    // position: absolute
     min-width: 263px
     img
         width: 100% 
@@ -183,25 +179,19 @@
     color: $mainColorText
     &:hover
         color: $mainColorSite
-.menu-category.active
+.menu-category.active-category
         color: $mainColorSite
 .works-photo
     display: flex
     gap: 30rem
     flex-wrap: wrap
-    // display: grid
-    // grid-gap: 30rem
-    // grid-template-columns: repeat(1, 1fr)
-    // +media(500)
-    //     grid-template-columns: repeat(2, 1fr)
-    // +media(876)
-    //     grid-template-columns: repeat(3, 1fr)
 .photo-card
     max-width: 100%
     transition: all 1s ease 1.3s
     cursor: pointer
-    opacity: 0
-    transform: rotate(-180deg) scale(0.3)
+    opacity: 1
+    transform: rotate(0) scale(1)
+    // transform: rotate(-180deg) scale(0.3)
     +media(500)
         max-width: calc( ( 100% - 30rem ) / 2 )
     +media(876)
@@ -213,21 +203,13 @@
 .photo-card._active
     opacity: 1
     transform: rotate(0) scale(1)
-.photo-card.anime
+.photo-card.anim-card
     display: none
-    // width: 0
-    // height: 0
-    // opacity: 0
-    // gap: 0
-    // margin: 0
-    // transform: rotate(-180deg) scale(0.3)        
 
 .works-img
     width: 100%
-    img
-        display: block
-        width: 100%
-        height: 100%
+    display: block
+    height: 100%
 
 .works-description
     visibility: hidden
@@ -400,7 +382,6 @@
 
 .read-more-content
     transition: all .3s ease
-    // max-height: 0px
     p.text-info
         padding: 0
         max-height: 0px
@@ -409,7 +390,6 @@
 
 .blog-post_two.active
     .read-more-content
-        // max-height: 10000rem
         p.text-info
             color: $mainColorText
             padding: 7rem 0
@@ -453,13 +433,13 @@
     background-color: #ddd
     transition: all .5s ease
     cursor: pointer
-.slider-dot.active
+.slider-dot.activeFade
     background-color: $mainColorSite
 .review
     opacity: 0
     visibility: hidden
     transition: all .5s ease
-.review.active
+.review.activeFade
     opacity: 1
     visibility: visible
 
