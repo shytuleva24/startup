@@ -377,8 +377,8 @@ const sliderBrands = new InfinitySlider(".slider-brands", {
 });
 
 const sliderReviews = new InfinitySlider(".reviews.slider", {
-    // isAutoplay: true,
-    // autoplaySpeed: 6000,
+    isAutoplay: true,
+    autoplaySpeed: 6000,
     isDots: true,
     distanceToDots: 40,
     isEffectFadeOut: true,

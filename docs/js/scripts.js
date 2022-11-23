@@ -398,8 +398,8 @@ const sliderBrands = new InfinitySlider(".slider-brands", {
 });
 
 const sliderReviews = new InfinitySlider(".reviews.slider", {
-    // isAutoplay: true,
-    // autoplaySpeed: 6000,
+    isAutoplay: true,
+    autoplaySpeed: 6000,
     isDots: true,
     distanceToDots: 40,
     isEffectFadeOut: true,
@@ -416,50 +416,53 @@ window.onresize = function () {
     sliderReviews.init();        
 };
 
-// const messageSend = document.querySelector('#messageSend');
-// const popapAccept = document.querySelector('.popap-accept');
-// const popapDecl = document.querySelector('.popap-decline');
-// const contactForm = document.querySelector('#contactForm');
-// let userInfo = {};
+function confirmForm() {
+    const messageSend = document.querySelector('#messageSend');
+    const popapAccept = document.querySelector('.popap-accept');
+    const popapDecl = document.querySelector('.popap-decline');
+    const contactForm = document.querySelector('#contactForm');
+    let userInfo = {};
 
-// messageSend.onclick = function (e) {
-//     e.preventDefault();
-//     userInfo = {
-//         userName: document.querySelector('#userName').value,
-//         userMail: document.querySelector('#userMail').value,
-//         userTel: document.querySelector('#userTel').value,
-//         userCompany: document.querySelector('#userCompany').value,
-//         userMessage: document.querySelector('#userMessage').value
-//     };
+    messageSend.onclick = function (e) {
+        e.preventDefault();
+        userInfo = {
+            userName: document.querySelector('#userName').value,
+            userMail: document.querySelector('#userMail').value,
+            userTel: document.querySelector('#userTel').value,
+            userCompany: document.querySelector('#userCompany').value,
+            userMessage: document.querySelector('#userMessage').value
+        };
 
-//     document.querySelector('.user-name').innerHTML = userInfo.userName;
-//     document.querySelector('.user-mail').innerHTML = userInfo.userMail;
-//     document.querySelector('.user-phone').innerHTML = userInfo.userTel;
-//     document.querySelector('.user-company').innerHTML = userInfo.userCompany;
-//     document.querySelector('.user-message').innerHTML = userInfo.userMessage;
+        document.querySelector('.user-name').innerHTML = userInfo.userName;
+        document.querySelector('.user-mail').innerHTML = userInfo.userMail;
+        document.querySelector('.user-phone').innerHTML = userInfo.userTel;
+        document.querySelector('.user-company').innerHTML = userInfo.userCompany;
+        document.querySelector('.user-message').innerHTML = userInfo.userMessage;
+
+    }
+    popapDecl.onclick = function (e) {
+        e.preventDefault();
+        contactForm.classList.remove('open');
+        bodyUnLock();
+    }
+
+    popapAccept.onclick = function (e) {
+        e.preventDefault();
+        if (localStorage.userMessage) {
+            let userMessage = JSON.parse(localStorage.getItem("userMessage"));
+            let rewrite = confirm("Rewrite your message? " + userMessage.userMessage);
+            console.log(rewrite)
+            if (rewrite) {
+                localStorage.setItem("userMessage", JSON.stringify(userInfo));
+            }
+        } else {
+            localStorage.setItem("userMessage", JSON.stringify(userInfo));
+        }
+        contactForm.classList.remove('open');
+        bodyUnLock();
+    }
     
-// }
-// popapDecl.onclick = function (e) {
-//     e.preventDefault();
-//     contactForm.classList.remove('open');
-//     bodyUnLock();
-// }
-
-// popapAccept.onclick = function (e) {
-//     e.preventDefault();
-//     if (localStorage.userMessage) {
-//         let userMessage = JSON.parse(localStorage.getItem("userMessage"));
-//         let rewrite = confirm("Rewrite your message? " + userMessage.userMessage);
-//         console.log(rewrite)
-//         if (rewrite) {
-//             localStorage.setItem("userMessage", JSON.stringify(userInfo));
-//         }
-//     } else {
-//         localStorage.setItem("userMessage", JSON.stringify(userInfo));
-//     }
-//     contactForm.classList.remove('open');
-//     bodyUnLock();
-// }
+}
 // window.onload = function () {
     // const pos = new Promise((resolve, reject) => {
     //     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -480,25 +483,27 @@ window.onresize = function () {
 //     })    
 // }
 // geo()
-let parallaxStartPos,
-    previousScroll = 0,
-    scrollOffsetY = 1;
-const parallaxBG = document.querySelectorAll(".parallax");
-const homePage = document.querySelector(".home-page");
-
-function moveBackground(e) { // на комп
-    if (window.innerWidth > 1024) {
-        let Y = e.pageY - window.pageYOffset - e.target.getBoundingClientRect().top + 1;
-        let offsetX = 50 + (e.pageX / window.innerWidth * 20);
-        let offsetY = 50 + (Y / window.innerHeight * 10);
-        e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
+function parallaxEffect() {
+    let parallaxStartPos,
+        previousScroll = 0,
+        scrollOffsetY = 1;
+    const parallaxBG = document.querySelectorAll(".parallax");
+    
+    function moveBackground(e) { // на комп
+        if (window.innerWidth > 1024) {
+            let Y = e.pageY - window.pageYOffset - e.target.getBoundingClientRect().top + 1;
+            let offsetX = 50 + (e.pageX / window.innerWidth * 20);
+            let offsetY = 50 + (Y / window.innerHeight * 10);
+            e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
+        }
     }
+    parallaxBG.forEach(element => {
+        // element.style.backgroundPosition = `center`;
+        // element.style.backgroundSize = `130% auto`;
+        element.addEventListener("mousemove", function (e) { moveBackground(e); });
+    });
 }
-parallaxBG.forEach(element => {
-    // element.style.backgroundPosition = `center`;
-    // element.style.backgroundSize = `130% auto`;
-    element.addEventListener("mousemove", function (e) { moveBackground(e); });
-});
+
 
 // window.addEventListener('scroll', function() { // на планшет
 //     let currentScroll = window.pageYOffset;
@@ -515,112 +520,97 @@ parallaxBG.forEach(element => {
 //     previousScroll = currentScroll;
 // });
 
-function popap () {
-    
-    const popupLinks = document.querySelectorAll('.popup-link');
-    const body = document.querySelector('body');
-    const lockPadding = document.querySelectorAll(".lock-padding");
-    let unlock = true;
-    const timeout = 800;
-    
-    if (popupLinks.length > 0) {
-        for (let index = 0; index < popupLinks.length; index++) {
-            const popupLink = popupLinks[index];
-            // const bodyPopap = popupLink.querySelectorAll(".popup_content");
-            popupLink.addEventListener("click", function (e) {
-                const popupName = popupLink.getAttribute('href').replace('#', '');
-                const curentPopup = document.getElementById(popupName);
-                popupOpen(curentPopup);
-                e.preventDefault();
-            });
-        }
+const popupLinks = document.querySelectorAll('.popup-link');
+const body = document.querySelector('body');
+const lockPadding = document.querySelectorAll(".lock-padding");
+let unlock = true;
+const timeout = 800;
+if (popupLinks.length > 0) {
+    for (let index = 0; index < popupLinks.length; index++) {
+        const popupLink = popupLinks[index];
+        // const bodyPopap = popupLink.querySelectorAll(".popup_content");
+        popupLink.addEventListener("click", function (e) {
+            const popupName = popupLink.getAttribute('href').replace('#', '');
+            const curentPopup = document.getElementById(popupName);
+            popupOpen(curentPopup);
+            e.preventDefault();
+        });
     }
-    
-    const popupCloseIcon = document.querySelectorAll('.close-popup');
-    if (popupCloseIcon.length > 0) {
-        for (let index = 0; index < popupCloseIcon.length; index++) {
-            const el = popupCloseIcon[index];
-            el.addEventListener('click', function (e) {
-                popupClose(el.closest('.popup'));
-                e.preventDefault();
-            });
-        }
+}
+const popupCloseIcon = document.querySelectorAll('.close-popup');
+if (popupCloseIcon.length > 0) {
+    for (let index = 0; index < popupCloseIcon.length; index++) {
+        const el = popupCloseIcon[index];
+        el.addEventListener('click', function (e) {
+            popupClose(el.closest('.popup'));
+            e.preventDefault();
+        });
     }
-    
-    function popupOpen(curentPopup) {
-        if (curentPopup && unlock) {
-            const popupActive = document.querySelector('.popup.open');
-            if (popupActive) {
-                popupClose(popupActive, false);
-            } else {
-                bodyLock();
+}
+function popupOpen(curentPopup) {
+    if (curentPopup && unlock) {
+        const popupActive = document.querySelector('.popup.open');
+        if (popupActive) {
+            popupClose(popupActive, false);
+        } else {
+            bodyLock();
+        }
+        curentPopup.classList.add('open');
+        curentPopup.addEventListener("click", function (e) {
+            if (!e.target.closest('.popup_content')) {
+                popupClose(e.target.closest('.popup'));
             }
-            curentPopup.classList.add('open');
-            curentPopup.addEventListener("click", function (e) {
-                if (!e.target.closest('.popup_content')) {
-                    popupClose(e.target.closest('.popup'));
-                }
-            });
+        });
+    }
+}
+function popupClose(popupActive, doUnlock = true) {
+    if (unlock && popupActive) {
+        popupActive.classList.remove('open');
+        if (doUnlock) {
+            bodyUnLock();
         }
     }
-    
-    function popupClose(popupActive, doUnlock = true) {
-        if (unlock && popupActive) {
-            popupActive.classList.remove('open');
-            if (doUnlock) {
-                bodyUnLock();
-            }
+}
+function bodyLock() {
+    const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px';
+    if (lockPadding.length > 0) {
+        for (let index = 0; index < lockPadding.length; index++) {
+            const el = lockPadding[index];
+            el.style.paddingRight = lockPaddingValue;
         }
     }
-    
-    function bodyLock() {
-        const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px';
-    
+    body.style.paddingRight = lockPaddingValue;
+    body.classList.add('lock');
+    unlock = false;
+    setTimeout(function () {
+        unlock = true;
+    }, timeout);
+}
+function bodyUnLock() {
+    setTimeout(function () {
         if (lockPadding.length > 0) {
             for (let index = 0; index < lockPadding.length; index++) {
                 const el = lockPadding[index];
-                el.style.paddingRight = lockPaddingValue;
+                el.style.paddingRight = '0px';
             }
         }
-        body.style.paddingRight = lockPaddingValue;
-        body.classList.add('lock');
-    
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, timeout);
-    }
-    
-    function bodyUnLock() {
-        setTimeout(function () {
-            if (lockPadding.length > 0) {
-                for (let index = 0; index < lockPadding.length; index++) {
-                    const el = lockPadding[index];
-                    el.style.paddingRight = '0px';
-                }
-            }
-            body.style.paddingRight = '0px';
-            body.classList.remove('lock');
-        }, timeout);
-    
-        unlock = false;
-        setTimeout(function () {
-            unlock = true;
-        }, timeout);
-    }
-    
-    document.addEventListener('keydown', function (e) {
-        if (e.which === 27) {
-            const popupActive = document.querySelector('.popup.open');
-            popupClose(popupActive);
-        }
-    });
+        body.style.paddingRight = '0px';
+        body.classList.remove('lock');
+    }, timeout);
+    unlock = false;
+    setTimeout(function () {
+        unlock = true;
+    }, timeout);
 }
-    
+document.addEventListener('keydown', function (e) {
+    if (e.which === 27) {
+        const popupActive = document.querySelector('.popup.open');
+        popupClose(popupActive);
+    }
+});
 // blog post 2
 const blogShowMore = document.querySelector('.show-more');
 const blogTwo = document.querySelector('.blog-post_two');
-
 blogShowMore.addEventListener("click", function (e) {
     e.preventDefault()
     blogTwo.classList.toggle('active');
@@ -631,89 +621,144 @@ blogShowMore.addEventListener("click", function (e) {
     }
 });
 
-// blogHide.addEventListener("click", function (e) {
-//     e.preventDefault()
-//     blogTwo.classList.remove('active');
-// });
-// let patern = /url\(["']?(.+)["']?\)/g;
-const header = document.querySelector('.header');
-const arrowUp = document.querySelector('.arrow-up');
-let lastScrollTop = 0;
+    // blogHide.addEventListener("click", function (e) {
+    //     e.preventDefault()
+    //     blogTwo.classList.remove('active');
+    // });
+window.onload = function () {
+    savedLastVisit();
+    shop();
+    tripleClick();
+    animBlockInScroll();
+    confirmForm();
+    parallaxEffect();
+    const header = document.querySelector('.header');
+    const arrowUp = document.querySelector('.arrow-up');
+    const iconMenu = document.querySelector('.menu-icon');
+    const homeMenuLinks = document.querySelectorAll(".scroll-to");
+    const menuBody = document.querySelector('.menu-body');
+    const homePage = document.querySelector(".home-page");
 
-homePage.style.height = window.innerHeight + "px";
 
-function navMenuBackground() {
-    let st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-        header.classList.add("header-hidden");
-    } else {
-        header.classList.remove("header-hidden");
+    let lastScrollTop = 0;
+
+    homePage.style.height = window.innerHeight + "px";
+
+    function navMenuBackground() {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            header.classList.add("header-hidden");
+        } else {
+            header.classList.remove("header-hidden");
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+
+        if (window.pageYOffset > (window.innerHeight / 4)) {
+            header.style.backgroundColor = "#c0301c";
+        } else {
+            header.style.backgroundColor = "transparent";
+        }
+        if (st > (window.innerHeight / 2)) {
+            arrowUp.classList.add("active");
+        } else {
+            arrowUp.classList.remove("active");
+        }
+
     }
-    lastScrollTop = st <= 0 ? 0 : st;
+    window.addEventListener(`scroll`, navMenuBackground);
+    if (iconMenu) {
+        iconMenu.addEventListener("click", function (e) {
+            document.body.classList.toggle('lock');
+            iconMenu.classList.toggle("open-menu");
+            menuBody.classList.toggle("open-menu");
+        });
 
-    if (window.pageYOffset > (window.innerHeight / 4)) {
-        header.style.backgroundColor = "#c0301c";
-    } else {
-        header.style.backgroundColor = "transparent";
-    }
-    if (st > (window.innerHeight / 2)) {
-        arrowUp.classList.add("active");
-    } else {
-        arrowUp.classList.remove("active");
     }
 
-}
-window.addEventListener(`scroll`, navMenuBackground)
-
-// анимация появления элементов при скролле
-
-const animItems = document.querySelectorAll(`._anim-items`);
-
-if (animItems.length > 0) {
-    window.addEventListener(`scroll`, animOnScroll);
-    window.addEventListener(`touchmove`, animOnScroll);
-    window.addEventListener(`wheel`, animOnScroll);
-
-    function animOnScroll() {
-        animItems.forEach(element => {
-            const animItem = element;
-            const animItemHeight = animItem.offsetHeight;
-            const animItemOffSet = offset(animItem).top;
-            const animStart = 4;
-            let animItemPoint = window.innerHeight - animItemHeight / animStart;
-            if (animItemHeight > window.innerHeight) {
-                animItemPoint = window.innerHeight - window.innerHeight / animStart;
-            }
-            if ((window.pageYOffset > animItemOffSet - animItemPoint) && window.pageYOffset < (animItemOffSet + animItemHeight)) {
-                animItem.classList.add(`_active`);
-            } else {
-                if (!(animItem.classList.contains(`_anim-no-hide`))) {
-                    animItem.classList.remove(`_active`);
-                }
+    if (homeMenuLinks.length > 0) {
+        homeMenuLinks.forEach(link => {
+            link.onclick = function (event) {
+                event.preventDefault();
+                onMenuLinkClick(this.getAttribute("href"));
             }
         });
+
+        function onMenuLinkClick(href) {
+            if (document.querySelector(href)) {
+                const target = document.querySelector(href);
+                let targetLocation = target.getBoundingClientRect().top + window.pageYOffset;
+
+                if (!header.classList.contains("header-hidden") && targetLocation < window.pageYOffset) {
+                    targetLocation = target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight;
+                }
+
+                if (iconMenu.classList.contains("open-menu")) {
+                    document.body.classList.remove('lock');
+                    iconMenu.classList.remove("open-menu");
+                    menuBody.classList.remove("open-menu");
+                }
+                // scrollToBlock(href);
+                window.scrollTo({
+                    top: targetLocation,
+                    behavior: "smooth"
+                });
+            }
+        }
     }
 
-    function offset(el) {
-        const rect = el.getBoundingClientRect();
-        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return {
-            top: rect.top + scrollTop,
-            left: rect.left + scrollLeft
-        };
-    }
 
-    setTimeout(() => {
-        animOnScroll();
-    }, 300)
 }
+
+// let patern = /url\(["']?(.+)["']?\)/g;
+
+// анимация появления элементов при скролле
+function animBlockInScroll() {
+    const animItems = document.querySelectorAll(`._anim-items`);
+
+    if (animItems.length > 0) {
+        window.addEventListener(`scroll`, animOnScroll);
+        window.addEventListener(`touchmove`, animOnScroll);
+        window.addEventListener(`wheel`, animOnScroll);
+
+        function animOnScroll() {
+            animItems.forEach(element => {
+                const animItem = element;
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffSet = offset(animItem).top;
+                const animStart = 4;
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+                if (animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                }
+                if ((window.pageYOffset > animItemOffSet - animItemPoint) && window.pageYOffset < (animItemOffSet + animItemHeight)) {
+                    animItem.classList.add(`_active`);
+                } else {
+                    if (!(animItem.classList.contains(`_anim-no-hide`))) {
+                        animItem.classList.remove(`_active`);
+                    }
+                }
+            });
+        }
+
+        function offset(el) {
+            const rect = el.getBoundingClientRect();
+            let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return {
+                top: rect.top + scrollTop,
+                left: rect.left + scrollLeft
+            };
+        }
+        setTimeout(() => {
+            animOnScroll();
+        }, 300)
+    }
+}
+
 
 
 // localStorage home page
-
-window.onload = function () {
-    popap()
+function savedLastVisit() {
     let titleHome = document.querySelector(".title-home"),
         firstVisit,
         lastVisit,
@@ -744,15 +789,16 @@ window.onload = function () {
         localStorage.lastVisit = new Date();
     }
     lastVisit = localStorage.lastVisit;
-
-    ///////// shop
+}
+///////// shop
+function shop() {
     const basketCounter = document.querySelector('.basket-counter');
     const productContainer = document.querySelector('.products-container');
     const notProduct = document.querySelector('.product-none');
     const btnCheckout = document.querySelector('.popap-checkout');
     const productHead = document.querySelector('.products-head');
     const totaPriceContainer = document.querySelector('.total-container');
-    let basketItems  = {};
+    let basketItems = {};
 
     if (localStorage["basketItems"]) {
         basketItems = JSON.parse(localStorage["basketItems"]);
@@ -864,7 +910,7 @@ window.onload = function () {
     }
     updateCounter();
     showProductsInBusket();
-    
+
     function showTotalPrice() {
         let sumPrice = 0;
         for (const [key, value] of Object.entries(basketItems)) {
@@ -899,19 +945,19 @@ window.onload = function () {
                         <img src="${value.src}", alt="${value.alt}">
                     <td class="name-product">${value.name}</td>
                     <td class="price-product">${value.price}</td>
+                    <td class="count-product">
+                    <div class="flex">
+                    <button class="delite-product"> - </button>
+                    <input class="counter-product" type="number" value="${value.amount}">
+                    <button class="add-product"> + </button>
+                    </div>
+                    </td>
+                    <td class="total-price-product">${value.amount * parseInt(value.price)} $</td>
                     <td>
                         <button class="delite-products"> 
                             <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" version="1.1" viewBox="0 0 24 24" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Icon"><path d="M4.251,9.031c-0,0 0.194,4.655 0.34,8.167c0.106,2.544 2.199,4.552 4.746,4.552c1.68,0 3.646,0 5.326,0c2.547,0 4.64,-2.008 4.746,-4.552c0.146,-3.512 0.34,-8.167 0.34,-8.167c0.018,-0.413 -0.304,-0.763 -0.718,-0.78c-0.413,-0.018 -0.763,0.304 -0.78,0.718c-0,-0 -0.194,4.655 -0.341,8.166c-0.072,1.741 -1.505,3.115 -3.247,3.115c-1.68,0 -3.646,0 -5.326,-0c-1.742,0 -3.175,-1.374 -3.247,-3.115c-0.147,-3.511 -0.341,-8.166 -0.341,-8.166c-0.017,-0.414 -0.367,-0.736 -0.78,-0.718c-0.414,0.017 -0.736,0.367 -0.718,0.78Z"/><path d="M7.459,5.25l0.374,-1.12c0.374,-1.123 1.425,-1.88 2.609,-1.88c0.944,0 2.172,0 3.116,0c1.184,-0 2.235,0.757 2.609,1.88l0.374,1.12l3.459,0c0.414,-0 0.75,0.336 0.75,0.75c0,0.414 -0.336,0.75 -0.75,0.75l-16,0c-0.414,-0 -0.75,-0.336 -0.75,-0.75c0,-0.414 0.336,-0.75 0.75,-0.75l3.459,0Zm7.5,0l-0.215,-0.645c-0.17,-0.511 -0.647,-0.855 -1.186,-0.855c-0.944,-0 -2.172,-0 -3.116,0c-0.539,-0 -1.016,0.344 -1.186,0.855l-0.215,0.645l5.918,0Z"/></g></svg>
                         </button>
                     </td>
-                    <td class="count-product">
-                        <div class="flex">
-                            <button class="delite-product"> - </button>
-                            <input class="counter-product" type="text" value="${value.amount}">
-                            <button class="add-product"> + </button>
-                        </div>
-                    </td>
-                    <td class="total-price-product">${value.amount * parseInt(value.price)} $</td>
                 </tr>
             `;
         }
@@ -921,13 +967,14 @@ window.onload = function () {
         const addProducts = document.querySelectorAll('.add-product');
         const deliteProducts = document.querySelectorAll('.delite-product');
         const deliteAllProducts = document.querySelectorAll('.delite-products');
-    
+
         deliteAllProduct(deliteAllProducts);
-        counterProduct (counterProducts);
-        deliteProduct (deliteProducts);
-        addProduct (addProducts);
+        counterProduct(counterProducts);
+        deliteProduct(deliteProducts);
+        addProduct(addProducts);
     }
-    function addProduct (addProducts) {
+
+    function addProduct(addProducts) {
         addProducts.forEach(element => {
             element.onclick = () => {
                 const cart = element.closest('.product');
@@ -942,7 +989,7 @@ window.onload = function () {
         });
     }
 
-    function deliteProduct (deliteProducts) {
+    function deliteProduct(deliteProducts) {
         deliteProducts.forEach(element => {
             element.onclick = () => {
                 const cart = element.closest('.product');
@@ -958,6 +1005,7 @@ window.onload = function () {
             };
         });
     }
+
     function deliteAllProduct(deliteAllProducts) {
         deliteAllProducts.forEach(element => {
             element.onclick = (e) => {
@@ -965,15 +1013,16 @@ window.onload = function () {
                 const idCart = cart.dataset.id;
                 delete basketItems[idCart];
                 cart.remove();
-                cart.style.display="none"
+                cart.style.display = "none"
                 // showProductsInBusket();
                 showTotalPrice();
                 updateCounter();
                 localStorage["basketItems"] = JSON.stringify(basketItems);
             };
-        });        
+        });
     }
-    function counterProduct (counterProducts) {
+
+    function counterProduct(counterProducts) {
         counterProducts.forEach(element => {
             element.addEventListener('input', function (e) {
                 const cart = element.closest('.product');
@@ -987,7 +1036,6 @@ window.onload = function () {
             });
         });
     }
-
 
     function filterCards() {
         const cardsWorksPhoto = document.querySelectorAll('.photo-card');
@@ -1036,36 +1084,34 @@ window.onload = function () {
             })
         });
     }
-
 }
 
 // tripl click
+function tripleClick() {
+    const tripleClick = document.querySelector(".rock-solid svg")
 
-const tripleClick = document.querySelector(".rock-solid svg")
-
-let timer;
-tripleClick.addEventListener("dblclick", function () {
-    timer = setTimeout(function () {
-        timer = null;
-    }, 200);
-});
-
-tripleClick.addEventListener("click", function () {
-    if (timer) {
-        clearTimeout(timer);
-        timer = null;
-        changeInClick();
-    }
-});
-
-function changeInClick() {
-    const changeClicks = document.querySelectorAll(".services-card h3")
-    changeClicks.forEach(element => {
-        element.innerText = "Yeah, you did triple-click!!!"
+    let timer;
+    tripleClick.addEventListener("dblclick", function () {
+        timer = setTimeout(function () {
+            timer = null;
+        }, 200);
     });
-}
 
-// filter works-photo
+    tripleClick.addEventListener("click", function () {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+            changeInClick();
+        }
+    });
+
+    function changeInClick() {
+        const changeClicks = document.querySelectorAll(".services-card h3")
+        changeClicks.forEach(element => {
+            element.innerText = "Yeah, you did triple-click!!!"
+        });
+    }
+}
 // scroll
 
 // let homeMenuLinks = document.querySelectorAll(".home-menu a"),
@@ -1088,46 +1134,46 @@ function changeInClick() {
 //     homeMenu.classList.toggle ("active-burger");
 //     hamburger.classList.toggle ("open");
 // }
-let interval;
-function scrollToBlock(href) {
-    let target = document.querySelector(href),
-        targetLocation = target.getBoundingClientRect().top + window.pageYOffset, //положення цілі
-        currentPosition = window.pageYOffset, //поточна позиція
-        direction, //напрямок скролу
-        pixelScroll = 1, // швидкість скролу 
-        pixelsLeft; //залишилось пікселів до цілі
-    if (!header.classList.contains("header-hidden") && targetLocation < window.pageYOffset) {
-        targetLocation = target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight;
-    } 
-    if (targetLocation > currentPosition) {
-        direction = "down";
-    } else {
-        direction = "up";
-    }
-    clearInterval(interval);
-    interval = setInterval(()=> {
-        pixelsLeft = Math.abs(targetLocation - window.pageYOffset);
+// let interval;
+// function scrollToBlock(href) {
+//     let target = document.querySelector(href),
+//         targetLocation = target.getBoundingClientRect().top + window.pageYOffset, //положення цілі
+//         currentPosition = window.pageYOffset, //поточна позиція
+//         direction, //напрямок скролу
+//         pixelScroll = 1, // швидкість скролу 
+//         pixelsLeft; //залишилось пікселів до цілі
+//     if (!header.classList.contains("header-hidden") && targetLocation < window.pageYOffset) {
+//         targetLocation = target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight;
+//     } 
+//     if (targetLocation > currentPosition) {
+//         direction = "down";
+//     } else {
+//         direction = "up";
+//     }
+//     clearInterval(interval);
+//     interval = setInterval(()=> {
+//         pixelsLeft = Math.abs(targetLocation - window.pageYOffset);
         
-        if (pixelScroll <= 50 && pixelsLeft > (window.innerHeight * 0.35)) {
-            pixelScroll *= 1.2;
-        } else if (pixelsLeft < (window.innerHeight * 0.35)  && pixelScroll > 3) {
-            pixelScroll *= 0.8;
-        }
+//         if (pixelScroll <= 50 && pixelsLeft > (window.innerHeight * 0.35)) {
+//             pixelScroll *= 1.2;
+//         } else if (pixelsLeft < (window.innerHeight * 0.35)  && pixelScroll > 3) {
+//             pixelScroll *= 0.8;
+//         }
 
-        if(direction == "down"){
-            window.scrollTo(0, window.pageYOffset + pixelScroll);
-        } else {
-            window.scrollTo(0, window.pageYOffset - pixelScroll);
-        }
+//         if(direction == "down"){
+//             window.scrollTo(0, window.pageYOffset + pixelScroll);
+//         } else {
+//             window.scrollTo(0, window.pageYOffset - pixelScroll);
+//         }
 
-        if (Math.abs(window.pageYOffset - targetLocation) <= 3) {
-            window.scrollTo(0, targetLocation);
-            clearInterval(interval);
-        } else if (Math.abs(window.pageYOffset + window.innerHeight - document.body.getBoundingClientRect().height) < 5 ) {
-            clearInterval(interval);
-        }
-    }, 20)
-}
+//         if (Math.abs(window.pageYOffset - targetLocation) <= 3) {
+//             window.scrollTo(0, targetLocation);
+//             clearInterval(interval);
+//         } else if (Math.abs(window.pageYOffset + window.innerHeight - document.body.getBoundingClientRect().height) < 5 ) {
+//             clearInterval(interval);
+//         }
+//     }, 20)
+// }
 
 // homeMenuLinks.forEach(element => {
 //     element.onclick = function (event) {
@@ -1140,74 +1186,29 @@ function scrollToBlock(href) {
 /* ------------------------------------------------*/
 
 // burger-menu and scroll
-const iconMenu = document.querySelector('.menu-icon');
-const homeMenuLinks = document.querySelectorAll(".scroll-to");
-const menuBody = document.querySelector('.menu-body');
 
+// function ajaxForm(form, method, requestURL) {
+//     const promise = new Promise((resolve, reject) => {
+//         const formData = new FormData(form);
+//         return fetch(requestURL, {
+//             method: method,
+//             body: formData
+//         }).then(response => {
+//             form.reset();
+//             return (response.ok) ? resolve(response) : reject(response)
+//         })
+//     });
+//     return promise;
+// }
 
-if (iconMenu) {
-    iconMenu.addEventListener("click", function(e) {
-        document.body.classList.toggle('lock');
-        iconMenu.classList.toggle("open-menu");
-        menuBody.classList.toggle("open-menu");
-    });
-
-}
-
-if (homeMenuLinks.length > 0) {
-    homeMenuLinks.forEach(link => {
-        link.onclick = function (event) {
-            event.preventDefault();
-            onMenuLinkClick(this.getAttribute("href"));
-        } 
-    });
-    
-    function onMenuLinkClick (href) {
-        if (document.querySelector(href)) {
-            const target = document.querySelector(href);
-            let targetLocation = target.getBoundingClientRect().top + window.pageYOffset;
-            
-            if (!header.classList.contains("header-hidden") && targetLocation < window.pageYOffset) {
-                targetLocation = target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight;
-            } 
-
-            if (iconMenu.classList.contains("open-menu")) {
-                document.body.classList.remove('lock');
-                iconMenu.classList.remove("open-menu");
-                menuBody.classList.remove("open-menu");
-            }
-            // scrollToBlock(href);
-            window.scrollTo({
-                top: targetLocation,
-                behavior: "smooth"
-            });
-        }
-    }
-}
-
-
-function ajaxForm(form, method, requestURL) {
-    const promise = new Promise((resolve, reject) => {
-        const formData = new FormData(form);
-        return fetch(requestURL, {
-            method: method,
-            body: formData
-        }).then(response => {
-            form.reset();
-            return (response.ok) ? resolve(response) : reject(response)
-        })
-    });
-    return promise;
-}
-
-document.querySelector('#contactForms').onsubmit = function (e) { // id form
-    e.preventDefault();
-    ajaxForm(this, 'POST', '../docs/php/getStarted.php') // method, action
-        .then(response => response.text()) // все що після відправки
-        .then(response => {
-            console.log(response);
-        });
-}
+// document.querySelector('#contactForms').onsubmit = function (e) { // id form
+//     e.preventDefault();
+//     ajaxForm(this, 'POST', '../docs/php/getStarted.php') // method, action
+//         .then(response => response.text()) // все що після відправки
+//         .then(response => {
+//             console.log(response);
+//         });
+// }
 
 
 

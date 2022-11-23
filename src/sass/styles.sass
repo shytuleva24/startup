@@ -232,13 +232,12 @@ main, footer
             width: 100%
             vertical-align: bottom
     .delite-products
-        width: 40rem
         background: transparent
         border: none
         svg
             cursor: pointer
             fill: $mainColorText
-            width: 40rem
+            width: 25rem
             &:hover
                 fill: $mainColorSite
     .count-product
@@ -252,6 +251,8 @@ main, footer
                 font-size: 16rem
                 padding: 12rem
                 text-align: center
+                -webkit-appearance: none
+                appearance: none
                 &:active
                     outline: none
                 &:focus
@@ -265,6 +266,11 @@ main, footer
                 &:hover
                     background-color: $mainColorSite
                     color: #fff
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button
+                -webkit-appearance: none
+                appearance: none
+
     .counter-product
         border: none
         border-top: 1px solid rgba($mainColorText, 0.2)
@@ -278,8 +284,10 @@ main, footer
     .add-product
         border-radius: 0  10px 10px 0
     .total-price-product
+        width: 20%
         text-align: right
         font-weight: bold
+        font-size: 18rem
     table 
         width: 100%
         border-collapse: collapse
@@ -291,6 +299,8 @@ main, footer
             border-top: 1px solid rgba($mainColorText, 0.2)
             border-bottom: 1px solid rgba($mainColorText, 0.2)
             text-align: center
+            &:last-child
+                width: 5%
             // font-size: 16rem
     .total-container
         padding: 10rem
