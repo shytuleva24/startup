@@ -6,7 +6,6 @@ const timeout = 800;
 if (popupLinks.length > 0) {
     for (let index = 0; index < popupLinks.length; index++) {
         const popupLink = popupLinks[index];
-        // const bodyPopap = popupLink.querySelectorAll(".popup_content");
         popupLink.addEventListener("click", function (e) {
             const popupName = popupLink.getAttribute('href').replace('#', '');
             const curentPopup = document.getElementById(popupName);
@@ -86,7 +85,9 @@ document.addEventListener('keydown', function (e) {
         popupClose(popupActive);
     }
 });
+
 // blog post 2
+
 const blogShowMore = document.querySelector('.show-more');
 const blogTwo = document.querySelector('.blog-post_two');
 blogShowMore.addEventListener("click", function (e) {
@@ -99,7 +100,3 @@ blogShowMore.addEventListener("click", function (e) {
     }
 });
 
-    // blogHide.addEventListener("click", function (e) {
-    //     e.preventDefault()
-    //     blogTwo.classList.remove('active');
-    // });
