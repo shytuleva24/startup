@@ -11,20 +11,20 @@ function parallaxEffect() {
             let offsetY = 50 + (Y / window.innerHeight * 10);
             e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
         } else {
-            window.addEventListener('scroll', function() { // на планшет
-                let currentScroll = window.pageYOffset;
-                console.log("+");
-                if (window.pageYOffset < window.innerHeight) {
-                    if (currentScroll > previousScroll && scrollOffsetY < 99) {
-                        scrollOffsetY += 0.2;
-                        homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
-                    } else if (scrollOffsetY > 1) {
-                        scrollOffsetY -= 0.2;
-                        homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
-                    }
-                }
-                previousScroll = currentScroll;
-            });
+            // window.addEventListener('scroll', function() { // на планшет
+            //     let currentScroll = window.pageYOffset;
+            //     console.log("+");
+            //     if (window.pageYOffset < window.innerHeight) {
+            //         if (currentScroll > previousScroll && scrollOffsetY < 99) {
+            //             scrollOffsetY += 0.2;
+            //             homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
+            //         } else if (scrollOffsetY > 1) {
+            //             scrollOffsetY -= 0.2;
+            //             homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
+            //         }
+            //     }
+            //     previousScroll = currentScroll;
+            // });
         }
     }
     parallaxBG.forEach(element => {

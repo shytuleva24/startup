@@ -58,20 +58,20 @@ function parallaxEffect() {
             let offsetY = 50 + (Y / window.innerHeight * 10);
             e.target.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
         } else {
-            window.addEventListener('scroll', function() { // на планшет
-                let currentScroll = window.pageYOffset;
-                console.log("+");
-                if (window.pageYOffset < window.innerHeight) {
-                    if (currentScroll > previousScroll && scrollOffsetY < 99) {
-                        scrollOffsetY += 0.2;
-                        homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
-                    } else if (scrollOffsetY > 1) {
-                        scrollOffsetY -= 0.2;
-                        homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
-                    }
-                }
-                previousScroll = currentScroll;
-            });
+            // window.addEventListener('scroll', function() { // на планшет
+            //     let currentScroll = window.pageYOffset;
+            //     console.log("+");
+            //     if (window.pageYOffset < window.innerHeight) {
+            //         if (currentScroll > previousScroll && scrollOffsetY < 99) {
+            //             scrollOffsetY += 0.2;
+            //             homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
+            //         } else if (scrollOffsetY > 1) {
+            //             scrollOffsetY -= 0.2;
+            //             homePage.style.backgroundPosition = `50% ${scrollOffsetY}%`;
+            //         }
+            //     }
+            //     previousScroll = currentScroll;
+            // });
         }
     }
     parallaxBG.forEach(element => {
@@ -434,7 +434,7 @@ function zoomPhotoBlog(classImg) {
             element.onmousemove = function (e) {
                 let x = Math.floor((e.pageX - element.getBoundingClientRect().x) - (widthContainer / 2)),
                     y = Math.floor((e.pageY - element.getBoundingClientRect().y - window.pageYOffset) - (heightContainer / 2));
-                zoomImg.style.objectPosition = `${-(x/2.1)}px ${-(y/2.1)}px`;
+                zoomImg.style.objectPosition = `${-(x/2.05)}px ${-(y/2.05)}px`;
             };
             element.onmouseleave = function (e) {
                 zoomImg.style.transform = "scale(1)";

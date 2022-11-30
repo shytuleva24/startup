@@ -247,7 +247,7 @@ function zoomPhotoBlog(classImg) {
             element.onmousemove = function (e) {
                 let x = Math.floor((e.pageX - element.getBoundingClientRect().x) - (widthContainer / 2)),
                     y = Math.floor((e.pageY - element.getBoundingClientRect().y - window.pageYOffset) - (heightContainer / 2));
-                zoomImg.style.objectPosition = `${-(x/2.1)}px ${-(y/2.1)}px`;
+                zoomImg.style.objectPosition = `${-(x/2.05)}px ${-(y/2.05)}px`;
             };
             element.onmouseleave = function (e) {
                 zoomImg.style.transform = "scale(1)";
