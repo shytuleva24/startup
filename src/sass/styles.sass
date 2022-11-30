@@ -204,6 +204,7 @@ main, footer
             border-color: $mainColorSite
             color: #fff
 #popupBasket
+    // (660)
     color: $mainColorText
     .popup-basket
         padding: 30rem
@@ -306,8 +307,37 @@ main, footer
             border-bottom: 1px solid rgba($mainColorText, 0.2)
             text-align: center
             &:last-child
-                width: 5%
+                +media(660)
+                    width: 5%
             // font-size: 16rem
+    +mediaMax(660)
+        thead
+            display: none
+        tbody
+            tr
+                display: flex
+                flex-wrap: wrap
+                margin-bottom: 15rem
+                padding: 10rem
+                border: 1px solid rgba($mainColorText, 0.2)
+                border-radius: 5px
+                box-shadow: 15px 13px 18px -14px rgb(0 0 0 / 40%)
+            td
+                padding: 5rem
+                border: none
+                &:last-child
+                    width: auto
+            .photo-product
+                width: 100%
+            .count-product
+                width: 100%
+                order: 1
+            .total-price-product
+                width: auto
+    +mediaMax(445)
+        tbody
+            .photo-product
+                width: 100%
     .total-container
         padding: 10rem
         justify-content: space-between

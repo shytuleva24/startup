@@ -1,43 +1,4 @@
 window.onload = function () {
-    savedLastVisit();
-    tripleClick();
-    animBlockInScroll();
-    confirmForm();
-    parallaxEffect();
-    new Shop().init();
-
-    const sliderBoys = new InfinitySlider(".slider", {
-        isArrows: true,
-        isSlidesToScrollAll: true,
-        baseCardWidth: "263rem",
-        gap: 20,
-        isAutoplay:true,
-        autoplaySpeed: 5000,
-        transitionCard: "all 1.5s ease-in-out",
-    });
-    
-    const sliderBrands = new InfinitySlider(".slider-brands", {
-        gap: 45,
-        isAutoplay: true,
-        autoplaySpeed: 5000,
-        baseCardWidth: "127rem",
-        transitionCard: "all 1.3s ease-in-out",
-    });
-    
-    const sliderReviews = new InfinitySlider(".reviews.slider", {
-        isAutoplay: true,
-        autoplaySpeed: 6000,
-        isDots: true,
-        distanceToDots: 40,
-        isEffectFadeOut: true,
-        transitionCard: "all 1s ease-in-out",
-    });
-    
-    sliderBoys.init();
-    sliderBrands.init();
-    sliderReviews.init();
-    
-    
 
     const header = document.querySelector('.header');
     const arrowUp = document.querySelector('.arrow-up');
@@ -72,7 +33,9 @@ window.onload = function () {
         }
 
     }
+
     window.addEventListener(`scroll`, navMenuBackground);
+    
     if (iconMenu) {
         iconMenu.addEventListener("click", function (e) {
             document.body.classList.toggle('lock');
@@ -112,8 +75,49 @@ window.onload = function () {
             }
         }
     }
+    savedLastVisit();
+    tripleClick();
+    animBlockInScroll();
+    confirmForm();
+    parallaxEffect();
+    zoomPhotoBlog(".img-zoom");
+    new Shop().init();
 
+    const sliderBoys = new InfinitySlider(".slider", {
+        isArrows: true,
+        isSlidesToScrollAll: true,
+        baseCardWidth: "263rem",
+        gap: 20,
+        isAutoplay: true,
+        autoplaySpeed: 5000,
+        transitionCard: "all 1.5s ease-in-out",
+    });
 
+    const sliderBrands = new InfinitySlider(".slider-brands", {
+        gap: 45,
+        isAutoplay: true,
+        autoplaySpeed: 5000,
+        baseCardWidth: "127rem",
+        transitionCard: "all 1.3s ease-in-out",
+    });
+
+    const sliderReviews = new InfinitySlider(".reviews.slider", {
+        isAutoplay: true,
+        autoplaySpeed: 6000,
+        isDots: true,
+        distanceToDots: 40,
+        isEffectFadeOut: true,
+        transitionCard: "all 1s ease-in-out",
+    });
+
+    sliderBoys.init();
+    sliderBrands.init();
+    sliderReviews.init();
+    window.onresize = function () {
+        sliderBoys.init();
+        sliderBrands.init();
+        sliderReviews.init();
+    };
 }
 
 // let patern = /url\(["']?(.+)["']?\)/g;
@@ -221,6 +225,35 @@ function tripleClick() {
         const changeClicks = document.querySelectorAll(".services-card h3")
         changeClicks.forEach(element => {
             element.innerText = "Yeah, you did triple-click!!!"
+        });
+    }
+}
+// zoom photo
+
+function zoomPhotoBlog(classImg) {
+    const zoomContainer = document.querySelectorAll(classImg);
+    if (zoomContainer.length) {
+        zoomContainer.forEach(element => {
+            const zoomImg = element.querySelector('img');
+            let widthContainer,
+                heightContainer;
+            element.style.overflow = "hidden";
+            element.onmouseenter = function (e) {
+                widthContainer = element.getBoundingClientRect().width
+                heightContainer = element.getBoundingClientRect().height
+                zoomImg.style.transform = "scale(2)";
+                zoomImg.style.objectFit = `none`;
+            };
+            element.onmousemove = function (e) {
+                let x = Math.floor((e.pageX - element.getBoundingClientRect().x) - (widthContainer / 2)),
+                    y = Math.floor((e.pageY - element.getBoundingClientRect().y - window.pageYOffset) - (heightContainer / 2));
+                zoomImg.style.objectPosition = `${-(x/2.1)}px ${-(y/2.1)}px`;
+            };
+            element.onmouseleave = function (e) {
+                zoomImg.style.transform = "scale(1)";
+                zoomImg.style.objectFit = `cover`;
+                zoomImg.style.objectPosition = `0px 0px`;
+            };
         });
     }
 }

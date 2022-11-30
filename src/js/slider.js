@@ -358,8 +358,3 @@ class InfinitySlider {
 }
 
 
-window.onresize = function () {
-    sliderBoys.init();
-    sliderBrands.init();
-    sliderReviews.init();        
-};

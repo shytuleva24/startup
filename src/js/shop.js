@@ -58,7 +58,7 @@ class Shop {
 
             shopCardTitle.innerText = value.title;
             shopCardCategory.innerText = value.category;
-            shopCardPrice.innerText = value.price + " $";
+            shopCardPrice.innerText = value.price + "$";
             shopCardButton.innerText = "add to card";
             shopCardButton.href = value.href;
             shopCardButton.dataset.id = key;
@@ -154,7 +154,7 @@ class Shop {
                     <button class="add-product"> + </button>
                     </div>
                     </td>
-                    <td class="total-price-product">${value.amount * parseInt(value.price)} $</td>
+                    <td class="total-price-product">${value.amount * parseInt(value.price)}$</td>
                     <td>
                         <button class="delite-products"> 
                             <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" version="1.1" viewBox="0 0 24 24" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Icon"><path d="M4.251,9.031c-0,0 0.194,4.655 0.34,8.167c0.106,2.544 2.199,4.552 4.746,4.552c1.68,0 3.646,0 5.326,0c2.547,0 4.64,-2.008 4.746,-4.552c0.146,-3.512 0.34,-8.167 0.34,-8.167c0.018,-0.413 -0.304,-0.763 -0.718,-0.78c-0.413,-0.018 -0.763,0.304 -0.78,0.718c-0,-0 -0.194,4.655 -0.341,8.166c-0.072,1.741 -1.505,3.115 -3.247,3.115c-1.68,0 -3.646,0 -5.326,-0c-1.742,0 -3.175,-1.374 -3.247,-3.115c-0.147,-3.511 -0.341,-8.166 -0.341,-8.166c-0.017,-0.414 -0.367,-0.736 -0.78,-0.718c-0.414,0.017 -0.736,0.367 -0.718,0.78Z"/><path d="M7.459,5.25l0.374,-1.12c0.374,-1.123 1.425,-1.88 2.609,-1.88c0.944,0 2.172,0 3.116,0c1.184,-0 2.235,0.757 2.609,1.88l0.374,1.12l3.459,0c0.414,-0 0.75,0.336 0.75,0.75c0,0.414 -0.336,0.75 -0.75,0.75l-16,0c-0.414,-0 -0.75,-0.336 -0.75,-0.75c0,-0.414 0.336,-0.75 0.75,-0.75l3.459,0Zm7.5,0l-0.215,-0.645c-0.17,-0.511 -0.647,-0.855 -1.186,-0.855c-0.944,-0 -2.172,-0 -3.116,0c-0.539,-0 -1.016,0.344 -1.186,0.855l-0.215,0.645l5.918,0Z"/></g></svg>
@@ -179,7 +179,7 @@ class Shop {
         for (const [key, value] of Object.entries(this.basketItems)) {
             sumPrice += (value.amount * parseInt(value.price));
         }
-        document.querySelector('.total-price-basket').innerHTML = sumPrice + " $";
+        document.querySelector('.total-price-basket').innerHTML = sumPrice + "$";
     }
 
     updateCounter() {
@@ -208,7 +208,7 @@ class Shop {
                 const counterProduct = cart.querySelector('.counter-product');
                 this.basketItems[idCart].amount++;
                 counterProduct.value = this.basketItems[idCart].amount;
-                cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)} $`;
+                cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)}$`;
                 localStorage["basketItems"] = JSON.stringify(this.basketItems);
                 this.showTotalPrice();
             };
@@ -224,7 +224,7 @@ class Shop {
                 const counterProduct = cart.querySelector('.counter-product');
                 if (this.basketItems[idCart].amount > 1) {
                     this.basketItems[idCart].amount--;
-                    cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)} $`;
+                    cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)}$`;
                     counterProduct.value = this.basketItems[idCart].amount;
                     this.showTotalPrice();
                     localStorage["basketItems"] = JSON.stringify(this.basketItems);
@@ -253,13 +253,14 @@ class Shop {
     counterProduct() {
         const counterProducts = document.querySelectorAll('.counter-product');
         counterProducts.forEach(element => {
-            element.addEventListener('input', function (e) {
+            element.addEventListener('input', (e) => {
                 const cart = element.closest('.product');
                 const idCart = cart.dataset.id;
+                console.log(cart, idCart);
                 this.basketItems[idCart].amount = element.value;
                 element.value = this.basketItems[idCart].amount;
                 localStorage["basketItems"] = JSON.stringify(this.basketItems);
-                cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)} $`;
+                cart.querySelector('.total-price-product').innerHTML = `${this.basketItems[idCart].amount * parseInt(this.basketItems[idCart].price)}$`;
                 this.showTotalPrice();
                 this.updateCounter();
             });
@@ -297,7 +298,6 @@ class Shop {
                 for (const [key, value] of Object.entries(items)) {
                     let categoryItem = value.category + "",
                         idCart = key;
-                        console.log(categoryItem.split(" ").includes(category), idCart);
                     if (categoryItem.split(" ").includes(category)) {
                         cartCurrentCategory[idCart] = obj[idCart];
                     }
