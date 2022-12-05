@@ -186,11 +186,8 @@
     min-height: 320rem
 .photo-card
     max-width: 100%
-    // transition: all 1s ease
     cursor: pointer
     opacity: 0
-    // transform: rotate(0) scale(1)
-    transform: rotate(-180deg) scale(0.3)
     +media(500)
         max-width: calc( ( 100% - 30rem ) / 2 )
     +media(876)
@@ -198,12 +195,11 @@
     &:hover .works-description
         visibility: visible
         opacity: 1
-        transition: all .5s ease
-.photo-card._active
-    opacity: 1
-    transform: rotate(0) scale(1)
-// .photo-card.anim-card
-//     display: none
+// .photo-card._active
+//     opacity: 1
+//     transform: rotate(0) scale(1)
+.photo-card.anim-card
+    display: none
 
 .works-img
     width: 100%
@@ -213,7 +209,6 @@
 .works-description
     visibility: hidden
     opacity: 0
-    transition: all .5s ease
     position: absolute
     top: 0
     left: 0
@@ -242,7 +237,6 @@
     line-height: 24rem
     text-transform: uppercase
     border: 1px solid #fff
-    transition: all .5s ease
     &:hover
         color: $mainColorSite
         background-color: #fff
@@ -259,7 +253,6 @@
         top: 45%
         right: 10%
         z-index: 1
-        transition: all .5s ease
 
 // advertising
 

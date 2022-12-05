@@ -35,7 +35,7 @@ window.onload = function () {
     }
 
     window.addEventListener(`scroll`, navMenuBackground);
-    
+
     if (iconMenu) {
         iconMenu.addEventListener("click", function (e) {
             document.body.classList.toggle('lock');
@@ -231,29 +231,22 @@ function tripleClick() {
 // zoom photo
 
 function zoomPhotoBlog(classImg) {
-    const zoomContainer = document.querySelectorAll(classImg);
-    if (zoomContainer.length) {
-        zoomContainer.forEach(element => {
+    const zoomContainers = document.querySelectorAll(classImg);
+    if (zoomContainers.length) {
+        zoomContainers.forEach(element => {
             const zoomImg = element.querySelector('img');
-            let widthContainer,
-                heightContainer;
             element.style.overflow = "hidden";
-            element.onmouseenter = function (e) {
-                widthContainer = element.getBoundingClientRect().width
-                heightContainer = element.getBoundingClientRect().height
+            element.addEventListener("mouseenter", function (e) {
                 zoomImg.style.transform = "scale(2)";
-                zoomImg.style.objectFit = `none`;
-            };
-            element.onmousemove = function (e) {
-                let x = Math.floor((e.pageX - element.getBoundingClientRect().x) - (widthContainer / 2)),
-                    y = Math.floor((e.pageY - element.getBoundingClientRect().y - window.pageYOffset) - (heightContainer / 2));
-                zoomImg.style.objectPosition = `${-(x/2.05)}px ${-(y/2.05)}px`;
-            };
-            element.onmouseleave = function (e) {
+            });
+            element.addEventListener("mousemove", function (e) {
+                let originX = ((e.clientX - element.getBoundingClientRect().x) / element.getBoundingClientRect().width) * 100;
+                let originY = ((e.clientY - element.getBoundingClientRect().y) / element.getBoundingClientRect().height) * 100;
+                zoomImg.style.transformOrigin = `${originX}% ${originY}%`;
+            });
+            element.addEventListener("mouseleave", () => {
                 zoomImg.style.transform = "scale(1)";
-                zoomImg.style.objectFit = `cover`;
-                zoomImg.style.objectPosition = `0px 0px`;
-            };
+            });
         });
     }
 }
