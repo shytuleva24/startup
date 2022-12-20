@@ -154,8 +154,8 @@ mixin aboutCard (item)
         figcaption
             .about-img
                 picture 
-                    source(srcset=item.src + ".webp", tipe="image/webp", data-src="lazy.svg")
-                    img(src=item.src + ".png", alt=item.alt, data-src="lazy.svg")
+                    source(srcset=item.src + ".webp")
+                    img(src=item.src + ".png", alt=item.alt)
                 .employee-social.flex
                     a.fb(href="#") 
                     a.tw(href="#") 
@@ -181,7 +181,7 @@ mixin aboutCard (item)
 mixin blogPost (item, myClass)
     .post
         .post-img.img-zoom
-            img(src=item.src, alt=item.alt, data-src="lazy.svg")
+            img(src=item.src, alt=item.alt)
         .post-info
             .data-name-post.flex 
                 .data-post
